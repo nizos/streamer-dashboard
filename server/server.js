@@ -70,14 +70,32 @@ io.sockets.on('connection', function(socket) {
 
   // On client disconnect
   socket.on('disconnect', function(data) {
+    // if(!socket.username) {
+    //   return;
+    // }
+    users.splice(users.indexOf(socket.username), 1);
+    updateUsernames();
     connections.splice(connections.indexOf(socket), 1);
     console.log('A client has discconected: %s sockets connected', connections.length);
   });
 
   // Send Message
   socket.on('send message', function(data) {
-    io.sockets.emit('new message', {msg: data});
+    io.sockets.emit('new message', {msg: data, user: socket.username});
   });
+
+  // New user joined
+  socket.on('new user', function(data, callback) {
+    callback(true);
+    socket.username = data;
+    users.push(socket.username);
+    updateUsernames();
+  });
+
+  // Update usernames list
+  function updateUsernames() {
+    io.sockets.emit('get users', users);
+  };
 });
 
 // Override passport profile function to get user profile from Twitch API
