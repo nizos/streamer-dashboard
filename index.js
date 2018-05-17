@@ -20,7 +20,6 @@ const TWITCH_SECRET     = '03dm71bp4ok4jty86vuy0q57esbuix';
 const SESSION_SECRET    = 'Q5rS_q#(LNJ^&7c~f4+.SbBmX|md';
 const CALLBACK_URL      = 'http://localhost:3000/auth/twitch/callback';
 const DATABASE          = 'mongodb://StreamerDashboardDBAdmin:OKGJbhny35xaixbB7mklQhBT56TE@ds117960.mlab.com:17960/streamerdashboarddb';
-const port              = process.env.PORT || 3000;
 
 // Define our variables
 
@@ -32,7 +31,7 @@ var connections         = [];
 // Initialize Express and middlewares
 const app               = express();
 const router            = express.Router();
-const server            = require('http').createServer(app);
+const server            = http.createServer(app);
 const io                = require('socket.io').listen(server);
 
 // Setup Express
@@ -48,17 +47,33 @@ app.use(express.static('public'));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Set our api routes and port
-app.use('/api', api);
-app.set('port', port);
+// Parsers for POST data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
 
+// Set our api routes
+app.use('/api', api);
+
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
+  });
+
+/**
+ * Get port from environment and store in Express.
+ */
+const port = process.env.PORT || '3000';
+app.set('port', port);
+
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port, () => console.log(`API running on localhost:${port}`));
+
 
 // // Catch all other routes and return the index file
 // app.get('*', (req, res) => {
@@ -73,7 +88,7 @@ app.get('*', (req, res) => {
 // app.get('/auth/twitch', passport.authenticate('twitch', {
 //     scope: 'analytics:read:games bits:read clips:edit user:edit user:read:email openid'
 // }));
-  
+
 // // Set route for OAuth redirect
 // app.get('/auth/twitch/callback', passport.authenticate('twitch', {
 //     successRedirect: '/',
@@ -132,13 +147,13 @@ io.sockets.on('connection', function(socket) {
 //     });
 // };
 
-passport.serializeUser(function (user, done) {
-    done(null, user);
-});
+// passport.serializeUser(function (user, done) {
+//     done(null, user);
+// });
 
-passport.deserializeUser(function (user, done) {
-    done(null, user);
-});
+// passport.deserializeUser(function (user, done) {
+//     done(null, user);
+// });
 
-// Listen on provided port, on all network interfaces.
-server.listen(port, () => console.log(`API running on localhost:${port}`));
+// // Listen on provided port, on all network interfaces.
+// server.listen(port, () => console.log(`API running on localhost:${port}`));

@@ -1,11 +1,13 @@
-const DATABASE          = 'mongodb://StreamerDashboardDBAdmin:OKGJbhny35xaixbB7mklQhBT56TE@ds117960.mlab.com:17960/streamerdashboarddb';
+const uristring =
+    process.env.MONGODB_URI ||
+    'mongodb://StreamerDashboardDBAdmin:OKGJbhny35xaixbB7mklQhBT56TE@ds117960.mlab.com:17960/streamerdashboarddb';
 const express           = require('express');
 const router            = express.Router();
 var status              = require('http-status');
 var mongoose            = require('mongoose');
 var ClientUser          = require('../models/clientUser');
 
-mongoose.connect(DATABASE, err => {
+mongoose.connect(uristring, err => {
     if(err) {
         console.log('Error! ' + err);
     } else {
