@@ -58,9 +58,13 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/api', api);
 
 // Catch all other routes and return the index file
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
-  });
+app.get('/', (req, res) => {
+    if (req.session && req.session.passport && req.session.passport.user) {
+        res.sendFile(path.resolve('src/index.html'));
+    } else {
+        res.send('<html><head><title>Twitch Auth Sample</title></head><a href="/auth/twitch"><img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png"></a></html>');
+    }
+});
 
 /**
  * Get port from environment and store in Express.
@@ -84,16 +88,16 @@ server.listen(port, () => console.log(`API running on localhost:${port}`));
 //     // }
 // });
 
-// // Set route to start OAuth link, this is where you define scopes to request
-// app.get('/auth/twitch', passport.authenticate('twitch', {
-//     scope: 'analytics:read:games bits:read clips:edit user:edit user:read:email openid'
-// }));
+// Set route to start OAuth link, this is where you define scopes to request
+app.get('/auth/twitch', passport.authenticate('twitch', {
+    scope: 'analytics:read:games bits:read clips:edit user:edit user:read:email openid'
+}));
 
-// // Set route for OAuth redirect
-// app.get('/auth/twitch/callback', passport.authenticate('twitch', {
-//     successRedirect: '/',
-//     failureRedirect: '/'
-// }));
+// Set route for OAuth redirect
+app.get('/auth/twitch/callback', passport.authenticate('twitch', {
+    successRedirect: '/',
+    failureRedirect: '/'
+}));
 
 // Socket events
 io.sockets.on('connection', function(socket) {
@@ -110,50 +114,50 @@ io.sockets.on('connection', function(socket) {
     });
 });
 
-// passport.use('twitch', new OAuth2Strategy( {
-//     authorizationURL: 'https://id.twitch.tv/oauth2/authorize',
-//     tokenURL: 'https://id.twitch.tv/oauth2/token',
-//     clientID: TWITCH_CLIENT_ID,
-//     clientSecret: TWITCH_SECRET,
-//     callbackURL: CALLBACK_URL,
-//     state: true
-//     },
-//     function (accessToken, refreshToken, profile, done) {
-//         profile.accessToken = accessToken;
-//         profile.refreshToken = refreshToken;
-//         _accessToken = accessToken;
-//         _refreshToken = refreshToken;
-//         done(null, profile);
-//     }
-// ));
+passport.use('twitch', new OAuth2Strategy( {
+    authorizationURL: 'https://id.twitch.tv/oauth2/authorize',
+    tokenURL: 'https://id.twitch.tv/oauth2/token',
+    clientID: TWITCH_CLIENT_ID,
+    clientSecret: TWITCH_SECRET,
+    callbackURL: CALLBACK_URL,
+    state: true
+    },
+    function (accessToken, refreshToken, profile, done) {
+        profile.accessToken = accessToken;
+        profile.refreshToken = refreshToken;
+        _accessToken = accessToken;
+        _refreshToken = refreshToken;
+        done(null, profile);
+    }
+));
 
-// // Override passport profile function to get user profile from Twitch API
-// OAuth2Strategy.prototype.userProfile = function (accessToken, done) {
-//     var options = {
-//         url: 'https://api.twitch.tv/helix/users?id=116069219',
-//         method: 'GET',
-//         headers: {
-//             'Client-ID': TWITCH_CLIENT_ID,
-//             'Accept': 'application/vnd.twitchtv.v5+json',
-//             'Authorization': 'Bearer ' + _accessToken
-//         }
-//     };
-//     request(options, function (error, response, body) {
-//         if (response && response.statusCode == 200) {
-//             done(null, JSON.parse(body));
-//         } else {
-//             done(JSON.parse(body));
-//         }
-//     });
-// };
+// Override passport profile function to get user profile from Twitch API
+OAuth2Strategy.prototype.userProfile = function (accessToken, done) {
+    var options = {
+        url: 'https://api.twitch.tv/helix/users?id=116069219',
+        method: 'GET',
+        headers: {
+            'Client-ID': TWITCH_CLIENT_ID,
+            'Accept': 'application/vnd.twitchtv.v5+json',
+            'Authorization': 'Bearer ' + _accessToken
+        }
+    };
+    request(options, function (error, response, body) {
+        if (response && response.statusCode == 200) {
+            done(null, JSON.parse(body));
+        } else {
+            done(JSON.parse(body));
+        }
+    });
+};
 
-// passport.serializeUser(function (user, done) {
-//     done(null, user);
-// });
+passport.serializeUser(function (user, done) {
+    done(null, user);
+});
 
-// passport.deserializeUser(function (user, done) {
-//     done(null, user);
-// });
+passport.deserializeUser(function (user, done) {
+    done(null, user);
+});
 
 // // Listen on provided port, on all network interfaces.
 // server.listen(port, () => console.log(`API running on localhost:${port}`));

@@ -5,9 +5,9 @@
   </div>
 
     <div class="input-group">
-      <input type="text" class="form-control" autocomplete="off" placeholder="USER ID" value="116069219">
+      <input type="text" class="form-control" autocomplete="off" placeholder="USER ID" id="providedUserId" #providedUserId value="116069219" (keyup.enter)="onEnter(providedUserId.value)" (keyup.enter)="getUserById(userId)">
       <div class="input-group-append">
-        <button class="btn btn-sm btn-primary">Get User</button>
+        <button class="btn btn-sm btn-primary" (click)="onEnter(providedUserId.value)" (click)="getUserById(userId)">Get User</button>
       </div>
     </div>
 

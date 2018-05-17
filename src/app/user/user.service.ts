@@ -10,6 +10,7 @@ export class UserService {
 
   // Get a User by Id
   getUserById(userId) {
-    return this.http.get('/api/user/' + userId);
+      console.log('Called: getUserById(', userId, ') from user.service.ts');
+      return this.http.get('/api/user/' + userId);
   }
 }

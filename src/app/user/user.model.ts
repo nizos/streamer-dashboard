@@ -1,4 +1,4 @@
-// modelfor User
+// model for User
 export class User {
     constructor(id: {
         type: string,
