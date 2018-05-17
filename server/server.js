@@ -57,11 +57,12 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-    if (req.session && req.session.passport && req.session.passport.user) {
-        res.sendFile(path.join(__dirname, 'dist/index.html'));
-    } else {
-        res.send('<html><head><title>Twitch Auth Sample</title></head><a href="/auth/twitch"><img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png"></a></html>');
-    }
+    // if (req.session && req.session.passport && req.session.passport.user) {
+    //     res.sendFile(path.join(__dirname, 'dist/index.html'));
+    // } else {
+    //     res.send('<html><head><title>Twitch Auth Sample</title></head><a href="/auth/twitch"><img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png"></a></html>');
+    // }
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 // Set route to start OAuth link, this is where you define scopes to request

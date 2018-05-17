@@ -63,8 +63,8 @@ import { SocketService } from './socket.service';
 })
 export class AppModule {
   constructor(private socketService: SocketService) {
-    this.socketService.consumeEvenOnGistSaved(); // Save event
-    this.socketService.consumeEvenOnGistUpdated(); // Update event
+    // this.socketService.consumeEvenOnGistSaved(); // Save event
+    // this.socketService.consumeEvenOnGistUpdated(); // Update event
   }
 }
 

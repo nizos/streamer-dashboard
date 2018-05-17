@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { UserService } from './user.service';
+import { SocketService } from '../socket.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { User } from './user.model';
 
 @Component({
   selector: 'app-user',
@@ -9,40 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  user = [];
-  constructor(private _userService: UserService, private _router: Router) { }
+  public user: User;
+  userId = '116069219';
 
-  ngOnInit() {
-    this._userService.getUserById('116069219')
-    .subscribe(
-      res => {
-        console.log('res: ');
-        console.log(res);
-        this.user = res;
-      },
-      err => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status === 401) {
-            console.log(err);
-            this._router.navigate(['/twitch/auth']);
-          }
-        }
-      }
-    );
+  constructor(private userService: UserService, private dialog: MatDialog) {
   }
 
-  getUserById(id: string) {
-    this._userService.getUserById(id)
-    .subscribe(
-      res => this.user = res,
-      err => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status === 401) {
-            console.log(err);
-            this._router.navigate(['/twitch/auth']);
-          }
-        }
-      }
-    );
+  ngOnInit() {
+    // Load all gists
+    this.userService.getUserById(this.userId)
+      .subscribe(user => {
+        this.user = user;
+      });
   }
 }
