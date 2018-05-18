@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const clientUserSchema = new Schema({
-    _id: String,
+    id: String,
     accessToken: String,
     refreshToken: String,
     created_at: Date,
