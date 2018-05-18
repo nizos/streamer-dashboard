@@ -1,4 +1,6 @@
+/*jshint esversion: 6 */
 var mongoose = require('mongoose');
+const findOrCreate      = require('mongoose-findorcreate');
 var Schema = mongoose.Schema;
 
 // create a schema
@@ -36,7 +38,7 @@ var userSchema = new Schema({
         required: true
     },
     view_count: {
-        type: int,
+        type: Number,
         required: true
     },
     email: {
@@ -44,6 +46,7 @@ var userSchema = new Schema({
         required: false
     }
 });
+userSchema.plugin(findOrCreate);
 
 // Create a model from the schema
 var User = mongoose.model('User', userSchema);

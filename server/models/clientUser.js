@@ -1,5 +1,7 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+/*jshint esversion: 6 */
+const mongoose          = require('mongoose');
+const findOrCreate      = require('mongoose-findorcreate');
+const Schema            = mongoose.Schema;
 
 const clientUserSchema = new Schema({
     id: String,
@@ -8,6 +10,8 @@ const clientUserSchema = new Schema({
     created_at: Date,
     updated_at: Date
 });
+clientUserSchema.plugin(findOrCreate);
+
 
 // on every save, add the date and edit updated date
 clientUserSchema.pre('save', function (next) {

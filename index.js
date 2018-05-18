@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 // Define our dependencies
 const express           = require('express');
 const session           = require('express-session');
@@ -5,7 +6,7 @@ const passport          = require('passport');
 const api               = require('./server/routes/api');
 const OAuth2Strategy    = require('passport-oauth').OAuth2Strategy;
 const ClientUser        = require('./server/models/clientUser');
-const findOrCreate      = require('mongoose-find-or-create')
+const findOrCreate      = require('mongoose-findorcreate');
 const request           = require('request');
 const handlebars        = require('handlebars');
 const bodyParser        = require('body-parser');
@@ -54,7 +55,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.use(passport.initialize());
 app.use(passport.session());
-ClientUser.plugin(findOrCreate);
 
 // Parsers for POST data
 app.use(bodyParser.json());
@@ -81,7 +81,7 @@ app.set('port', port);
 
 
 // Listen on provided port, on all network interfaces.
-server.listen(port, () => console.log(`API running on localhost:${port}`));
+server.listen(port, () => console.log(`Server running on localhost:${port}`));
 
 // Set route to start OAuth link, this is where you define scopes to request
 app.get('/auth/twitch', passport.authenticate('twitch', {
@@ -118,29 +118,59 @@ passport.use('twitch', new OAuth2Strategy( {
     state: true
     },
     function (accessToken, refreshToken, profile, done) {
-        let ClientUser = new ClientUser(clientUserData);
-        ClientUser.findOrCreate({
-            id: profile.id,
-            login: profile.login,
-            display_name: profile.display_name,
-            type: profile.type,
-            broadcaster_type: profile.broadcaster_type,
-            description: profile.description,
-            profile_image_url: profile.profile_image_url,
-            offline_image_url: profile.offline_image_url,
-            view_count: profile.view_count,
-            email: profile.email,
+        // console log
+        console.log('Profile data:');
+        console.log(profile);
+        console.log('Profile id:');
+        console.log(profile.data[0].id);
+        console.log('Profile login:');
+        console.log(profile.data[0].login);
+        console.log('Profile display_name:');
+        console.log(profile.data[0].display_name);
+        console.log('Profile type:');
+        console.log(profile.data[0].type);
+        console.log('Profile broadcaster_type:');
+        console.log(profile.data[0].broadcaster_type);
+        console.log('Profile description:');
+        console.log(profile.data[0].description);
+        console.log('Profile profile_image_url:');
+        console.log(profile.data[0].profile_image_url);
+        console.log('Profile offline_image_url:');
+        console.log(profile.data[0].offline_image_url);
+        console.log('Profile view_count:');
+        console.log(profile.data[0].view_count);
+        console.log('Profile email:');
+        console.log(profile.data[0].email);
+        console.log('AccessToken:');
+        console.log(accessToken);
+        console.log('RefreshToken:');
+        console.log(refreshToken);
+        var Client = new ClientUser({
+            id: profile.data[0].id,
+            login: profile.data[0].login,
+            display_name: profile.data[0].display_name,
+            type: profile.data[0].type,
+            broadcaster_type: profile.data[0].broadcaster_type,
+            description: profile.data[0].description,
+            profile_image_url: profile.data[0].profile_image_url,
+            offline_image_url: profile.data[0].offline_image_url,
+            view_count: profile.data[0].view_count,
+            email: profile.data[0].email,
             accessToken: accessToken,
             refreshToken: refreshToken
-        }), (err, result) => {
+        });
+        ClientUser.findOrCreate(Client, (err, clientFound, created) => {
                 if(err) {
                     console.log('Error in clientUser.findOrCreate():');
                     console.log(err);
-                } else {
-                    console.log('Success: clientUser.findOrCreate():');
-                    console.log(result);
+                } else if (clientFound) {
+                    console.log('Found: clientUser.findOrCreate():');
+                    console.log(clientFound);
+                } else if (created) {
+                    console.log('Created: clientUser.findOrCreate():');
+                    console.log(created);
                 }
-        }
+        });
         done(null, profile);
     }
 ));
