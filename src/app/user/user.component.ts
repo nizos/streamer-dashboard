@@ -9,6 +9,8 @@ import { User } from './user.model';
     styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+    loadingStarted = false;
+    loadingEnded = false;
     public user = new User(
         'Id information',
         'Login information',
@@ -16,8 +18,8 @@ export class UserComponent implements OnInit {
         'Type information',
         'Broadcaster type information',
         'Description information',
-        '',
-        '',
+        '../../assets/images/TwitchProfileImageTemplate.png',
+        '../../assets/images/TwitchOfflineImageTemplate300.png',
         'View count information',
         'Email information'
     );

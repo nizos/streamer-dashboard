@@ -1,0 +1,9 @@
+.thumbnail {
+    max-width: 300px;
+}
+
+.userInfo {
+    font-size: 18px;
+    color: rgb(75, 75, 75);
+    font-weight: lighter;
+}
