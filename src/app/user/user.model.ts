@@ -1,45 +1,38 @@
 // model for User
 export class User {
+    public id: string;
+    public login: string;
+    public display_name: string;
+    public type: string;
+    public broadcaster_type: string;
+    public description: string;
+    public profile_image_url: string;
+    public offline_image_url: string;
+    public view_count: string;
+    public email: string;
+
+
+
     constructor(
-        id: {
-            type: string,
-            required: true
-        },
-        login: {
-            type: string,
-            required: true
-        },
-        display_name: {
-            type: string,
-            required: true
-        },
-        type: {
-            type: string,
-            required: true
-        },
-        broadcaster_type: {
-            type: string,
-            required: true
-        },
-        description: {
-            type: string,
-            required: true
-        },
-        profile_image_url: {
-            type: string,
-            required: true
-        },
-        offline_image_url: {
-            type: string,
-            required: true
-        },
-        view_count: {
-            type: number,
-            required: true
-        },
-        email: {
-            type: string,
-            required: false
-        }) {
+        id: string,
+        login: string,
+        display_name: string,
+        type: string,
+        broadcaster_type: string,
+        description: string,
+        profile_image_url: string,
+        offline_image_url: string,
+        view_count: string,
+        email: string) {
+            this.id = id;
+            this.login = login;
+            this.display_name = display_name;
+            this.type = type;
+            this.broadcaster_type = broadcaster_type;
+            this.description = description;
+            this.profile_image_url = profile_image_url;
+            this.offline_image_url = offline_image_url;
+            this.view_count = view_count;
+            this.view_count = view_count;
     }
 }

@@ -9,18 +9,19 @@ import { User } from './user.model';
     styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-    public user: User;
+    public user = new User(
+        'Id information',
+        'Login information',
+        'Display name information',
+        'Type information',
+        'Broadcaster type information',
+        'Description information',
+        '',
+        '',
+        'View count information',
+        'Email information'
+    );
     userId = '';
-    _id = '';
-    _login = '';
-    _display_name = '';
-    _type = '';
-    _broadcaster_type = '';
-    _description = '';
-    _profile_image_url = '';
-    _offline_image_url = '';
-    _view_count = '';
-    _email = '';
 
     constructor(private userService: UserService) {
     }
