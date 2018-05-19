@@ -11,15 +11,27 @@ import { User } from './user.model';
 export class UserComponent implements OnInit {
     public user: User;
     userId = '';
+    _id = '';
+    _login = '';
+    _display_name = '';
+    _type = '';
+    _broadcaster_type = '';
+    _description = '';
+    _profile_image_url = '';
+    _offline_image_url = '';
+    _view_count = '';
+    _email = '';
 
     constructor(private userService: UserService) {
     }
 
     ngOnInit() {
         // Load User
+        console.log('Called: ngOnInit() in user.component.ts');
         this.userService.getUserById(this.userId)
             .subscribe(user => {
             this.user = user;
+            console.log('User in user.component.ts is: ', this.user);
         });
     }
 
@@ -28,6 +40,7 @@ export class UserComponent implements OnInit {
         this.userService.getUserById(this.userId)
             .subscribe(user => {
             this.user = user;
+            console.log('User in user.component.ts is: ', this.user);
         });
     }
 

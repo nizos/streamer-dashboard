@@ -37,7 +37,7 @@ const io                = require('socket.io').listen(server);
 
 mongoose.connect(DATABASE, err => {
     if(err) {
-        console.log('Error! ' + err);
+        console.log('Error connecting to database in index.js: ' + err);
     } else {
         console.log('Server connected to mongodb');
     }
@@ -119,32 +119,21 @@ passport.use('twitch', new OAuth2Strategy( {
     },
     function (accessToken, refreshToken, profile, done) {
         // console log
-        console.log('Profile data:');
-        console.log(profile);
-        console.log('Profile id:');
-        console.log(profile.data[0].id);
-        console.log('Profile login:');
-        console.log(profile.data[0].login);
-        console.log('Profile display_name:');
-        console.log(profile.data[0].display_name);
-        console.log('Profile type:');
-        console.log(profile.data[0].type);
-        console.log('Profile broadcaster_type:');
-        console.log(profile.data[0].broadcaster_type);
-        console.log('Profile description:');
-        console.log(profile.data[0].description);
-        console.log('Profile profile_image_url:');
-        console.log(profile.data[0].profile_image_url);
-        console.log('Profile offline_image_url:');
-        console.log(profile.data[0].offline_image_url);
-        console.log('Profile view_count:');
-        console.log(profile.data[0].view_count);
-        console.log('Profile email:');
-        console.log(profile.data[0].email);
-        console.log('AccessToken:');
-        console.log(accessToken);
-        console.log('RefreshToken:');
-        console.log(refreshToken);
+        console.log('====================================');
+        console.log('CALLED: passport.use(twitch, new OAuth2Strategy() from INDEX.JS');
+        console.log('id: '+profile.data[0].id);
+        console.log('login: '+profile.data[0].login);
+        console.log('display_name: '+profile.data[0].display_name);
+        console.log('type: '+profile.data[0].type);
+        console.log('broadcaster_type: '+profile.data[0].broadcaster_type);
+        console.log('description: '+profile.data[0].description);
+        console.log('profile_image_url: '+profile.data[0].profile_image_url);
+        console.log('offline_image_url: '+profile.data[0].offline_image_url);
+        console.log('view_count: '+profile.data[0].view_count);
+        console.log('email: '+profile.data[0].email);
+        console.log('AccessToken: '+accessToken);
+        console.log('RefreshToken: '+refreshToken);
+        console.log('====================================');
         var Client = new ClientUser({
             id: profile.data[0].id,
             login: profile.data[0].login,
@@ -161,14 +150,42 @@ passport.use('twitch', new OAuth2Strategy( {
         });
         ClientUser.findOrCreate(Client, (err, clientFound, created) => {
                 if(err) {
-                    console.log('Error in clientUser.findOrCreate():');
+                    console.log('====================================');
+                    console.log('ERROR in clientUser.findOrCreate():');
                     console.log(err);
+                    console.log('====================================');
                 } else if (clientFound) {
-                    console.log('Found: clientUser.findOrCreate():');
-                    console.log(clientFound);
+                    console.log('====================================');
+                    console.log('FOUND: clientUser.findOrCreate():');
+                    console.log('id: '+clientFound.id);
+                    console.log('login: '+clientFound.login);
+                    console.log('display_name: '+clientFound.display_name);
+                    console.log('type: '+clientFound.type);
+                    console.log('broadcaster_type: '+clientFound.broadcaster_type);
+                    console.log('description: '+clientFound.description);
+                    console.log('profile_image_url: '+clientFound.profile_image_url);
+                    console.log('offline_image_url: '+clientFound.offline_image_url);
+                    console.log('view_count: '+clientFound.view_count);
+                    console.log('email: '+clientFound.email);
+                    console.log('AccessToken: '+clientFound.accessToken);
+                    console.log('RefreshToken: '+clientFound.refreshToken);
+                    console.log('====================================');
                 } else if (created) {
-                    console.log('Created: clientUser.findOrCreate():');
-                    console.log(created);
+                    console.log('====================================');
+                    console.log('CREATED: clientUser.findOrCreate()');
+                    console.log('id: '+created.id);
+                    console.log('login: '+created.login);
+                    console.log('display_name: '+created.display_name);
+                    console.log('type: '+created.type);
+                    console.log('broadcaster_type: '+created.broadcaster_type);
+                    console.log('description: '+created.description);
+                    console.log('profile_image_url: '+created.profile_image_url);
+                    console.log('offline_image_url: '+created.offline_image_url);
+                    console.log('view_count: '+created.view_count);
+                    console.log('email: '+created.email);
+                    console.log('AccessToken: '+created.accessToken);
+                    console.log('RefreshToken: '+created.refreshToken);
+                    console.log('====================================');
                 }
         });
         done(null, profile);

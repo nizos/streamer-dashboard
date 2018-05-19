@@ -11,6 +11,8 @@ export class UserService {
   // Get a User by Id
   getUserById(userId) {
       console.log('Called: getUserById(', userId, ') from user.service.ts');
-      return this.http.get('/api/user/' + userId);
+      console.log('Result: ');
+      console.log(this.http.get<User>('/api/user/' + userId));
+      return this.http.get<User>('/api/user/' + userId);
   }
 }
