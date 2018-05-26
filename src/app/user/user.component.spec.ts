@@ -1,3 +1,10 @@
+/*
+ * @Author: Nizars
+ * @Date: 2018-05-26 13:05:50
+ * @Last Modified by:   Nizars
+ * @Last Modified time: 2018-05-26 13:05:50
+ */
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserComponent } from './user.component';

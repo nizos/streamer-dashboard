@@ -1,5 +1,13 @@
 .container {
-    max-width: 960px;
+    max-width: 1400px;
+}
+
+body {
+    padding-bottom: 20px;
+  }
+
+  .navbar {
+    margin-bottom: 20px;
 }
 
 /* Custom translucent site header */

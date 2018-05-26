@@ -1,4 +1,11 @@
-.thumbnail {
+/*
+ * @Author: Nizars
+ * @Date: 2018-05-26 13:05:40
+ * @Last Modified by:   Nizars
+ * @Last Modified time: 2018-05-26 13:05:40
+ */
+
+ .thumbnail {
     max-width: 300px;
     border-radius: 5px;
 }

@@ -1,3 +1,9 @@
+/*
+ * @Author: Nizars
+ * @Date: 2018-05-26 13:06:05
+ * @Last Modified by:   Nizars
+ * @Last Modified time: 2018-05-26 13:06:05
+ */
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
 import { SocketService } from '../socket.service';
