@@ -1,18 +1,37 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Streamer Dashboard</title>
-  <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+<head>
+    <meta charset="utf-8">
+    <title>Streamer Dashboard</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 </head>
+
 <body>
-        <div id="particles-js"></div>
-        <app-root>Loading...</app-root>
-        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <canvas class="background"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+    <script>
+    window. onload = function() {
+        Particles.init (
+            {
+                selector: '.background'
+            }
+        );
+    };
+
+    var particles = Particles.init({
+        selector: '.background',
+        color: ['#DA0463', '#404B69', '#DBEDF3'],
+        connectParticles: true
+    });
+    </script>
+    <app-root>Loading...</app-root>
 </body>
+
 </html>

@@ -63,3 +63,11 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 // import 'intl';  // Run `npm install --save intl`.
 
 (window as any).global = window;
+
+window.onload = function() {
+    Particles.init({
+    selector: '#particles-js',
+    color: ['#DA0463', '#404B69', '#DBEDF3'],
+    connectParticles: true
+  });
+};
