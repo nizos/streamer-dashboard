@@ -68,6 +68,7 @@ window.onload = function() {
     Particles.init({
     selector: '#particles-js',
     color: ['#DA0463', '#404B69', '#DBEDF3'],
+    maxParticles: 200,
     connectParticles: true
   });
 };
