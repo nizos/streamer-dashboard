@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
 import { SocketService } from '../socket.service';
 import { User } from './user.model';
+declare var particlesJS: any;
 
 @Component({
     selector: 'app-user',
@@ -29,6 +30,10 @@ export class UserComponent implements OnInit {
     }
 
     ngOnInit() {
+        // Load particlesjs
+        particlesJS.load('particles-js', '../../assets/particles/particles.json', null);
+        console.log('PARTICLES-JS LOADED');
+
         // Load User
         console.log('Called: ngOnInit() in user.component.ts');
         this.userService.getUserById(this.userId)
