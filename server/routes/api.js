@@ -3,8 +3,7 @@ const express           = require('express');
 const session           = require('express-session');
 const passport          = require('passport');
 const OAuth2Strategy    = require('passport-oauth').OAuth2Strategy;
-const ClientUser        = require('../models/clientUser');
-const User              = require('../models/User');
+const ApptUser          = require('../models/appUser');
 const findOrCreate      = require('mongoose-findorcreate');
 const request           = require('request');
 const handlebars        = require('handlebars');
@@ -14,6 +13,8 @@ const mongoose          = require('mongoose');
 const http              = require('http');
 const cors              = require('cors');
 const path              = require('path');
+const dbRegistrer               = require('../data/helpers/dbRegistrer');
+const dbGetter                  = require('../data/helpers/dbGetter');
 
 
 // Define our constants
@@ -25,17 +26,20 @@ const DATABASE          = 'mongodb://StreamerDashboardDBAdmin:OKGJbhny35xaixbB7m
 const router            = express.Router();
 var status              = require('http-status');
 
-mongoose.connect(DATABASE, err => {
-    if(err) {
-        console.log('Error! mongoose.connect() in api.js: ' + err);
-    } else {
-        console.log('API connected to mongodb');
-    }
-});
+// mongoose.connect(DATABASE, err => {
+//     if(err) {
+//         console.log('Error! mongoose.connect() in api.js: ' + err);
+//     } else {
+//         console.log('API connected to mongodb');
+//     }
+// });
 
 function getCredentials(userId) {
     console.log('====================================');
     console.log('CALLED: function getCredentials(userId) in API.JS');
+
+    // var result = await dbRegistrer.getAppUserProfile(userId);
+
     var _accessToken = '';
     // find clientUser with id matching userId, selecting the 'accessToken' field
     ClientUser.findOne({ 'id': userId }, 'accessToken', function (err, accessToken) {
@@ -72,7 +76,7 @@ function getUserById(userId, accessToken) {
         url: 'https://api.twitch.tv/helix/users?id='+userId,
         method: 'GET',
         headers: {
-            'Client-ID': TWITCH_CLIENT_ID,
+            'Client-ID': process.env.TWITCH_CLIENT_ID,
             'Accept': 'application/vnd.twitchtv.v5+json',
             'Authorization': 'Bearer ' + accessToken
         }
@@ -147,85 +151,101 @@ function getUserById(userId, accessToken) {
 
 
 // GET a user by ID.
-router.get('/user/:userId', (req, res) => {
+router.get('/user/:userId', async (req, res) => {
     console.log('====================================');
     console.log('CALLED: function router.get(/user/userId, (req, res) in API.JS');
     var userId = req.params.userId;
+    var result = await dbGetter.getAppUserProfile(userId);
+    userFound = {
+        id: result.id,
+        login: result.login,
+        display_name: result.display_name,
+        type: result.type,
+        broadcaster_type: result.broadcaster_type,
+        description: result.description,
+        profile_image_url: result.profile_image_url,
+        offline_image_url: result.offline_image_url,
+        view_count: result.view_count,
+        email: result.email
+    };
+    console.log('userFound: ');
+    console.log(userFound);
+    res.status(status.OK).json(userFound);
     // var _accessToken = getCredentials(userId);
 
-    var _accessToken = '';
-    // find clientUser with id matching userId, selecting the 'accessToken' field
-    ClientUser.findOne({ 'id': userId }, 'accessToken', function (err, accessToken) {
-        if (err) {
-            // console log error
-            console.log(`Error: from getCredentials(`+userId+`); in api.js`);
-            console.log(`Couldn't find entry with id: `+userId+` in database.`);
-            console.log(err);
-        } else {
-            console.log(`Success: found clientUser with id:`+userId+` in database.`);
-            console.log(`clientUser has accessToken: `+accessToken+`.`);
-            _accessToken = accessToken;
-        }
-    });
+    // var _accessToken = '';
+    // // find clientUser with id matching userId, selecting the 'accessToken' field
+    // ClientUser.findOne({ 'id': userId }, 'accessToken', function (err, accessToken) {
+    //     if (err) {
+    //         // console log error
+    //         console.log(`Error: from getCredentials(`+userId+`); in api.js`);
+    //         console.log(`Couldn't find entry with id: `+userId+` in database.`);
+    //         console.log(err);
+    //     } else {
+    //         console.log(`Success: found clientUser with id:`+userId+` in database.`);
+    //         console.log(`clientUser has accessToken: `+accessToken+`.`);
+    //         _accessToken = accessToken;
+    //     }
+    // });
     console.log('====================================');
 
 
     // Get User from Twitch
-    console.log('====================================');
-    console.log('CALLED: function getUserById(userId, accessToken) in API.JS');
-    var options = {
-        url: 'https://api.twitch.tv/helix/users?id='+userId,
-        method: 'GET',
-        headers: {
-            'Client-ID': TWITCH_CLIENT_ID,
-            'Accept': 'application/vnd.twitchtv.v5+json',
-            'Authorization': 'Bearer ' + _accessToken
-        }
-    };
-    var userFound = {
-        id: 'id information',
-        login: 'login information',
-        display_name: 'display name information',
-        type: 'type information',
-        broadcaster_type: 'broadcaster type information',
-        description: 'description information',
-        profile_image_url: 'profile image url',
-        offline_image_url: 'offline image url',
-        view_count: 'view count information',
-        email: 'email information'
-    };
-    request(options, function (error, response, body) {
-        if (response && response.statusCode == 200) {
-            var result = JSON.parse(body);
-            userFound = {
-                id: result.data[0].id,
-                login: result.data[0].login,
-                display_name: result.data[0].display_name,
-                type: result.data[0].type,
-                broadcaster_type: result.data[0].broadcaster_type,
-                description: result.data[0].description,
-                profile_image_url: result.data[0].profile_image_url,
-                offline_image_url: result.data[0].offline_image_url,
-                view_count: result.data[0].view_count,
-                email: result.data[0].email
-            };
-            // console log result
-            console.log('====================================');
-            console.log('SUCCESS: response & response.statusCode == 200');
-            console.log('id: '+userFound.id);
-            console.log('login: '+userFound.login);
-            console.log('display_name: '+userFound.display_name);
-            console.log('type: '+userFound.type);
-            console.log('broadcaster_type: '+userFound.broadcaster_type);
-            console.log('description: '+userFound.description);
-            console.log('profile_image_url: '+userFound.profile_image_url);
-            console.log('offline_image_url: '+userFound.offline_image_url);
-            console.log('view_count: '+userFound.view_count);
-            console.log('email: '+userFound.email);
-            console.log('====================================');
-            res.status(status.OK).json(userFound);
-        }
-    });
+    // console.log('====================================');
+    // console.log('CALLED: function getUserById(userId, accessToken) in API.JS');
+    // var options = {
+    //     url: 'https://api.twitch.tv/helix/users?id='+userId,
+    //     method: 'GET',
+    //     headers: {
+    //         'Client-ID': TWITCH_CLIENT_ID,
+    //         'Accept': 'application/vnd.twitchtv.v5+json',
+    //         'Authorization': 'Bearer ' + _accessToken
+    //     }
+    // };
+    // var userFound = {
+    //     id: 'id information',
+    //     login: 'login information',
+    //     display_name: 'display name information',
+    //     type: 'type information',
+    //     broadcaster_type: 'broadcaster type information',
+    //     description: 'description information',
+    //     profile_image_url: 'profile image url',
+    //     offline_image_url: 'offline image url',
+    //     view_count: 'view count information',
+    //     email: 'email information'
+    // };
+    // request(options, function (error, response, body) {
+    //     if (response && response.statusCode == 200) {
+    //         var result = JSON.parse(body);
+    //         userFound = {
+    //             id: result.data[0].id,
+    //             login: result.data[0].login,
+    //             display_name: result.data[0].display_name,
+    //             type: result.data[0].type,
+    //             broadcaster_type: result.data[0].broadcaster_type,
+    //             description: result.data[0].description,
+    //             profile_image_url: result.data[0].profile_image_url,
+    //             offline_image_url: result.data[0].offline_image_url,
+    //             view_count: result.data[0].view_count,
+    //             email: result.data[0].email
+    //         };
+    //         // console log result
+    //         console.log('====================================');
+    //         console.log('SUCCESS: response & response.statusCode == 200');
+    //         console.log('id: '+userFound.id);
+    //         console.log('login: '+userFound.login);
+    //         console.log('display_name: '+userFound.display_name);
+    //         console.log('type: '+userFound.type);
+    //         console.log('broadcaster_type: '+userFound.broadcaster_type);
+    //         console.log('description: '+userFound.description);
+    //         console.log('profile_image_url: '+userFound.profile_image_url);
+    //         console.log('offline_image_url: '+userFound.offline_image_url);
+    //         console.log('view_count: '+userFound.view_count);
+    //         console.log('email: '+userFound.email);
+    //         console.log('====================================');
+    //         res.status(status.OK).json(userFound);
+    //     }
+    // });
 });
 
 
