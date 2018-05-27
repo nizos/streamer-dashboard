@@ -1,4 +1,14 @@
-/*jshint esversion: 6 */
+/*
+ * @Author: Nizars
+ * @Date: 2018-05-27 09:19:52
+ * @Last Modified by: Nizars
+ * @Last Modified time: 2018-05-27 09:36:06
+ */
+
+ // Import environment keys and values
+require('dotenv').config();
+
+// Import dependancies and modules
 const express           = require('express');
 const session           = require('express-session');
 const passport          = require('passport');
@@ -13,26 +23,11 @@ const mongoose          = require('mongoose');
 const http              = require('http');
 const cors              = require('cors');
 const path              = require('path');
-const dbRegistrer               = require('../data/helpers/dbRegistrer');
-const dbGetter                  = require('../data/helpers/dbGetter');
-
-
-// Define our constants
-const TWITCH_CLIENT_ID  = '64yjyuw2d5wjq45su6usd4s8micmnj';
-const TWITCH_SECRET     = '03dm71bp4ok4jty86vuy0q57esbuix';
-const SESSION_SECRET    = 'Q5rS_q#(LNJ^&7c~f4+.SbBmX|md';
-const CALLBACK_URL      = 'http://localhost:3000/auth/twitch/callback';
-const DATABASE          = 'mongodb://StreamerDashboardDBAdmin:OKGJbhny35xaixbB7mklQhBT56TE@ds117960.mlab.com:17960/streamerdashboarddb';
+const dbRegistrer       = require('../data/helpers/dbRegistrer');
+const dbGetter          = require('../data/helpers/dbGetter');
 const router            = express.Router();
 var status              = require('http-status');
 
-// mongoose.connect(DATABASE, err => {
-//     if(err) {
-//         console.log('Error! mongoose.connect() in api.js: ' + err);
-//     } else {
-//         console.log('API connected to mongodb');
-//     }
-// });
 
 function getCredentials(userId) {
     console.log('====================================');
@@ -73,7 +68,7 @@ function getUserById(userId, accessToken) {
     console.log('====================================');
     console.log('CALLED: function getUserById(userId, accessToken) in API.JS');
     var options = {
-        url: 'https://api.twitch.tv/helix/users?id='+userId,
+        url: `${process.env.TWITCH_API_URL}users?id=${process.env.TWITCH_USER_ID}`,
         method: 'GET',
         headers: {
             'Client-ID': process.env.TWITCH_CLIENT_ID,
@@ -296,14 +291,17 @@ router.get('/user/:userId', async (req, res) => {
 // });
 
 passport.use('twitch', new OAuth2Strategy( {
-    authorizationURL: 'https://id.twitch.tv/oauth2/authorize',
-    tokenURL: 'https://id.twitch.tv/oauth2/token',
-    clientID: TWITCH_CLIENT_ID,
-    clientSecret: TWITCH_SECRET,
-    callbackURL: CALLBACK_URL,
+    authorizationURL: process.env.TWITCH_AUTHORIZE_URL,
+    tokenURL: process.env.TWITCH_REFRESH_URL,
+    clientID: process.env.TWITCH_CLIENT_ID,
+    clientSecret: process.env.TWITCH_SECRET,
+    callbackURL: process.env.TWITCH_REDIRECT_URI,
     state: true
     },
-    function (accessToken, refreshToken, profile, done) {
+    function (accessToken, refreshToken, id_token, profile, done) {
+        // get the decoded payload and header
+        const decoded = jwt.decode(id_token.id_token, {complete: true});
+
         // console log
         console.log('====================================');
         console.log('CALLED: passport.use(twitch, new OAuth2Strategy() from INDEX.JS');
@@ -320,60 +318,43 @@ passport.use('twitch', new OAuth2Strategy( {
         console.log('AccessToken: '+accessToken);
         console.log('RefreshToken: '+refreshToken);
         console.log('====================================');
-        var Client = new ClientUser({
-            id: profile.data[0].id,
-            login: profile.data[0].login,
-            display_name: profile.data[0].display_name,
-            type: profile.data[0].type,
-            broadcaster_type: profile.data[0].broadcaster_type,
-            description: profile.data[0].description,
-            profile_image_url: profile.data[0].profile_image_url,
-            offline_image_url: profile.data[0].offline_image_url,
-            view_count: profile.data[0].view_count,
-            email: profile.data[0].email,
-            accessToken: accessToken,
-            refreshToken: refreshToken
-        });
-        ClientUser.findOrCreate(Client, (err, clientFound, created) => {
-                if(err) {
-                    console.log('====================================');
-                    console.log('ERROR in clientUser.findOrCreate():');
-                    console.log(err);
-                    console.log('====================================');
-                } else if (clientFound) {
-                    console.log('====================================');
-                    console.log('FOUND: clientUser.findOrCreate():');
-                    console.log('id: '+clientFound.id);
-                    console.log('login: '+clientFound.login);
-                    console.log('display_name: '+clientFound.display_name);
-                    console.log('type: '+clientFound.type);
-                    console.log('broadcaster_type: '+clientFound.broadcaster_type);
-                    console.log('description: '+clientFound.description);
-                    console.log('profile_image_url: '+clientFound.profile_image_url);
-                    console.log('offline_image_url: '+clientFound.offline_image_url);
-                    console.log('view_count: '+clientFound.view_count);
-                    console.log('email: '+clientFound.email);
-                    console.log('AccessToken: '+clientFound.accessToken);
-                    console.log('RefreshToken: '+clientFound.refreshToken);
-                    console.log('====================================');
-                } else if (created) {
-                    console.log('====================================');
-                    console.log('CREATED: clientUser.findOrCreate()');
-                    console.log('id: '+created.id);
-                    console.log('login: '+created.login);
-                    console.log('display_name: '+created.display_name);
-                    console.log('type: '+created.type);
-                    console.log('broadcaster_type: '+created.broadcaster_type);
-                    console.log('description: '+created.description);
-                    console.log('profile_image_url: '+created.profile_image_url);
-                    console.log('offline_image_url: '+created.offline_image_url);
-                    console.log('view_count: '+created.view_count);
-                    console.log('email: '+created.email);
-                    console.log('AccessToken: '+created.accessToken);
-                    console.log('RefreshToken: '+created.refreshToken);
-                    console.log('====================================');
-                }
-        });
+        // Prepare AppUserData
+        const appUserData = {
+            id                              : profile.data[0].id,
+            login                           : profile.data[0].login,
+            display_name                    : profile.data[0].display_name,
+            preferred_username              : decoded.payload.preferred_username,
+            type                            : profile.data[0].type,
+            broadcaster_type                : profile.data[0].broadcaster_type,
+            description                     : profile.data[0].description,
+            profile_image_url               : profile.data[0].profile_image_url,
+            offline_image_url               : profile.data[0].offline_image_url,
+            view_count                      : profile.data[0].view_count,
+            email                           : profile.data[0].email,
+            client_id                       : process.env.TWITCH_CLIENT_ID,
+            redirect_uri                    : process.env.TWITCH_REDIRECT_URI,
+            response_type                   : process.env.TWITCH_RES,
+            access_token                    : id_token.access_token,
+            refresh_token                   : refreshToken,
+            expires_in                      : id_token.expires_in,
+            id_token                        : id_token.id_token,
+            scope                           : id_token.scope,
+            alg                             : decoded.header.alg,
+            typ                             : decoded.header.typ,
+            kid                             : decoded.header.kid,
+            aud                             : decoded.payload.aud,
+            exp                             : decoded.payload.exp,
+            iat                             : decoded.payload.iat,
+            iss                             : decoded.payload.iss,
+            sub                             : decoded.payload.sub,
+            azp                             : decoded.payload.azp,
+            created_at                      : Date.now(),
+            updated_at                      : Date.now(),
+        };
+
+        // Register App User to database
+        dbRegistrer.registerAppUser(appUserData);
+
         done(null, profile);
     }
 ));

@@ -1,6 +1,14 @@
-/*jshint esversion: 6 */
-require('dotenv').config();
-// Define our dependencies
+/*
+ * @Author: Nizars
+ * @Date: 2018-05-27 09:19:35
+ * @Last Modified by: Nizars
+ * @Last Modified time: 2018-05-27 09:46:29
+ */
+
+ // Import environment keys and values
+ require('dotenv').config();
+
+ // Import dependancies and modules
 const express           = require('express');
 const session           = require('express-session');
 const passport          = require('passport');
@@ -16,21 +24,8 @@ const mongoose          = require('mongoose');
 const http              = require('http');
 const cors              = require('cors');
 const path              = require('path');
-const dbRegistrer               = require('./server/data/helpers/dbRegistrer');
-const dbGetter                  = require('./server/data/helpers/dbGetter');
-
-// Define our constants
-const TWITCH_CLIENT_ID  = '64yjyuw2d5wjq45su6usd4s8micmnj';
-const TWITCH_SECRET     = '03dm71bp4ok4jty86vuy0q57esbuix';
-const SESSION_SECRET    = 'Q5rS_q#(LNJ^&7c~f4+.SbBmX|md';
-const CALLBACK_URL      = 'http://localhost:3000/auth/twitch/callback';
-const DATABASE          = 'mongodb://StreamerDashboardDBAdmin:OKGJbhny35xaixbB7mklQhBT56TE@ds117960.mlab.com:17960/streamerdashboarddb';
-
-// Define our variables
-var _accessToken        = '';
-var _refreshToken       = '';
-var users               = [];
-var connections         = [];
+const dbRegistrer       = require('./server/data/helpers/dbRegistrer');
+const dbGetter          = require('./server/data/helpers/dbGetter');
 
 // Initialize Express and middlewares
 const app               = express();
@@ -38,17 +33,9 @@ const router            = express.Router();
 const server            = http.createServer(app);
 const io                = require('socket.io').listen(server);
 
-// mongoose.connect(DATABASE, err => {
-//     if(err) {
-//         console.log('Error connecting to database in index.js: ' + err);
-//     } else {
-//         console.log('Server connected to mongodb');
-//     }
-// });
-
 // Setup Express
 app.use(session({
-    secret: SESSION_SECRET,
+    secret: process.env.TWITCH_SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));
@@ -123,6 +110,7 @@ passport.use('twitch', new OAuth2Strategy( {
     function (accessToken, refreshToken, id_token, profile, done) {
         // get the decoded payload and header
         const decoded = jwt.decode(id_token.id_token, {complete: true});
+
         // console log
         console.log('====================================');
         console.log('CALLED: passport.use(twitch, new OAuth2Strategy() from INDEX.JS');
