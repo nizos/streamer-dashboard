@@ -1,3 +1,10 @@
+/*
+ * @Author: Nizars
+ * @Date: 2018-05-27 07:19:05
+ * @Last Modified by: Nizars
+ * @Last Modified time: 2018-05-27 07:19:32
+ */
+
 // Angular
 import { NgModule, Component, Injectable } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,28 +22,34 @@ import { catchError } from 'rxjs/operators';
 // Socket.io
 import * as io from 'socket.io-client';
 
+// Module
+import { AppRoutingModule } from './app-routing.module';
+
 // Components
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
+import { UsersComponent } from './users/users.component';
 
 // Services
 import { SocketService } from './socket.service';
-import { UserService } from './user/user.service';
+import { UsersService } from './users/users.service';
+import { SigninComponent } from './signin/signin.component';
 
 
 @NgModule({
   declarations: [
-    UserComponent,
-    AppComponent
+    UsersComponent,
+    AppComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [
     SocketService,
-    UserService
+    UsersService
   ],
   bootstrap: [
     AppComponent
