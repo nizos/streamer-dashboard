@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-27 07:19:32
+ * @Last Modified time: 2018-05-27 10:00:31
  */
 
 // Angular
@@ -29,6 +29,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 import { SigninComponent } from './signin/signin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChannelsComponent } from './channels/channels.component';
+import { StreamsComponent } from './streams/streams.component';
+import { VideosComponent } from './videos/videos.component';
+import { ClipsComponent } from './clips/clips.component';
+import { GamesComponent } from './games/games.component';
+import { ChatComponent } from './chat/chat.component';
+import { BotComponent } from './bot/bot.component';
+import { AboutComponent } from './about/about.component';
+import { SupportComponent } from './support/support.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './home/home.component';
 
 // Services
 import { SocketService } from './socket.service';
@@ -39,7 +52,20 @@ import { UsersService } from './users/users.service';
   declarations: [
     AppComponent,
     UsersComponent,
-    SigninComponent
+    SigninComponent,
+    DashboardComponent,
+    ChannelsComponent,
+    StreamsComponent,
+    VideosComponent,
+    ClipsComponent,
+    GamesComponent,
+    ChatComponent,
+    BotComponent,
+    AboutComponent,
+    SupportComponent,
+    SettingsComponent,
+    ProfileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
