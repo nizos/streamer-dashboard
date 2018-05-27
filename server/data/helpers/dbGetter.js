@@ -1,3 +1,11 @@
+/*
+ * @Author: Nizars
+ * @Date: 2018-05-27 10:27:01
+ * @Last Modified by: Nizars
+ * @Last Modified time: 2018-05-27 10:55:13
+ */
+
+
 // Import Environment data
 require('dotenv').config();
 
@@ -14,847 +22,647 @@ dbGetter.getAppUserProfile = async function (appUserId) {
 
     result = await AppUser.find({ id: appUserId}, {id: 1, login: 1, display_name: 1, prefered_username: 1, type: 1, broadcaster_type: 1, description: 1, profile_image_url: 1, offline_image_url: 1, view_count: 1, email: 1, _id: 0});
     if(err) {
+        console.log('dbGetter.getAppUserProfile returning error: ' + err);
         return 0;
     };
 
     if (!result[0]) {
+        console.log('dbGetter.getAppUserProfile returning no results');
         return 0;
     };
 
-
+    console.log('dbGetter.getAppUserProfile returning result: ' + result[0]);
     return result[0];
 };
 
 // GET LOGIN
-dbGetter.getLogin = async (appUserId) => {
-    AppUser.findOne({id : appUserId}, {login: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get login from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.login;
-                console.log(`Login: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Login: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getLogin = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {login: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getLogin returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getLogin returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getLogin returning result: ' + result[0]);
+    return result[0];
 };
 
+
 // GET DISPLAY NAME
-dbGetter.getDisplayName = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {display_name: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get display name from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.display_name;
-                console.log(`Display name: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Display name: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getDisplayName = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {display_name: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getDisplayName returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getDisplayName returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getDisplayName returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET TYPE
-dbGetter.getType = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {type: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get type from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.type;
-                console.log(`Type: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Type: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getType = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {type: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getType returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getType returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getType returning result: ' + result[0]);
+    return result[0];
 };
 
-
 // GET BROADCASTER TYPE
-dbGetter.getBroadcasterType = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {broadcaster_type: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get broadcaster type from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.broadcaster_type;
-                console.log(`Broadcaster type: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Broadcaster type: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getBroadcasterType = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {broadcaster_type: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getBroadcasterType returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getBroadcasterType returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getBroadcasterType returning result: ' + result[0]);
+    return result[0];
 };
 
 
 // GET DESCRIPTION
-dbGetter.getDescription = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {description: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get description from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.description;
-                console.log(`Description: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Description: ${queryResult}`);
-                return queryResult;
-            }
+dbGetter.getDescription = async function (appUserId) {
+    let err, result;
 
-        }
-    });
+    result = await AppUser.find({ id: appUserId}, {description: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getDescription returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getDescription returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getDescription returning result: ' + result[0]);
+    return result[0];
 };
 
-
 // GET PROFILE IMAGE URL
-dbGetter.getProfileImageUrl = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {profile_image_url: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get profile image url from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.profile_image_url;
-                console.log(`Profile image url: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Profile image url ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getProfileImageUrl = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {profile_image_url: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getProfileImageUrl returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getProfileImageUrl returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getProfileImageUrl returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET OFFLINE IMAGE URL
-dbGetter.getOfflineImageUrl = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {offline_image_url: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get offline image url from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.offline_image_url;
-                console.log(`Offline image url: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Offline image url: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
-};
+dbGetter.getOfflineImageUrl = async function (appUserId) {
+    let err, result;
 
+    result = await AppUser.find({ id: appUserId}, {offline_image_url: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getOfflineImageUrl returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getOfflineImageUrl returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getOfflineImageUrl returning result: ' + result[0]);
+    return result[0];
+};
 
 // GET VIEW COUNT
-dbGetter.getViewCount = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {view_count: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get view count from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.view_count;
-                console.log(`View count: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`View count: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
-};
+dbGetter.getViewCount = async function (appUserId) {
+    let err, result;
 
+    result = await AppUser.find({ id: appUserId}, {view_count: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getViewCount returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getViewCount returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getViewCount returning result: ' + result[0]);
+    return result[0];
+};
 
 // GET EMAIL
-dbGetter.getEmail = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {email: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get email from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.email;
-                console.log(`Email: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Email: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
-};
+dbGetter.getEmail = async function (appUserId) {
+    let err, result;
 
+    result = await AppUser.find({ id: appUserId}, {email: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getEmail returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getEmail returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getEmail returning result: ' + result[0]);
+    return result[0];
+};
 
 // GET JWT HEADER
-dbGetter.getJWTHeader = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {alg: 1, typ: 1, kid: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get JWT header from database');
-            console.log(err);
-            const queryResult = {
-                alg:                    'N/A',
-                typ:                    'N/A',
-                kid:                    'N/A'
-            };
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = {
-                    alg:                    app_user.alg,
-                    typ:                    app_user.typ,
-                    kid:                    app_user.kid
-                };
-                console.log(`JWT header: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = {
-                    alg:                    'N/A',
-                    typ:                    'N/A',
-                    kid:                    'N/A'
-                };
-                console.log(`JWT header: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
-};
+dbGetter.getJWTHeader = async function (appUserId) {
+    let err, result;
 
+    result = await AppUser.find({ id: appUserId}, {alg: 1, typ: 1, kid: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getJWTHeader returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getJWTHeader returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getJWTHeader returning result: ' + result[0]);
+    return result[0];
+};
 
 // GET ALG
-dbGetter.getAlg = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {alg: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get alg from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.alg;
-                console.log(`Alg: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Alg: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getAlg = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {alg: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getAlg returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getAlg returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getAlg returning result: ' + result[0]);
+    return result[0];
 };
 
-
 // GET TYP
-dbGetter.getTyp = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {typ: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get typ from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.typ;
-                console.log(`Typ: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Typ: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getTyp = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {typ: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getTyp returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getTyp returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getTyp returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET KID
-dbGetter.getKid = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {kid: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get kid from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.kid;
-                console.log(`Kid: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Kid: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getKid = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {kid: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getKid returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getKid returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getKid returning result: ' + result[0]);
+    return result[0];
 };
 
-
 // GET JWT PAYLOAD
-dbGetter.getJWTPayload = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {aud: 1, exp: 1, iat: 1, iss: 1, sub: 1, azp: 1, prefered_username: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get JWT payload from database');
-            console.log(err);
-            const queryResult = {
-                aud:                        'N/A',
-                exp:                        'N/A',
-                iat:                        'N/A',
-                iss:                        'N/A',
-                sub:                        'N/A',
-                azp:                        'N/A',
-                prefered_username:          'N/A'
-            };
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = {
-                    aud:                        app_user.aud,
-                    exp:                        app_user.exp,
-                    iat:                        app_user.iat,
-                    iss:                        app_user.iss,
-                    sub:                        app_user.sub,
-                    azp:                        app_user.azp,
-                    prefered_username:          app_user.prefered_username
-                };
-                console.log(`JWT payload: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = {
-                    aud:                        'N/A',
-                    exp:                        'N/A',
-                    iat:                        'N/A',
-                    iss:                        'N/A',
-                    sub:                        'N/A',
-                    azp:                        'N/A',
-                    prefered_username:          'N/A'
-                };
-                console.log(`JWT payload: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getJWTPayload = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {aud: 1, exp: 1, iat: 1, iss: 1, sub: 1, azp: 1, prefered_username: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getJWTPayload returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getJWTPayload returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getJWTPayload returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET AUD
-dbGetter.getAud = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {aud: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get aud from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.aud;
-                console.log(`Aud: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Aud: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getAud = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {aud: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getAud returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getAud returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getAud returning result: ' + result[0]);
+    return result[0];
 };
 
-
 // GET EXP
-dbGetter.getExp = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {exp: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get exp from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.exp;
-                console.log(`Exp: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Exp: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getExp = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {exp: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getExp returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getExp returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getExp returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET IAT
-dbGetter.getIat = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {iat: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get iat from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.iat;
-                console.log(`Iat: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Iat: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getIat = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {iat: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getIat returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getIat returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getIat returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET ISS
-dbGetter.getIss = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {iss: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get iss from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.iss;
-                console.log(`iss: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`iss: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getIss = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {iss: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getIss returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getIss returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getIss returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET SUB
-dbGetter.getSub = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {sub: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get sub from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.sub;
-                console.log(`Sub: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Sub: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getSub = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {sub: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getSub returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getSub returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getSub returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET AZP
-dbGetter.getAzp = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {azp: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get azp from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.azp;
-                console.log(`azp: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`azp: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getAzp = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {azp: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getAzp returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getAzp returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getAzp returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET PREFERED USERNAME
-dbGetter.getPreferedUsername = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {prefered_username: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get prefered_username from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.prefered_username;
-                console.log(`Prefered username: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Prefered username: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getPreferedUsername = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {prefered_username: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getPreferedUsername returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getPreferedUsername returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getPreferedUsername returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET JWT ID TOKEN
-dbGetter.getJWTIdToken = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {access_token: 1, expires_in: 1, id_token: 1, scope: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get JWT id token from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = {
-                    access_token:            app_user.access_token,
-                    expires_in:              app_user.expires_in,
-                    id_token:                app_user.id_token,
-                    scope:                   app_user.scope
-                };
-                console.log(`JWT id token: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = {
-                    access_token:            'N/A',
-                    expires_in:              'N/A',
-                    id_token:                'N/A',
-                    scope:                   'N/A'
-                };
-                console.log(`JWT id token: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getJWTIdToken = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {access_token: 1, expires_in: 1, id_token: 1, scope: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getJWTIdToken returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getJWTIdToken returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getJWTIdToken returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET ACCESS TOKEN
-dbGetter.getAccessToken = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {access_token: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get access token from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.access_token;
-                console.log(`Access token: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Access token: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getAccessToken = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {access_token: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getAccessToken returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getAccessToken returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getAccessToken returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET EXPIRES IN
-dbGetter.getExpiresIn = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {expires_in: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get expires in from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.expires_in;
-                console.log(`Expires in: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Expires in: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getExpiresIn = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {expires_in: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getExpiresIn returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getExpiresIn returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getExpiresIn returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET ID TOKEN
-dbGetter.getIdToken = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {id_token: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get id token from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.id_token;
-                console.log(`Id token: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Id token: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getIdToken = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {id_token: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getIdToken returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getIdToken returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getIdToken returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET SCOPE
-dbGetter.getScope = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {scope: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get scope from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.scope;
-                console.log(`Scope: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Scope: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getScope = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {scope: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getScope returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getScope returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getScope returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET JWT
-dbGetter.getJWT = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {alg: 1, typ: 1, kid: 1, aud: 1, exp: 1, iat: 1, iss: 1, sub: 1, azp: 1, prefered_username: 1, access_token: 1, expires_in: 1, id_token: 1, scope: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get JWT from database');
-            console.log(err);
-            const queryResult = {
-                alg:                    'N/A',
-                typ:                    'N/A',
-                kid:                    'N/A',
-                aud:                    'N/A',
-                exp:                    'N/A',
-                iat:                    'N/A',
-                iss:                    'N/A',
-                sub:                    'N/A',
-                azp:                    'N/A',
-                prefered_username:      'N/A',
-                access_token:           'N/A',
-                expires_in:             'N/A',
-                id_token:               'N/A',
-                scope:                  'N/A'
-            };
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = {
-                    alg:                    app_user.alg,
-                    typ:                    app_user.typ,
-                    kid:                    app_user.kid,
-                    aud:                    app_user.aud,
-                    exp:                    app_user.exp,
-                    iat:                    app_user.iat,
-                    iss:                    app_user.iss,
-                    sub:                    app_user.sub,
-                    azp:                    app_user.azp,
-                    prefered_username:      app_user.prefered_username,
-                    access_token:           app_user.access_token,
-                    expires_in:             app_user.expires_in,
-                    id_token:               app_user.id_token,
-                    scope:                  app_user.scope
-                };
-                console.log(`JWT: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = {
-                    alg:                    'N/A',
-                    typ:                    'N/A',
-                    kid:                    'N/A',
-                    aud:                    'N/A',
-                    exp:                    'N/A',
-                    iat:                    'N/A',
-                    iss:                    'N/A',
-                    sub:                    'N/A',
-                    azp:                    'N/A',
-                    prefered_username:      'N/A',
-                    access_token:           'N/A',
-                    expires_in:             'N/A',
-                    id_token:               'N/A',
-                    scope:                  'N/A'
-                };
-                console.log(`JWT: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getJWT = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {alg: 1, typ: 1, kid: 1, aud: 1, exp: 1, iat: 1, iss: 1, sub: 1, azp: 1, prefered_username: 1, access_token: 1, expires_in: 1, id_token: 1, scope: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getJWT returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getJWT returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getJWT returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET CLIENT ID
-dbGetter.getClientId = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {client_id: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get client id from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.client_id;
-                console.log(`Client id: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Client id: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getClientId = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {client_id: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getClientId returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getClientId returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getClientId returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET REDIRECT URI
-dbGetter.getRedirectUri = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {redirect_uri: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get redirect uri from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.redirect_uri;
-                console.log(`Redirect uri: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Redirect uri: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getRedirectUri = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {redirect_uri: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getRedirectUri returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getRedirectUri returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getRedirectUri returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET RESPONSE TYPE
-dbGetter.getResponseType = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {response_type: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get response type from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.response_type;
-                console.log(`Response type: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Response type: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getResponseType = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {response_type: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getResponseType returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getResponseType returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getResponseType returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET REFRESH TOKEN
-dbGetter.getRefreshToken = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {refresh_token: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get refresh token from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.refresh_token;
-                console.log(`Refresh token: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Refresh token: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getRefreshToken = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {refresh_token: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getRefreshToken returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getRefreshToken returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getRefreshToken returning result: ' + result[0]);
+    return result[0];
 };
 
-
 // GET CREATED AT
-dbGetter.getCreatedAt = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {created_at: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get created at from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.created_at;
-                console.log(`Created at: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Created at: ${queryResult}`);
-                return queryResult;
-            }
-        }
-    });
+dbGetter.getCreatedAt = async function (appUserId) {
+    let err, result;
+
+    result = await AppUser.find({ id: appUserId}, {created_at: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getCreatedAt returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getCreatedAt returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getCreatedAt returning result: ' + result[0]);
+    return result[0];
 };
 
 // GET UPDATED AT
-dbGetter.getUpdatedAt = (appUserId) => {
-    AppUser.findOne({id : appUserId}, {updated_at: 1, _id: 0}, (err, app_user) => {
-        if(err) {
-            console.log('Error: Could not get updated at from database');
-            console.log(err);
-            const queryResult = 'N/A';
-            return queryResult;
-        } else {
-            if(app_user !== null) {
-                const queryResult = app_user.updated_at;
-                console.log(`Updated at: ${queryResult}`);
-                return queryResult;
-            } else {
-                const queryResult = 'N/A';
-                console.log(`Updated at: ${queryResult}`);
-                return queryResult;
-            }
+dbGetter.getUpdatedAt = async function (appUserId) {
+    let err, result;
 
-        }
-    });
+    result = await AppUser.find({ id: appUserId}, {updated_at: 1, _id: 0});
+    if(err) {
+        console.log('dbGetter.getUpdatedAt returning error: ' + err);
+        return 0;
+    };
+
+    if (!result[0]) {
+        console.log('dbGetter.getUpdatedAt returning no results');
+        return 0;
+    };
+
+    console.log('dbGetter.getUpdatedAt returning result: ' + result[0]);
+    return result[0];
 };
-
 
 // Export dbGetter function
 module.exports = dbGetter;

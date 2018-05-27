@@ -1,3 +1,11 @@
+/*
+ * @Author: Nizars
+ * @Date: 2018-05-27 10:27:19
+ * @Last Modified by:   Nizars
+ * @Last Modified time: 2018-05-27 10:27:19
+ */
+
+// Import the required modules
 var appRoot = require('app-root-path');
 var winston = require('winston');
 
