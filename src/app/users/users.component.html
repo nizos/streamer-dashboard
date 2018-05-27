@@ -1,7 +1,7 @@
 <div class=" mr-md-3 pt-3 px-3 pt-md-5 px-md-5 overflow-hidden">
     <div class="bg-white box-shadow mx-auto" style="width: 100%; border-radius: 21px 21px 21px 21px; padding-bottom: 100px; margin-bottom: 50px;">
 
-        <div class="bg-dark" style="border-radius: 21px 21px 0 0; height: 200px;">
+        <div class="bg-dark" style="border-radius: 21px 21px 0 0; height: 175px;">
             <div style="padding: 50px 50px 0px 50px; font-size: 44px; color: white;">Users</div>
             <div style="padding: 0px 50px 50px 50px; font-size: 16px; font-weight: lighter; color: white;">Get Twitch user data</div>
         </div>
@@ -26,30 +26,30 @@
                     <div class="col-md-8">
                         <h6 class="my-0">Display Name</h6>
                         <a target="_blank" href="https://www.twitch.tv">
-                            <small class="userInfo">{{user.display_name}}</small>
+                            <small class="userInfo" ng-init="user.display_name='Display name information'">{{user.display_name}}</small>
                         </a>
                         <hr>
                         <h6 class="my-0">Broadcaster Type</h6>
-                        <small class="userInfo">{{user.broadcaster_type}}</small>
+                        <small class="userInfo" ng-init="user.broadcaster_type='Broadcaster type information'">{{user.broadcaster_type}}</small>
                         <hr>
                         <h6 class="my-0">Description</h6>
-                        <small class="userInfo">{{user.description}}</small>
+                        <small class="userInfo" ng-init="user.description='Description information'">{{user.description}}</small>
                         <hr>
                         <h6 class="my-0">User ID</h6>
-                        <small class="userInfo">{{user.id}}</small>
+                        <small class="userInfo" ng-init="user.id='Id information'">{{user.id}}</small>
                         <hr>
                         <h6 class="my-0">User Type</h6>
-                        <small class="userInfo">{{user.type}}</small>
+                        <small class="userInfo" ng-init="user.type='Type information'">{{user.type}}</small>
                         <hr>
                         <h6 class="my-0">View Count</h6>
-                        <small class="userInfo">{{user.view_count}}</small>
+                        <small class="userInfo" ng-init="user.view_count='View count information'">{{user.view_count}}</small>
                     </div>
                     <div class="col-md-4">
                         <h6 class="my-0">Profile Image</h6>
-                        <img class="thumbnail" src="{{user.profile_image_url}}">
+                        <img class="thumbnail" ng-init="user.profile_image_url='../../assets/images/TwitchProfileImageTemplate.png'" src="{{user.profile_image_url}}">
                         <hr>
                         <h6 class="my-0">Offline Image</h6>
-                        <img class="thumbnail" src="{{user.offline_image_url}}">
+                        <img class="thumbnail" ng-init="user.offline_image_url='../../assets/images/TwitchOfflineImageTemplate300.png'" src="{{user.offline_image_url}}">
                     </div>
                 </div>
 

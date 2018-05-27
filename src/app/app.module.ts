@@ -28,17 +28,17 @@ import { AppRoutingModule } from './app-routing.module';
 // Components
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
+import { SigninComponent } from './signin/signin.component';
 
 // Services
 import { SocketService } from './socket.service';
 import { UsersService } from './users/users.service';
-import { SigninComponent } from './signin/signin.component';
 
 
 @NgModule({
   declarations: [
-    UsersComponent,
     AppComponent,
+    UsersComponent,
     SigninComponent
   ],
   imports: [
