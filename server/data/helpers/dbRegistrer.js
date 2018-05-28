@@ -1,8 +1,8 @@
 /*
  * @Author: Nizars
  * @Date: 2018-05-27 10:26:50
- * @Last Modified by:   Nizars
- * @Last Modified time: 2018-05-27 10:26:50
+ * @Last Modified by: Nizars
+ * @Last Modified time: 2018-05-27 14:45:19
  */
 
 
@@ -19,16 +19,15 @@ const dbRegistrer       = {};
 // Register App User
 dbRegistrer.registerAppUser = async function (appUserData) {
 
-    // AppUser.findOneAndRemove({id: appUserData.id}, async (err, result) => {
-    //     if(err) {
-    //         console.log('Could not remove previously found AppUser with similar id');
-    //         console.log(err);
-    //     };
-    //     if(result) {
-    //         console.log('AppUser with similar id was found and removed');
-    //         console.log(result);
-    //     };
-    // });
+    AppUser.findOneAndRemove({id: appUserData.id}, async function(err, result) {
+        if(err) {
+            console.log('Could not remove previously found AppUser with similar id');
+            console.log(err);
+        };
+        if(result) {
+            console.log('AppUser with similar id was found and removed');
+        };
+    });
 
 
     AppUser.create({

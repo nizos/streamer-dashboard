@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-26 13:06:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-27 06:48:19
+ * @Last Modified time: 2018-05-27 14:15:53
  */
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from './users.service';
@@ -27,8 +27,7 @@ export class UsersComponent implements OnInit {
         'Description information',
         '../../assets/images/TwitchProfileImageTemplate.png',
         '../../assets/images/TwitchOfflineImageTemplate300.png',
-        'View count information',
-        'Email information'
+        'View count information'
     );
     userId = '';
 

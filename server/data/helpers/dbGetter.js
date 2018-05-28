@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 10:27:01
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-27 10:55:13
+ * @Last Modified time: 2018-05-27 14:47:03
  */
 
 
@@ -470,8 +470,8 @@ dbGetter.getAccessToken = async function (appUserId) {
         return 0;
     };
 
-    console.log('dbGetter.getAccessToken returning result: ' + result[0]);
-    return result[0];
+    console.log('dbGetter.getAccessToken returning result: ' + result[0].access_token);
+    return result.access_token;
 };
 
 // GET EXPIRES IN

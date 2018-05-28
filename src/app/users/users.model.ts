@@ -9,7 +9,6 @@ export class User {
     public profile_image_url: string;
     public offline_image_url: string;
     public view_count: string;
-    public email: string;
 
 
 
@@ -22,8 +21,7 @@ export class User {
         description: string,
         profile_image_url: string,
         offline_image_url: string,
-        view_count: string,
-        email: string) {
+        view_count: string) {
             this.id = id;
             this.login = login;
             this.display_name = display_name;
@@ -32,7 +30,6 @@ export class User {
             this.description = description;
             this.profile_image_url = profile_image_url;
             this.offline_image_url = offline_image_url;
-            this.view_count = view_count;
             this.view_count = view_count;
     }
 }
