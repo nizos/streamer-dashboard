@@ -1,22 +1,51 @@
 /*
  * @Author: Nizars
- * @Date: 2018-05-27 12:19:01
+ * @Date: 2018-05-28 11:10:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-28 07:04:18
+ * @Last Modified time: 2018-05-28 11:58:15
  */
 
-// Import environment keys and values
+ // Import environment keys and values
 require('dotenv').config();
 
 // Import dependancies and modules
-const dbGetter          = require('../../data/helpers/dbGetter');
-const request           = require('request');
-const rp                = require('request-promise');
-const to                = require('await-to-js').to;
-const getUsers          = {};
+const dbGetter              = require('../../data/helpers/dbGetter');
+const request               = require('request');
+const rp                    = require('request-promise');
+const to                    = require('await-to-js').to;
+const games              = {};
 
-// Get Single User by ID
-getUsers.SingleUserById = async function (twitchUserId) {
+// Get Games
+games.getGames = async function (twitchUserId) {
+
+    // URL
+    // GET https://api.twitch.tv/helix/games
+
+    // For a query to be valid, name and/or id must be specified.
+
+    // REQUIRED
+    let id;             // String	Game ID. At most 100 id values can be specified.
+
+    let name;           // Game name. The name must be an exact match. For instance, “Pokemon” will not return a list of Pokemon games;
+                        // instead, query the specific Pokemon game(s) in which you are interested. At most 100 name values can be specified.
+
+    // RESPONSE
+    let box_art_url;	// object	Template URL for the game’s box art.
+    let id;		        // string Game ID.
+    let name;	        // string	Game name.
+
+
+
+    // {
+    //     "data":
+    //     [{
+    //        "id": "493057",
+    //        "name": "PLAYERUNKNOWN'S BATTLEGROUNDS",
+    //        "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/PLAYERUNKNOWN%27S%20BATTLEGROUNDS-{width}x{height}.jpg"
+    //     }]
+    //   }
+
+
     let err, result;
     let user = {
         id: 'undefined',
@@ -62,8 +91,37 @@ getUsers.SingleUserById = async function (twitchUserId) {
     return user;
 }
 
-// Get Single User by Login
-getUsers.SingleUserByLogin = async function (twitchUserId) {
+
+// Get Top Games
+games.getTopGames = async function (twitchUserId) {
+
+    // OPTIONAL
+    let after;          // String   Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response.
+                        // This applies only to queries specifying broadcaster_id or game_id. The cursor value specified here is from the pagination
+                        // response field of a prior query.
+
+
+    let before;         // string   Cursor for backward pagination: tells the server where to start fetching the next set of results, in a multi-page response.
+                        // This applies only to queries specifying broadcaster_id or game_id. The cursor value specified here is from the pagination
+                        // response field of a prior query.
+
+    let first;          // integer   Maximum number of objects to return. Maximum: 100. Default: 20.
+
+
+    // RESPONSE
+    // {
+    //     "data": [
+    //       {
+    //         "id": "493057",
+    //         "name": "PLAYERUNKNOWN'S BATTLEGROUNDS",
+    //         "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/PLAYERUNKNOWN%27S%20BATTLEGROUNDS-{width}x{height}.jpg"
+    //       },
+    //       ...
+    //     ],
+    //     "pagination":{"cursor":"eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6MjB9fQ=="}
+    //   }
+
+
     let err, result;
     let user = {
         id: 'undefined',
@@ -82,7 +140,7 @@ getUsers.SingleUserByLogin = async function (twitchUserId) {
         uri: '/users',
         method: 'GET',
         qs: {
-            login: twitchUserId
+            id: twitchUserId
         },
         headers: {
             'Client-ID': process.env.TWITCH_CLIENT_ID,
@@ -109,4 +167,4 @@ getUsers.SingleUserByLogin = async function (twitchUserId) {
     return user;
 }
 
-module.exports = getUsers;
+module.exports = games;

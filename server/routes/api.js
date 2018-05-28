@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 09:19:52
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-28 07:06:29
+ * @Last Modified time: 2018-05-28 12:01:06
  */
 
 // Import environment keys and values
@@ -28,14 +28,14 @@ const dbGetter          = require('../data/helpers/dbGetter');
 const dbSetter          = require('../data/helpers/dbSetter');
 const router            = express.Router();
 const status            = require('http-status');
-const twitchGetUser     = require('../Twitch/helpers/getUsers');
+const twUsers           = require('../Twitch/helpers/users');
 
 
 // GET a user by ID
 router.get('/userbyid/:userId', async (req, res) => {
     console.log('CALLED: function router.get(/userbyid/userId, (req, res) in API.JS');
     var userId = req.params.userId;
-    var result = await twitchGetUser.SingleUserById(userId);
+    var result = await twUsers.SingleUserById(userId);
     userFound = {
         id: result.id,
         login: result.login,
@@ -57,7 +57,7 @@ router.get('/userbyid/:userId', async (req, res) => {
 router.get('/userbylogin/:userLogin', async (req, res) => {
     console.log('CALLED: function router.get(/userbylogin/userLogin, (req, res) in API.JS');
     var userLogin = req.params.userLogin;
-    var result = await twitchGetUser.SingleUserByLogin(userLogin);
+    var result = await twUsers.SingleUserByLogin(userLogin);
     userFound = {
         id: result.id,
         login: result.login,
