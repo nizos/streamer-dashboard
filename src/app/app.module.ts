@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-28 08:48:08
+ * @Last Modified time: 2018-05-28 15:21:24
  */
 
 // Angular
@@ -45,11 +45,11 @@ import { SupportComponent } from './support/support.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
+import { BitsComponent } from './bits/bits.component';
 
 // Services
 import { SocketService } from './socket.service';
 import { UsersService } from './users/users.service';
-
 
 @NgModule({
   declarations: [
@@ -68,7 +68,8 @@ import { UsersService } from './users/users.service';
     SupportComponent,
     SettingsComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    BitsComponent
   ],
   imports: [
     BrowserModule,

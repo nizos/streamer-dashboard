@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 06:30:25
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-27 10:03:45
+ * @Last Modified time: 2018-05-28 12:21:24
  */
 
 // Angular
@@ -26,14 +26,11 @@ import { SupportComponent } from './support/support.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
+import { BitsComponent } from './bits/bits.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: HomeComponent
-    },
-    {
-        path: 'home',
         component: HomeComponent
     },
     {
@@ -63,6 +60,10 @@ const routes: Routes = [
     {
         path: 'games',
         component: GamesComponent
+    },
+    {
+        path: 'bits',
+        component: BitsComponent
     },
     {
         path: 'chat',
