@@ -2,8 +2,9 @@
  * @Author: Nizars
  * @Date: 2018-05-26 13:06:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-27 14:15:53
+ * @Last Modified time: 2018-05-28 07:11:42
  */
+
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from './users.service';
 import { SocketService } from '../socket.service';
@@ -18,6 +19,8 @@ declare var particlesJS: any;
 export class UsersComponent implements OnInit {
     loadingStarted = false;
     loadingEnded = false;
+    userId = '';
+    userLogin = '';
     public user = new User(
         'Id information',
         'Login information',
@@ -29,9 +32,8 @@ export class UsersComponent implements OnInit {
         '../../assets/images/TwitchOfflineImageTemplate300.png',
         'View count information'
     );
-    userId = '';
-
     constructor(private usersService: UsersService) {
+
     }
 
     ngOnInit() {
@@ -40,26 +42,34 @@ export class UsersComponent implements OnInit {
         console.log('PARTICLES-JS LOADED');
 
         // Load User
-        console.log('Called: ngOnInit() in users.component.ts');
         this.usersService.getUserById(this.userId)
             .subscribe(user => {
             this.user = user;
-            console.log('User in users.component.ts is: ', this.user);
+        });
+
+        // Load User
+        this.usersService.getUserByLogin(this.userLogin)
+            .subscribe(user => {
+            this.user = user;
         });
     }
 
     getUserById(userId) {
-        console.log('Called: getUserById(', userId, '); from users.component.ts');
         this.usersService.getUserById(this.userId)
             .subscribe(user => {
             this.user = user;
-            console.log('User in users.component.ts is: ', this.user);
+        });
+    }
+
+    getUserByLogin(userLogin) {
+        this.usersService.getUserByLogin(this.userLogin)
+            .subscribe(user => {
+            this.user = user;
         });
     }
 
     onEnter(providedUserId) {
         this.userId = providedUserId;
-        console.log('Called: onEnter(', providedUserId, '); from users.component.ts');
-        console.log('Updated: userId in users.component.ts is now ', this.userId);
+        this.userLogin = providedUserId;
     }
 }

@@ -10,9 +10,11 @@ export class UsersService {
 
   // Get a User by Id
   getUserById(userId) {
-      console.log('Called: getUserById(', userId, ') from users.service.ts');
-      console.log('Result: ');
-      console.log(this.http.get<User>('/api/user/' + userId));
-      return this.http.get<User>('/api/user/' + userId);
+      return this.http.get<User>('/api/userbyid/' + userId);
   }
+
+  // Get a User by Login
+  getUserByLogin(userLogin) {
+    return this.http.get<User>('/api/userbylogin/' + userLogin);
+}
 }

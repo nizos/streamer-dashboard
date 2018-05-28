@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-27 10:00:31
+ * @Last Modified time: 2018-05-28 08:48:08
  */
 
 // Angular
@@ -18,6 +18,9 @@ import { FormsModule } from '@angular/forms';
 // RXJS
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
+
+// ng-bootstrap
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 // Socket.io
 import * as io from 'socket.io-client';
@@ -71,7 +74,8 @@ import { UsersService } from './users/users.service';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot()
   ],
   providers: [
     SocketService,
@@ -87,3 +91,4 @@ export class AppModule {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule);
+

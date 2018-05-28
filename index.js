@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 09:19:35
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-27 09:46:29
+ * @Last Modified time: 2018-05-28 06:59:53
  */
 
  // Import environment keys and values
@@ -110,24 +110,6 @@ passport.use('twitch', new OAuth2Strategy( {
     function (accessToken, refreshToken, id_token, profile, done) {
         // get the decoded payload and header
         const decoded = jwt.decode(id_token.id_token, {complete: true});
-
-        // console log
-        console.log('====================================');
-        console.log('CALLED: passport.use(twitch, new OAuth2Strategy() from INDEX.JS');
-        console.log('id: '+profile.data[0].id);
-        console.log('login: '+profile.data[0].login);
-        console.log('display_name: '+profile.data[0].display_name);
-        console.log('type: '+profile.data[0].type);
-        console.log('broadcaster_type: '+profile.data[0].broadcaster_type);
-        console.log('description: '+profile.data[0].description);
-        console.log('profile_image_url: '+profile.data[0].profile_image_url);
-        console.log('offline_image_url: '+profile.data[0].offline_image_url);
-        console.log('view_count: '+profile.data[0].view_count);
-        console.log('email: '+profile.data[0].email);
-        console.log('AccessToken: '+accessToken);
-        console.log('RefreshToken: '+refreshToken);
-        console.log('====================================');
-        // Prepare AppUserData
         const appUserData = {
             id                              : profile.data[0].id,
             login                           : profile.data[0].login,
@@ -170,7 +152,7 @@ passport.use('twitch', new OAuth2Strategy( {
 // Override passport profile function to get user profile from Twitch API
 OAuth2Strategy.prototype.userProfile = (accessToken, done) => {
     const options = {
-        url: `${process.env.TWITCH_API_URL}users?id=${process.env.TWITCH_USER_ID}`,
+        url: `${process.env.TWITCH_API_URL}/users?id=${process.env.TWITCH_USER_ID}`,
         method: 'GET',
         headers: {
             'Client-ID': process.env.TWITCH_CLIENT_ID,
