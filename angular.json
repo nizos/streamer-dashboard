@@ -52,18 +52,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Streamer Dashboard:build"
+            "browserTarget": "streamer-dashboard:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Streamer Dashboard:build:production"
+              "browserTarget": "streamer-dashboard:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Streamer Dashboard:build"
+            "browserTarget": "streamer-dashboard:build"
           }
         },
         "test": {
@@ -108,7 +108,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "Streamer Dashboard:serve"
+            "devServerTarget": "streamer-dashboard:serve"
           }
         },
         "lint": {
@@ -123,7 +123,7 @@
       }
     }
   },
-  "defaultProject": "Streamer Dashboard",
+  "defaultProject": "streamer-dashboard",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
