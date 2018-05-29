@@ -2,13 +2,13 @@
  * @Author: Nizars
  * @Date: 2018-05-27 09:19:35
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-28 06:59:53
+ * @Last Modified time: 2018-05-29 12:10:14
  */
 
- // Import environment keys and values
- require('dotenv').config();
+// Import environment keys and values
+require('dotenv').config();
 
- // Import dependancies and modules
+// Import dependancies and modules
 const express           = require('express');
 const session           = require('express-session');
 const passport          = require('passport');
