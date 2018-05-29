@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-28 15:21:24
+ * @Last Modified time: 2018-05-29 08:41:18
  */
 
 // Angular
@@ -19,8 +19,21 @@ import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 
-// ng-bootstrap
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+// ngx-bootstrap
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { AlertModule } from 'ngx-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 // Socket.io
 import * as io from 'socket.io-client';
@@ -76,7 +89,20 @@ import { UsersService } from './users/users.service';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule.forRoot()
+    BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot(),
+    TabsModule.forRoot(),
+    PaginationModule.forRoot(),
+    AccordionModule.forRoot(),
+    ButtonsModule.forRoot(),
+    CarouselModule.forRoot(),
+    CollapseModule.forRoot(),
+    ModalModule.forRoot(),
+    ProgressbarModule.forRoot(),
+    TooltipModule.forRoot(),
+    TypeaheadModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [
     SocketService,

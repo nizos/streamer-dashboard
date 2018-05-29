@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 12:19:01
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-28 11:59:13
+ * @Last Modified time: 2018-05-28 15:54:20
  */
 
 // Import environment keys and values
@@ -113,29 +113,29 @@ users.SingleUserByLogin = async function (twitchUserId) {
 // Get Users Follows
 users.usersFollows = async function (twitchUserId) {
 
-    // URLs
-    // GET https://api.twitch.tv/helix/users/follows?from_id=<user ID>
-    // GET https://api.twitch.tv/helix/users/follows?to_id=<user ID>
+    // // URLs
+    // // GET https://api.twitch.tv/helix/users/follows?from_id=<user ID>
+    // // GET https://api.twitch.tv/helix/users/follows?to_id=<user ID>
 
 
-    // At minimum, from_id or to_id must be provided for a query to be valid.
+    // // At minimum, from_id or to_id must be provided for a query to be valid.
 
-    // OPTIONAL
-    let after;	        //  string	Cursor for forward pagination: tells the server where to start fetching the next set of results,
-                        //  in a multi-page response. The cursor value specified here is from the pagination response field of a prior query.
-    let first;	        //  integer	Maximum number of objects to return. Maximum: 100. Default: 20.
-    let from_id;        //	string	User ID. The request returns information about users who are being followed by the from_id user.
-    let to_id;          //	string	User ID. The request returns information about users who are following the to_id user.
+    // // OPTIONAL
+    // let after;	        //  string	Cursor for forward pagination: tells the server where to start fetching the next set of results,
+    //                     //  in a multi-page response. The cursor value specified here is from the pagination response field of a prior query.
+    // let first;	        //  integer	Maximum number of objects to return. Maximum: 100. Default: 20.
+    // let from_id;        //	string	User ID. The request returns information about users who are being followed by the from_id user.
+    // let to_id;          //	string	User ID. The request returns information about users who are following the to_id user.
 
-    // RESPONSE
-    let followed_at;    //	string	Date and time when the from_id user followed the to_id user.
-    let from_id;	    //	string	ID of the user following the to_id user.
-    let pagination;	    //	string	A cursor value, to be used in a subsequent request to specify the starting point of the next set of results.
-    let to_id;	        //	object	ID of the user being followed by the from_id user.
-    let total;	        //	int	    Total number of items returned.
-                        //	If only from_id was in the request, this is the total number of followed users.
-                        //  If only to_id was in the request, this is the total number of followers.
-                        //	If both from_id and to_id were in the request, this is 1 (if the "from" user follows the "to" user) or 0.
+    // // RESPONSE
+    // let followed_at;    //	string	Date and time when the from_id user followed the to_id user.
+    // let from_id;	    //	string	ID of the user following the to_id user.
+    // let pagination;	    //	string	A cursor value, to be used in a subsequent request to specify the starting point of the next set of results.
+    // let to_id;	        //	object	ID of the user being followed by the from_id user.
+    // let total;	        //	int	    Total number of items returned.
+    //                     //	If only from_id was in the request, this is the total number of followed users.
+    //                     //  If only to_id was in the request, this is the total number of followers.
+    //                     //	If both from_id and to_id were in the request, this is 1 (if the "from" user follows the "to" user) or 0.
 
     // {
     //     "total": 12345,
