@@ -1,10 +1,10 @@
-import { GistologyPage } from './app.po';
+import { AppPage } from './app.po';
 
 describe('gistology App', () => {
-  let page: GistologyPage;
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new GistologyPage();
+    page = new AppPage();
   });
 
   it('should display message saying app works', () => {
