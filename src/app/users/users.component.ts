@@ -12,64 +12,75 @@ import { User } from './users.model';
 declare var particlesJS: any;
 
 @Component({
-    selector: 'app-users',
-    templateUrl: './users.component.html',
-    styleUrls: ['./users.component.css']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-    loadingStarted = false;
-    loadingEnded = false;
-    userId = '';
-    userLogin = '';
-    public user = new User(
-        'Id information',
-        'Login information',
-        'Display name information',
-        'Type information',
-        'Broadcaster type information',
-        'Description information',
-        '../../assets/images/TwitchProfileImageTemplate.png',
-        '../../assets/images/TwitchOfflineImageTemplate300.png',
-        'View count information'
-    );
-    constructor(private usersService: UsersService) {
+  activeUserFetchMethod = 'fetchUserByUsername';
+  loadingStarted = false;
+  loadingEnded = false;
+  requestedId = '';
+  requestedLogin = '';
+  users = [];
+  public user = new User(
+    'Id information',
+    'Login information',
+    'Display name information',
+    'Type information',
+    'Broadcaster type information',
+    'Description information',
+    '../../assets/images/TwitchProfileImageTemplate.png',
+    '../../assets/images/TwitchOfflineImageTemplate300.png',
+    'View count information'
+  );
+  constructor(private usersService: UsersService) {
 
-    }
+  }
 
-    ngOnInit() {
-        // Load particlesjs
-        particlesJS.load('particles-js', '../../assets/particles/particles.json', null);
-        console.log('PARTICLES-JS LOADED');
+  ngOnInit() {
+    // Load particlesjs
+    particlesJS.load('particles-js', '../../assets/particles/particles.json', null);
+    console.log('PARTICLES-JS LOADED');
 
-        // Load User
-        this.usersService.getUserById(this.userId)
-            .subscribe(user => {
-            this.user = user;
-        });
+    // Load User
+    this.usersService.getUserById(this.requestedId)
+      .subscribe(user => {
+        this.user = user;
+        this.users.push(user);
+      });
 
-        // Load User
-        this.usersService.getUserByLogin(this.userLogin)
-            .subscribe(user => {
-            this.user = user;
-        });
-    }
+    // Load User
+    this.usersService.getUserByLogin(this.requestedLogin)
+      .subscribe(user => {
+        this.user = user;
+        this.users.push(user);
+      });
+  }
 
-    getUserById(userId) {
-        this.usersService.getUserById(this.userId)
-            .subscribe(user => {
-            this.user = user;
-        });
-    }
+  getUserById(userId) {
+    this.usersService.getUserById(this.requestedId)
+      .subscribe(user => {
+        this.user = user;
+        this.users.push(user);
+      });
+  }
 
-    getUserByLogin(userLogin) {
-        this.usersService.getUserByLogin(this.userLogin)
-            .subscribe(user => {
-            this.user = user;
-        });
-    }
+  getUserByLogin(userLogin) {
+    this.usersService.getUserByLogin(this.requestedLogin)
+      .subscribe(user => {
+        this.user = user;
+        this.users.push(user);
+      });
+  }
 
-    onEnter(providedUserId) {
-        this.userId = providedUserId;
-        this.userLogin = providedUserId;
-    }
+  onEnter(providedUserId) {
+    this.requestedId = providedUserId;
+    this.requestedLogin = providedUserId;
+  }
+
+
+  setFetchMethod(selectedFetchMethod) {
+    this.activeUserFetchMethod = selectedFetchMethod;
+  }
 }

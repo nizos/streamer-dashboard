@@ -1,19 +1,258 @@
-<div class=" mr-md-3 pt-3 px-3 pt-md-5 px-md-5 overflow-hidden">
+<div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 overflow-hidden">
         <div class="bg-white box-shadow mx-auto" style="width: 100%; border-radius: 21px 21px 21px 21px; padding-bottom: 100px; margin-bottom: 50px;">
-
             <div class="bg-dark" style="border-radius: 21px 21px 0 0; height: 175px;">
                 <div style="padding: 50px 50px 0px 50px; font-size: 44px; color: white;">Streams</div>
-                <div style="padding: 0px 50px 50px 50px; font-size: 16px; font-weight: lighter; color: white;">Stream page</div>
+                <div style="padding: 0px 50px 50px 50px; font-size: 16px; font-weight: lighter; color: white;">Get Streams</div>
             </div>
             <div class="container">
                 <br />
-
-                <!-- Card  -->
+    
+                <!-- Card Body -->
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="justify-content-between align-items-center">
+    
+                        <!-- Form  -->
+                        <form>
+    
+                            <!-- Form group   -->
+                            <div class="form-group">
+    
+                                <!-- Row -->
+                                <div class="row">
+    
+    
+    
+                                    <!-- Column -->
+                                    <div class="col-md-4">
+                                        <label for="exampleFormControlSelect1">Results</label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                            <option>15</option>
+                                            <option>16</option>
+                                            <option>17</option>
+                                            <option>18</option>
+                                            <option>19</option>
+                                            <option selected>20</option>
+                                            <option>21</option>
+                                            <option>22</option>
+                                            <option>23</option>
+                                            <option>24</option>
+                                            <option>25</option>
+                                            <option>26</option>
+                                            <option>27</option>
+                                            <option>28</option>
+                                            <option>29</option>
+                                            <option>30</option>
+                                            <option>31</option>
+                                            <option>32</option>
+                                            <option>33</option>
+                                            <option>34</option>
+                                            <option>35</option>
+                                            <option>36</option>
+                                            <option>37</option>
+                                            <option>38</option>
+                                            <option>39</option>
+                                            <option>40</option>
+                                            <option>41</option>
+                                            <option>42</option>
+                                            <option>43</option>
+                                            <option>44</option>
+                                            <option>45</option>
+                                            <option>46</option>
+                                            <option>47</option>
+                                            <option>48</option>
+                                            <option>49</option>
+                                            <option>50</option>
+                                            <option>51</option>
+                                            <option>52</option>
+                                            <option>53</option>
+                                            <option>54</option>
+                                            <option>55</option>
+                                            <option>56</option>
+                                            <option>57</option>
+                                            <option>58</option>
+                                            <option>59</option>
+                                            <option>60</option>
+                                            <option>61</option>
+                                            <option>62</option>
+                                            <option>63</option>
+                                            <option>64</option>
+                                            <option>65</option>
+                                            <option>66</option>
+                                            <option>67</option>
+                                            <option>68</option>
+                                            <option>69</option>
+                                            <option>70</option>
+                                            <option>71</option>
+                                            <option>72</option>
+                                            <option>73</option>
+                                            <option>74</option>
+                                            <option>75</option>
+                                            <option>76</option>
+                                            <option>77</option>
+                                            <option>78</option>
+                                            <option>79</option>
+                                            <option>80</option>
+                                            <option>81</option>
+                                            <option>82</option>
+                                            <option>83</option>
+                                            <option>84</option>
+                                            <option>85</option>
+                                            <option>86</option>
+                                            <option>87</option>
+                                            <option>88</option>
+                                            <option>89</option>
+                                            <option>90</option>
+                                            <option>91</option>
+                                            <option>92</option>
+                                            <option>93</option>
+                                            <option>94</option>
+                                            <option>95</option>
+                                            <option>96</option>
+                                            <option>97</option>
+                                            <option>98</option>
+                                            <option>99</option>
+                                            <option>100</option>
+                                        </select>
+                                    </div>
+                                    <!-- End of Col -->
+    
+                                    <!-- Column  -->
+                                    <div class="col-md-4">
+                                        <label for="exampleFormControlSelect1">Period</label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>Day</option>
+                                            <option>Week</option>
+                                            <option>Month</option>
+                                            <option>Year</option>
+                                            <option selected>All</option>
+                                        </select>
+                                    </div>
+                                    <!-- End of Column -->
+    
+    
+    
+                                    <!-- Column  -->
+                                    <div class="col-md-4">
+                                        <label for="exampleFormControlSelect1">Get results</label>
+                                        <br />
+                                        <div class="btn-group" role="group" aria-label="Basic example" style="width: 100%;">
+                                            <button type="button" class="btn btn-outline-secondary" style="width: 100%;" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="isCollapsed"
+                                                aria-controls="collapseBasic">Show advanced</button>
+                                            <button type="button" class="btn btn-secondary" style="width: 100%;">Get leaderboard</button>
+                                        </div>
+                                    </div>
+                                    <!-- End of Column -->
+    
+                                </div>
+                                <!-- End of Row  -->
+    
+                                <div id="collapseBasic" [collapse]="!isCollapsed">
+                                    <br />
+                                    <div class="card card-block card-header">
+                                        <div class="row">
+    
+                                            <!-- Column  -->
+                                            <div class="col-md-4">
+                                                <label for="exampleFormControlSelect1">User</label>
+    
+                                                <div class="btn-group" dropdown >
+                                                    <!-- Input Group -->
+                                                    <div class="input-group">
+    
+                                                    
+                                                        <!-- Drop down button -->
+                                                        <div class="input-group-prepend">
+                                                            <button id="button-basic" dropdownToggle type="button" class="btn btn-outline-secondary dropdown-toggle" aria-controls="dropdown-basic">User name
+                                                                <span class="caret"></span>
+                                                            </button>
+    
+                                                            <!-- Drop down menu -->
+                                                            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                                                                <li role="menuitem">
+                                                                    <a class="dropdown-item" href="#">User name</a>
+                                                                </li>
+                                                                <li role="menuitem">
+                                                                    <a class="dropdown-item" href="#">User id</a>
+                                                                </li>
+                                                            </ul>
+                                                            <!-- End of Drop down menu -->
+                                                        </div>
+                                                        <!-- End of Drop down button -->
+    
+    
+                                                        <!-- Input field-->
+                                                        <input type="text" class="form-control" autocomplete="off" placeholder="nizos" id="providedUser" #providedUser value="" (keyup.enter)="onEnter(providedUser.value)"
+                                                            (keyup.enter)="getUserById(userId)" aria-label="Text input with segmented dropdown button">
+                                                        <!-- End of Input Field -->
+                                                    </div>
+                                                </div>
+                                                <!-- End of Input Group -->
+                                            </div>
+                                            <!-- End of Column -->
+    
+                                            <!-- Column  -->
+                                            <div class="col-md-4">
+                                                <label for="exampleFormControlSelect1">Starting date</label>
+                                                <input type="text" placeholder="" #dp="bsDatepicker" [bsValue]="bsValue" class="form-control" bsDatepicker>
+                                            </div>
+    
+                                            <div class="col-md-4">
+                                                    <label for="exampleFormControlSelect1">Starting time</label>
+                                                        <timepicker [(ngModel)]="mytime" [showSpinners]="false"></timepicker>
+                                            </div>
+                                            <!-- End of Column -->
+    
+    
+                                            <!-- Column  -->
+                                            <div class="col-md-2">
+    
+                                            </div>
+                                            <!-- End of Column -->
+    
+                                            <!-- Column  -->
+                                            <div class="col-md-2">
+    
+                                            </div>
+                                            <!-- End of Column -->
+    
+    
+                                        </div>
+                                        <!-- End of Row  -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End of Form Group  -->
+                        </form>
+                        <!-- End of Form  -->
+                        <hr>
+    
+    
+    
+                        <!-- REPONSE -->
+                        <label for="exampleFormControlSelect1">Response</label>
+    
+    
+    
                     </div>
+                    <!-- End of Justify content -->
                 </div>
+                <!-- End of Card body -->
             </div>
-
+            <!-- End of Container -->
         </div>
     </div>
+    
