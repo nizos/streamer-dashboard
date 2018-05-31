@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-29 08:41:18
+ * @Last Modified time: 2018-05-31 17:00:07
  */
 
 // Angular
@@ -44,26 +44,26 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { UsersComponent } from './users/users.component';
-import { SigninComponent } from './signin/signin.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ChannelsComponent } from './channels/channels.component';
-import { StreamsComponent } from './streams/streams.component';
-import { VideosComponent } from './videos/videos.component';
-import { ClipsComponent } from './clips/clips.component';
-import { GamesComponent } from './games/games.component';
-import { ChatComponent } from './chat/chat.component';
-import { BotComponent } from './bot/bot.component';
-import { AboutComponent } from './about/about.component';
-import { SupportComponent } from './support/support.component';
-import { SettingsComponent } from './settings/settings.component';
-import { ProfileComponent } from './profile/profile.component';
-import { HomeComponent } from './home/home.component';
-import { BitsComponent } from './bits/bits.component';
+import { UsersComponent } from './pages/users/users.component';
+import { SigninComponent } from './pages/signin/signin.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ChannelsComponent } from './pages/channels/channels.component';
+import { StreamsComponent } from './pages/streams/streams.component';
+import { VideosComponent } from './pages/videos/videos.component';
+import { ClipsComponent } from './pages/clips/clips.component';
+import { GamesComponent } from './pages/games/games.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import { BotComponent } from './pages/bot/bot.component';
+import { AboutComponent } from './pages/about/about.component';
+import { SupportComponent } from './pages/support/support.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { HomeComponent } from './pages/home/home.component';
+import { BitsComponent } from './pages/bits/bits.component';
 
 // Services
 import { SocketService } from './socket.service';
-import { UsersService } from './users/users.service';
+import { UsersService } from './pages/users/users.service';
 
 @NgModule({
   declarations: [

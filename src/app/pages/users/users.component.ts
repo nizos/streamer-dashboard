@@ -2,12 +2,12 @@
  * @Author: Nizars
  * @Date: 2018-05-26 13:06:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-28 07:11:42
+ * @Last Modified time: 2018-05-31 17:00:54
  */
 
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from './users.service';
-import { SocketService } from '../socket.service';
+import { SocketService } from '../../socket.service';
 import { User } from './users.model';
 declare var particlesJS: any;
 
