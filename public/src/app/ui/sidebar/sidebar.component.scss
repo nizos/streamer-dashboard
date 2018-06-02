@@ -1,0 +1,32 @@
+/*
+ * @Author: Nizars
+ * @Date: 2018-06-02 23:40:37
+ * @Last Modified by: Nizars
+ * @Last Modified time: 2018-06-02 23:44:37
+ */
+
+
+ nav {
+  background: #2D2E2E;
+  height: 100%;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+
+      a {
+        color: #fff;
+        padding: 20px;
+        display: block;
+      }
+
+      .activated {
+        background-color: #00a8ff;
+
+      }
+    }
+  }
+}
