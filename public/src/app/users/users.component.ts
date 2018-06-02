@@ -2,20 +2,19 @@
  * @Author: Nizars
  * @Date: 2018-05-26 13:06:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-02 16:47:32
+ * @Last Modified time: 2018-06-02 19:14:48
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UsersService } from './users.service';
 import { User } from './users.model';
-declare var particlesJS: any;
 
 @Component({
     selector: 'app-users',
     templateUrl: './users.component.html',
     styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent {
     loadingStarted = false;
     loadingEnded = false;
     userId = '';
@@ -33,12 +32,6 @@ export class UsersComponent implements OnInit {
     );
     constructor(private usersService: UsersService) {
 
-    }
-
-    ngOnInit() {
-        // Load particlesjs
-        particlesJS.load('particles-js', '../../assets/particles/particles.json', null);
-        console.log('PARTICLES-JS LOADED');
     }
 
     getUserById(userId) {

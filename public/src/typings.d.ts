@@ -3,4 +3,4 @@ declare var module: NodeModule;
 interface NodeModule {
   id: string;
 }
-declare var Particles: any;
+declare var particlesJS: any;

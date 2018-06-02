@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-02 16:47:15
+ * @Last Modified time: 2018-06-02 18:53:07
  */
 
 // Angular
@@ -42,6 +42,7 @@ import { HomeComponent } from './home/home.component';
 
 // Services
 import { UsersService } from './users/users.service';
+
 
 
 @NgModule({
