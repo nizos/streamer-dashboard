@@ -2,8 +2,9 @@
  * @Author: Nizars
  * @Date: 2018-05-27 10:26:50
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-01 16:12:38
+ * @Last Modified time: 2018-05-27 14:45:19
  */
+
 
 // Import the env variables
 require('dotenv').config();
@@ -13,6 +14,7 @@ const async             = require('async');
 const database          = require('../db');
 const AppUser           = require('../../models/appUser');
 const dbRegistrer       = {};
+
 
 // Register App User
 dbRegistrer.registerAppUser = async function (appUserData) {

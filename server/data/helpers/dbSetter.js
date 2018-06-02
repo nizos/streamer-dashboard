@@ -2,13 +2,15 @@
  * @Author: Nizars
  * @Date: 2018-05-27 10:57:53
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-31 19:57:00
+ * @Last Modified time: 2018-05-27 12:03:47
  */
 
  // Import Environment data
 require('dotenv').config();
 
 // Import the required modules
+const async             = require('async');
+const database          = require('../db');
 const AppUser           = require('../../models/appUser');
 const dbSetter          = {};
 
