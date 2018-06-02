@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class GistologyPage {
+export class StreamerDashboardPage {
   navigateTo() {
     return browser.get('/');
   }

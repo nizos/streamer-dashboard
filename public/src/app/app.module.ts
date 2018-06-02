@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-02 19:38:47
+ * @Last Modified time: 2018-06-02 21:30:04
  */
 
 // Angular
@@ -42,6 +42,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 // Services
 import { UsersService } from './pages/users/users.service';
+import { SidebarComponent } from './ui/sidebar/sidebar.component';
 
 
 
@@ -62,7 +63,8 @@ import { UsersService } from './pages/users/users.service';
     SupportComponent,
     SettingsComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -77,9 +79,7 @@ import { UsersService } from './pages/users/users.service';
     AppComponent
   ]
 })
-export class AppModule {
-  constructor() { }
-}
+export class AppModule { }
 
 platformBrowserDynamic().bootstrapModule(AppModule);
 

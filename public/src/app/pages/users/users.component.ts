@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-26 13:06:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-02 19:14:48
+ * @Last Modified time: 2018-06-02 20:29:02
  */
 
 import { Component } from '@angular/core';
@@ -12,7 +12,7 @@ import { User } from './users.model';
 @Component({
     selector: 'app-users',
     templateUrl: './users.component.html',
-    styleUrls: ['./users.component.css']
+    styleUrls: ['./users.component.scss']
 })
 export class UsersComponent {
     loadingStarted = false;

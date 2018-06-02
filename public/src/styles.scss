@@ -1,0 +1,103 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+  background-color: rgb(243, 243, 243);
+}
+.background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+@keyframes pop {
+  0%   { transform: scale(0); box-shadow:none; }
+  50% { transform: scale(1.5); box-shadow:0 0 7px #0DFFFF; }
+  100% { transform: scale(1); box-shadow:0 0 5px #0DFFFF; }
+}
+
+@keyframes ellipsis {
+  0%   { transform:rotate(0deg); }
+  100% { transform:rotate(360deg); }
+}
+
+#loading-area {
+  width:99px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:200px;
+  z-index: 1;
+}
+
+.loading-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  background:#F3F3F3;
+}
+
+.loading-box {
+  background:#333;
+  width:15px;
+  height:5px;
+  position:relative;
+  top:7px;
+  left:77px;
+  transform-origin:bottom right;
+  animation:ellipsis 2s 0.5s infinite ease-in-out;
+  z-index: 1;
+}
+
+.loading-text {
+  font-family: 'Roboto', sans-serif;
+  color:#343A40;
+  font-size:19px;
+  position:relative;
+  top:15px;
+  width:100%;
+  text-align:center;
+  z-index: 1;
+}
+
+.loading-circle {
+  float:left;
+  margin-left:9px;
+  border-radius:100%;
+  width:10px;
+  height:10px;
+  background:#343A40;
+  animation: pop 1s infinite alternate;
+  transform:scale(0);
+  z-index: 1;
+}
+
+.loading-circle:nth-child(1) {
+  margin-left:5px;
+}
+
+.loading-circle:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.loading-circle:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.loading-circle:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.loading-circle:nth-child(5) {
+  animation-delay: 0.39s;
+}
