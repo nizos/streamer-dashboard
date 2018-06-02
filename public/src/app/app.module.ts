@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-02 21:30:04
+ * @Last Modified time: 2018-06-03 00:55:51
  */
 
 // Angular
@@ -44,7 +44,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { UsersService } from './pages/users/users.service';
 import { SidebarComponent } from './ui/sidebar/sidebar.component';
 
-
+// Ng module
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { SidebarComponent } from './ui/sidebar/sidebar.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot()
   ],
   providers: [
     UsersService
