@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 12:15:54
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-27 12:52:39
+ * @Last Modified time: 2018-06-02 16:03:40
  */
 
 // Import environment keys and values
@@ -14,7 +14,6 @@ const session           = require('express-session');
 const passport          = require('passport');
 const OAuth2Strategy    = require('passport-oauth').OAuth2Strategy;
 const ApptUser          = require('../models/appUser');
-const findOrCreate      = require('mongoose-findorcreate');
 const request           = require('request');
 const handlebars        = require('handlebars');
 const bodyParser        = require('body-parser');

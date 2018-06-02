@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 09:19:35
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-02 15:07:02
+ * @Last Modified time: 2018-06-02 16:50:06
  */
 
  // Import environment keys and values
@@ -13,10 +13,9 @@
 const express           = require('express');
 const session           = require('express-session');
 const passport          = require('passport');
-const api               = require('./server/routes/api');
+const api               = require('./routes/api');
 const OAuth2Strategy    = require('passport-oauth').OAuth2Strategy;
-const AppUser           = require('./server/models/appUser');
-const findOrCreate      = require('mongoose-findorcreate');
+const AppUser           = require('./models/appUser');
 const request           = require('request');
 const handlebars        = require('handlebars');
 const bodyParser        = require('body-parser');
@@ -25,14 +24,13 @@ const mongoose          = require('mongoose');
 const http              = require('http');
 const cors              = require('cors');
 const path              = require('path');
-const dbRegistrer       = require('./server/data/helpers/dbRegistrer');
-const dbGetter          = require('./server/data/helpers/dbGetter');
+const dbRegistrer       = require('./data/helpers/dbRegistrer');
+const dbGetter          = require('./data/helpers/dbGetter');
 
 // Initialize Express and middlewares
 const app               = express();
 const router            = express.Router();
 const server            = http.createServer(app);
-const io                = require('socket.io').listen(server);
 
 // Setup Express
 app.use(session({
@@ -84,21 +82,6 @@ app.get('/auth/twitch/callback', passport.authenticate('twitch', {
     successRedirect: '/',
     failureRedirect: '/'
 }));
-
-// Socket events
-io.sockets.on('connection', function(socket) {
-    console.log('Socket connected');
-
-    // Socket event for clientUser created
-    socket.on('clientUserSaved', function(clientUserSaved) {
-        io.emit('clientUserSaved', clientUserSaved);
-    });
-
-    // Socket event for clientUser updated
-    socket.on('clientUserUpdated', function(clientUserUpdated) {
-        io.emit('clientUserUpdated', clientUserUpdated);
-    });
-});
 
 passport.use('twitch', new OAuth2Strategy( {
     authorizationURL: process.env.TWITCH_AUTHORIZE_URL,

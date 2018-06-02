@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 09:19:52
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-28 07:06:29
+ * @Last Modified time: 2018-06-02 16:04:23
  */
 
 // Import environment keys and values
@@ -14,7 +14,6 @@ const session           = require('express-session');
 const passport          = require('passport');
 const OAuth2Strategy    = require('passport-oauth').OAuth2Strategy;
 const ApptUser          = require('../models/appUser');
-const findOrCreate      = require('mongoose-findorcreate');
 const request           = require('request');
 const handlebars        = require('handlebars');
 const bodyParser        = require('body-parser');
@@ -28,7 +27,7 @@ const dbGetter          = require('../data/helpers/dbGetter');
 const dbSetter          = require('../data/helpers/dbSetter');
 const router            = express.Router();
 const status            = require('http-status');
-const twitchGetUser     = require('../Twitch/helpers/getUsers');
+const twitchGetUser     = require('../auth/helpers/getUsers');
 
 
 // GET a user by ID
