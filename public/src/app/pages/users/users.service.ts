@@ -5,16 +5,18 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class UsersService {
 
-  constructor(private http: HttpClient) {
-  }
+  private getUserByIdUrl          = 'http://localhost:3000/api/userbyid/';
+  private getUserByLoginUrl       = 'http://localhost:3000/api/userbylogin/';
+
+  constructor(private http: HttpClient) { }
 
   // Get a User by Id
   getUserById(userId) {
-      return this.http.get<User>('/api/userbyid/' + userId);
+      return this.http.get<User>(this.getUserByIdUrl + userId);
   }
 
   // Get a User by Login
   getUserByLogin(userLogin) {
-    return this.http.get<User>('/api/userbylogin/' + userLogin);
-}
+    return this.http.get<User>(this.getUserByLoginUrl + userLogin);
+  }
 }

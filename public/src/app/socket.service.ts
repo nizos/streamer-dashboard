@@ -10,6 +10,6 @@ export class SocketService {
 
   // Constructor with an injection of ToastService
   constructor() {
-    this.socket = io();
+    // this.socket = io();
   }
 }

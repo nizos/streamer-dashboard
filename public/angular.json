@@ -21,9 +21,16 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.css"
+              "./node_modules/bootstrap/scss",
+              "src/sass/styles.scss"
             ],
-            "scripts": []
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "../node_modules/bootstrap/scss"
+              ]
+            },
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {
@@ -69,10 +76,17 @@
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [],
-            "styles": [
-              "src/styles.css"
+            "scripts": [
             ],
+            "styles": [
+              "./node_modules/bootstrap/scss",
+              "src/sass/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "../node_modules/bootstrap/scss"
+              ]
+            },
             "assets": [
               "src/assets",
               "src/favicon.ico"
@@ -123,7 +137,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "css"
+      "styleext": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "app"

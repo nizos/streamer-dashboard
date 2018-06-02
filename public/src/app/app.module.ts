@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-05-31 17:00:07
+ * @Last Modified time: 2018-05-31 22:59:46
  */
 
 // Angular
@@ -17,7 +17,6 @@ import { FormsModule } from '@angular/forms';
 
 // RXJS
 import { Observable } from 'rxjs/Observable';
-
 import { catchError } from 'rxjs/operators';
 
 // ngx-bootstrap
@@ -39,9 +38,6 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 // Socket.io
 import * as io from 'socket.io-client';
 
-// Module
-import { AppRoutingModule } from './app-routing.module';
-
 // Components
 import { AppComponent } from './app.component';
 import { UsersComponent } from './pages/users/users.component';
@@ -60,10 +56,22 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BitsComponent } from './pages/bits/bits.component';
+import { AuthenticateComponent } from './auth/authenticate/authenticate.component';
+
+// Module
+import { AppRoutingModule } from './app-routing.module';
 
 // Services
+import { AuthService } from './auth.service';
 import { SocketService } from './socket.service';
 import { UsersService } from './pages/users/users.service';
+import { TokenInterceptorService } from './token-interceptor.service';
+
+// Providers
+import { AuthGuard } from './auth.guard';
+
+// Sidebar
+import { SidebarModule } from 'ng-sidebar';
 
 @NgModule({
   declarations: [
@@ -83,7 +91,8 @@ import { UsersService } from './pages/users/users.service';
     SettingsComponent,
     ProfileComponent,
     HomeComponent,
-    BitsComponent
+    BitsComponent,
+    AuthenticateComponent
   ],
   imports: [
     BrowserModule,
@@ -103,12 +112,19 @@ import { UsersService } from './pages/users/users.service';
     ProgressbarModule.forRoot(),
     TooltipModule.forRoot(),
     TypeaheadModule.forRoot(),
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    SidebarModule.forRoot()
   ],
   providers: [
     SocketService,
-    UsersService
-  ],
+    AuthService,
+    AuthGuard,
+    UsersService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }],
   bootstrap: [
     AppComponent
   ]

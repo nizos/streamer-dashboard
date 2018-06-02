@@ -1,4 +1,4 @@
-<div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 overflow-hidden">
+<div class=" mr-md-3 pt-3 px-3 pt-md-5 px-md-5 overflow-hidden">
   <div class="bg-white box-shadow mx-auto" style="width: 100%; border-radius: 21px 21px 21px 21px; padding-bottom: 100px; margin-bottom: 50px;">
     <div class="bg-dark" style="border-radius: 21px 21px 0 0; height: 175px;">
       <div style="padding: 50px 50px 0px 50px; font-size: 44px; color: white;">Users</div>
@@ -6,79 +6,32 @@
     </div>
     <div class="container">
       <br />
-
-      <!-- Card Body -->
-      <div class="card-body">
-        <div class="justify-content-between align-items-center">
-
-          <!-- Form  -->
-          <form>
-
-            <!-- Form row  -->
-            <div class="form-group row">
-              <div class="btn-group" dropdown style="width: 100%;">
-                <div class="input-group">
-
-                  <!-- Drop down button -->
-                  <div class="input-group-prepend">
-                    <button id="user-fetch-method-dropdown-toggle" dropdownToggle type="button" class="btn btn-outline-secondary dropdown-toggle" aria-controls="dropdown-basic">User name
-                      <span class="caret"></span>
-                    </button>
-
-                    <!-- Drop down menu -->
-                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-                      <li role="menuitem">
-                        <a class="dropdown-item" (click)="setFetchMethod(fetchUserByUsername)" href="#">User name</a>
-                      </li>
-                      <li role="menuitem">
-                        <a class="dropdown-item" href="#">User id</a>
-                      </li>
-                    </ul>
-                    <!-- End of Drop down menu -->
-                  </div>
-                  <!-- End of Drop down button -->
-
-                  <!-- Input field-->
-                  <input type="text" class="form-control" autocomplete="off" placeholder="USER NAME" id="providedUser" #providedUser value="nizos"
-                    (keyup.enter)="onEnter(providedUser.value)" (keyup.enter)="getUserById(userId)" aria-label="Text input with segmented dropdown button">
-                  <!-- End of Input Field -->
-
-                  <!-- Button -->
-                  <div class="input-group-append">
-                    <button type="button" class="btn btn-secondary" (click)="onEnter(providedUserId.value)" (click)="getUserById(userId)">Get user</button>
-                  </div>
-                  <!-- End of Button -->
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home" href="users#" role="tab" aria-controls="home"
+            aria-selected="true">By User Id</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" href="users#" role="tab" aria-controls="profile"
+            aria-selected="false">By User Login</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <!-- Card  -->
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Input group -->
+              <div class="input-group">
+                <input type="text" class="form-control" autocomplete="off" placeholder="USER ID" id="providedUserId" #providedUserId value="116069219"
+                  (keyup.enter)="onEnter(providedUserId.value)" (keyup.enter)="getUserById(userId)">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-sm btn-secondary" (click)="onEnter(providedUserId.value)" (click)="getUserById(userId)">Get user</button>
                 </div>
               </div>
             </div>
-            <!-- End of Form row  -->
-
-            <!-- Form row  -->
-            <div class="form-group row">
-            </div>
-            <!-- End of Form row  -->
-
-
-
-            <!-- Form row  -->
-            <div class="form-group row">
-            </div>
-            <!-- End of Form row  -->
-
-
-
-            <!-- Form row  -->
-            <div class="form-group row">
-            </div>
-            <!-- End of Form row  -->
-
-          </form>
-          <!-- End of Form  -->
-
-
-
-          <div class="row">
-            <div class="users-container" *ngFor="let user of users">
+            <br />
+            <div class="row">
               <div class="col-md-8">
                 <h6 class="my-0">Display Name</h6>
                 <a target="_blank" href="https://www.twitch.tv">
@@ -109,13 +62,54 @@
               </div>
             </div>
           </div>
-
-
         </div>
-        <!-- End of Justify content -->
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <!-- Card  -->
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Input group -->
+              <div class="input-group">
+                <input type="text" class="form-control" autocomplete="off" placeholder="USER LOGIN" id="providedUserLogin" #providedUserLogin
+                  value="nizos" (keyup.enter)="onEnter(providedUserLogin.value)" (keyup.enter)="getUserByLogin(userLogin)">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-sm btn-secondary" (click)="onEnter(providedUserLogin.value)" (click)="getUserByLogin(userLogin)">Get user</button>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-md-8">
+                <h6 class="my-0">Display Name</h6>
+                <a target="_blank" href="https://www.twitch.tv">
+                  <small class="userInfo">{{user.display_name}}</small>
+                </a>
+                <hr>
+                <h6 class="my-0">Broadcaster Type</h6>
+                <small class="userInfo">{{user.broadcaster_type}}</small>
+                <hr>
+                <h6 class="my-0">Description</h6>
+                <small class="userInfo">{{user.description}}</small>
+                <hr>
+                <h6 class="my-0">User ID</h6>
+                <small class="userInfo">{{user.id}}</small>
+                <hr>
+                <h6 class="my-0">User Type</h6>
+                <small class="userInfo">{{user.type}}</small>
+                <hr>
+                <h6 class="my-0">View Count</h6>
+                <small class="userInfo">{{user.view_count}}</small>
+              </div>
+              <div class="col-md-4">
+                <h6 class="my-0">Profile Image</h6>
+                <img class="thumbnail" src="{{user.profile_image_url}}">
+                <hr>
+                <h6 class="my-0">Offline Image</h6>
+                <img class="thumbnail" src="{{user.offline_image_url}}">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- End of Card body -->
     </div>
-    <!-- End of Container -->
   </div>
 </div>
