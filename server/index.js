@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 09:19:35
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-05 01:34:50
+ * @Last Modified time: 2018-06-05 01:49:56
  */
 
  // Import environment keys and values
@@ -26,6 +26,7 @@ const cors              = require('cors');
 const path              = require('path');
 const dbRegistrer       = require('./data/helpers/dbRegistrer');
 const dbGetter          = require('./data/helpers/dbGetter');
+
 
 // Initialize Express and middlewares
 const app               = express();
