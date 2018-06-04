@@ -4,7 +4,7 @@
     <ul class="list-unstyled components">
       <li class="expanded">
         <div class="container sidebar-button-container">
-          <button mat-button class="sidebar-button" id="sidebar-collapse" placement="right" ngbTooltip="Toggle side bar">
+          <button mat-button class="sidebar-button sidebar-toggle-button" id="sidebar-collapse" placement="right" ngbTooltip="Toggle side bar">
             <div class="row sidebar-button-row">
               <div class="col sidebar-icon-col">
                 <i class="sidebar-button-icon material-icons">menu</i>
@@ -172,7 +172,7 @@
       </li>
       <li class="expanded">
         <div class="container sidebar-button-container">
-            <button mat-button class="sidebar-button" routerLink="/signout" routerLinkActive="active" [class.activated]="currentUrl == '/signout'" placement="right" ngbTooltip="Sign out">
+            <button mat-button class="sidebar-button" routerLink="/signout" routerLinkActive="active" [class.activated]="currentUrl == '/signout'" data-toggle="tooltip" data-placement="right" title="Tooltip on right">
             <div class="row sidebar-button-row">
               <div class="col sidebar-icon-col">
                 <i class="sidebar-button-icon material-icons">exit_to_app</i>
@@ -186,5 +186,5 @@
       </li>
     </ul>
   </nav>
-  
+
 </div>

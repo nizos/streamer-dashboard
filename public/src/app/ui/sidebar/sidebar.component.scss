@@ -13,6 +13,7 @@
   align-items: stretch;
 }
 
+
 // SIDEBAR
 // COLLAPSED
 #sidebar {
@@ -22,6 +23,11 @@
   background: #343A40;
   transition: all 0.3s;
 }
+
+.sidebar-toggle-button {
+  background: #333333;
+}
+
 // EXPANDED
 #sidebar.expanded {
   min-width: 250px;
