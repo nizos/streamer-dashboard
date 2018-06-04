@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 09:19:35
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-02 16:50:06
+ * @Last Modified time: 2018-06-05 01:34:50
  */
 
  // Import environment keys and values
@@ -79,8 +79,8 @@ app.get('/auth/twitch', passport.authenticate('twitch', {
 
 // Set route for OAuth redirect
 app.get('/auth/twitch/callback', passport.authenticate('twitch', {
-    successRedirect: '/',
-    failureRedirect: '/'
+    successRedirect: 'http://localhost:4200/home',
+    failureRedirect: 'http://localhost:4200/error'
 }));
 
 passport.use('twitch', new OAuth2Strategy( {
