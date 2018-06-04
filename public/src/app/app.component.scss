@@ -62,8 +62,12 @@
   flex-grow: 1;
   overflow-y: auto;
   transition: all 0.3s;
-  overflow: hidden;
+  // overflow: hidden;
 }
+
+.sidebar-body::-webkit-scrollbar {
+  display: none;
+ }
 
 .page-body {
   flex-grow: 1;
