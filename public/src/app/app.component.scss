@@ -4,7 +4,15 @@
  * @Last Modified by: Nizars
  * @Last Modified time: 2018-06-02 22:34:02
  */
+ #flex-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
 
+#flex-container > .flex-item {
+  flex: auto;
+}
 
  #page-container {
   height: 100%;
@@ -22,13 +30,15 @@
 
 #sidebar-column {
   flex-shrink: 0;
-  width: 70px;
+  min-width: 70px;
+  max-width: 70px;
   transition: all 0.3s;
   background: #343A40;
   overflow: hidden;
 }
 #sidebar-column.expanded {
-  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
   transition: all 0.3s;
   overflow: hidden;
 }
@@ -36,6 +46,7 @@
 #page-column {
   background-color: #f3f3f3;
   transition: all 0.3s;
+  flex: auto;
 }
 
 .sidebar-header {
