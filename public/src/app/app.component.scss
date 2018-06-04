@@ -6,19 +6,83 @@
  */
 
 
-.box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+ #page-container {
+  height: 100%;
+  overflow: hidden;
+  margin: 0px;
+  display: flex;
 }
 
-.overflow-hidden {
-    overflow: hidden;
+.column {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+}
+
+#sidebar-column {
+  flex-shrink: 0;
+  width: 70px;
+  transition: all 0.3s;
+  background: #343A40;
+  overflow: hidden;
+}
+#sidebar-column.expanded {
+  width: 250px;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+#page-column {
+  background-color: #f3f3f3;
+  transition: all 0.3s;
+}
+
+.sidebar-header {
+  flex-shrink: 0;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  transition: all 0.3s;
+}
+
+.page-header {
+  display: inline-flex;
+  flex-shrink: 0;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  transition: all 0.3s;
+}
+
+.sidebar-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.page-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px;
+  transition: all 0.3s;
+}
+
+
+
+
+
+
+ .box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 .background {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: -1;
 }

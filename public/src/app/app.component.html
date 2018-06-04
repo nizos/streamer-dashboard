@@ -1,12 +1,22 @@
-<div id="container">
-  <app-sidebar></app-sidebar>
 
-  <div id="content">
-  <router-outlet></router-outlet>
-  <canvas class="background"></canvas>
+<div id="page-container">
+  <div id="sidebar-column" class="column">
+      <div class="sidebar-header">TP</div>
+      <div class="sidebar-body">
+        <app-sidebar></app-sidebar>
+      </div>
   </div>
 
-</div>
+  <!-- Page Content Holder -->
+  <div id="page-column" class="column">
+    <div class="page-header">Page Header</div>
+    <div class="page-body">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 
+
+  <canvas class="background"></canvas>
+</div>
 
 

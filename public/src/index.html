@@ -33,5 +33,13 @@
     });
   };
 </script>
+<script type="text/javascript">
+  window.onload = (function () {
+      $('#sidebar-collapse').on('click', function () {
+          $('#sidebar').toggleClass('expanded');
+          $('#sidebar-column').toggleClass('expanded');
+      });
+  });
+</script>
 </body>
 </html>
