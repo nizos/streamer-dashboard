@@ -7,7 +7,7 @@
 
 // Angular
 import { NgModule, Component, Injectable } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { HttpModule, Http, Response, RequestOptions, Headers, URLSearchParams} from '@angular/http';
@@ -40,10 +40,11 @@ import { SupportComponent } from './pages/support/support.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
+import { SidebarComponent } from './ui/sidebar/sidebar.component';
 
 // Services
 import { UsersService } from './pages/users/users.service';
-import { SidebarComponent } from './ui/sidebar/sidebar.component';
+import { SocketService } from './shared/services/socket.service';
 
 // Ng module
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -160,6 +161,7 @@ import {MatTableModule} from '@angular/material/table';
     NgbModule.forRoot()
   ],
   providers: [
+    SocketService,
     UsersService
   ],
   bootstrap: [
