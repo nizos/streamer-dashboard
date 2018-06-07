@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-06 23:35:39
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 06:43:18
+ * @Last Modified time: 2018-06-07 08:22:50
  */
 
 import { model, Schema } from 'mongoose';
@@ -26,7 +26,7 @@ const ProfileSchema: Schema = new Schema({
   },
   type: {
     type: String,
-    required: true,
+    required: false,
     default: ''
   },
   broadcaster_type: {

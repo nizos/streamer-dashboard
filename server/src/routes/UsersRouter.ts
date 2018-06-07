@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-06 23:35:02
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 07:09:45
+ * @Last Modified time: 2018-06-07 09:25:28
  */
 
 import { Request, Response, Router } from 'express';
@@ -31,7 +31,7 @@ class UsersRouter {
   public one(req: Request, res: Response): void {
     const userID: string = req.params.userID;
 
-    User.findOne()
+    User.findOne(userID)
     .then((data) => {
       res.status(200).json({ data });
     })
@@ -47,9 +47,7 @@ class UsersRouter {
     const id_token:          string = req.body.id_token;
     const access_token:      string = req.body.access_token;
     const refresh_token:     string = req.body.refresh_token;
-    const expires_in:        string = req.body.expires_in;
-    const scope:             string = req.body.scope;
-    const user = new User({id, profile, id_token, access_token, refresh_token, expires_in, scope});
+    const user = new User({id, profile, id_token, access_token, refresh_token});
 
     user.save()
     .then((data) => {
@@ -94,7 +92,6 @@ class UsersRouter {
     this.router.put('/', this.update);
     this.router.delete('/', this.delete);
   }
-
 }
 
 const usersRoutes = new UsersRouter();

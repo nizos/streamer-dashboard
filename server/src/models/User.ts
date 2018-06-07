@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-07 05:35:32
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 07:07:19
+ * @Last Modified time: 2018-06-07 08:26:06
  */
 
 import { model, Schema } from 'mongoose';
@@ -18,8 +18,7 @@ const UserSchema: Schema = new Schema({
   },
   // PROFILE
   profile: {
-    type: Schema.Types.ObjectId,
-    ref: 'Profile',
+    type: [Profile.schema],
     required: true
   },
   // Access token
@@ -36,23 +35,11 @@ const UserSchema: Schema = new Schema({
   },
   // ID TOKEN
   id_token: {
-    type: Schema.Types.ObjectId,
-    ref: 'IdToken',
-    required: true
-  },
-  expires_in: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  scope: {
-    type: String,
-    required: true,
-    default: ''
+    type: [IdToken.schema]
   },
   // Date & Time
   created_at: {
-    type: String,
+    type: Date,
     required: true,
     default: Date.now
   },
@@ -64,3 +51,4 @@ const UserSchema: Schema = new Schema({
 });
 
 export default model('User', UserSchema);
+
