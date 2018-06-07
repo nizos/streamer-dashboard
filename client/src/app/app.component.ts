@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-02 18:57:13
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 11:09:43
+ * @Last Modified time: 2018-06-07 11:11:29
  */
 
 import { Component, OnInit } from '@angular/core';

@@ -2,11 +2,11 @@
  * @Author: Nizars
  * @Date: 2018-06-06 23:35:02
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 09:33:08
+ * @Last Modified time: 2018-06-07 12:36:00
  */
 
 import { Request, Response, Router } from 'express';
-import User from '../models/User';
+import User from '../schemas/User';
 
 class UsersRouter {
   public router: Router;

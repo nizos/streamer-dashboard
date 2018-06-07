@@ -1,55 +1,22 @@
 /*
  * @Author: Nizars
- * @Date: 2018-06-07 05:35:32
+ * @Date: 2018-06-07 11:19:45
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 09:33:44
+ * @Last Modified time: 2018-06-07 12:35:33
  */
 
-import { model, Schema } from 'mongoose';
-import IdToken from './IdToken';
-import Profile from './Profile';
 
-const UserSchema: Schema = new Schema({
-  id: {
-    type: String,
-    required: true,
-    unique: true,
-    default: ''
-  },
-  // PROFILE
-  profile: {
-    type: [Profile.schema],
-    required: true
-  },
-  // Access token
-  access_token: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  // Refresh token
-  refresh_token: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  // ID TOKEN
-  id_token: {
-    type: [IdToken.schema],
-    required: true
-  },
-  // Date & Time
-  created_at: {
-    type: Date,
-    required: true,
-    default: Date.now
-  },
-  updated_at: {
-    type: Date,
-    required: true,
-    default: Date.now
-  }
-});
+import { IdToken } from './IdToken';
+import { Profile } from './Profile';
 
-export default model('User', UserSchema);
-
+export class User {
+  constructor(
+    private id: string,
+    private profile: Profile,
+    private access_token: string,
+    private refresh_token: string,
+    private id_token: IdToken,
+    private created_at: Date,
+    private updated_at: Date
+  ) {}
+}

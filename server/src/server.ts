@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-06 23:13:06
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 10:38:11
+ * @Last Modified time: 2018-06-07 13:48:28
  */
 
 import * as express from 'express';
@@ -28,12 +28,14 @@ import * as cookieParser from 'cookie-parser';
 import UsersRouter from './routes/UsersRouter';
 import AuthRouter from './routes/AuthRouter';
 
+import { User } from './models/User';
+
 export class AppServer {
 
   public static readonly PORT: number = 8080;
   private app: express.Application;
   private appServer: http.Server;
-  private io: SocketIO.Server;
+  public io: SocketIO.Server;
   private port: string | number;
 
   constructor() {
@@ -104,6 +106,12 @@ export class AppServer {
 
     this.io.on('connect', (socket: any) => {
       console.log('Connected client on port %s', this.port);
+
+      socket.on('authenticated', (newUser: User) => {
+        console.log('[server](message): %s', JSON.stringify(newUser));
+        this.io.emit('authenticated', newUser);
+      });
+
       socket.on('disconnect', () => {
         console.log('Client disconnected');
       });
@@ -115,3 +123,4 @@ export class AppServer {
     return this.app;
   }
 }
+

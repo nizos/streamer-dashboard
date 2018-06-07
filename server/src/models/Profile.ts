@@ -1,64 +1,21 @@
 /*
  * @Author: Nizars
- * @Date: 2018-06-06 23:35:39
+ * @Date: 2018-06-07 11:19:52
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 09:33:43
+ * @Last Modified time: 2018-06-07 11:21:41
  */
 
-import { model, Schema } from 'mongoose';
-
-const ProfileSchema: Schema = new Schema({
-  id: {
-    type: String,
-    required: true,
-    unique: true,
-    default: ''
-  },
-  login: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  display_name: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  type: {
-    type: String,
-    required: false,
-    default: ''
-  },
-  broadcaster_type: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  description: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  profile_image_url: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  offline_image_url: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  view_count: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  email: {
-    type: String,
-    required: false,
-    default: ''
-  }
-});
-
-export default model('Profile', ProfileSchema);
+export class Profile {
+  constructor(
+    private id: string,
+    private login: string,
+    private display_name: string,
+    private type: string,
+    private broadcaster_type: string,
+    private description: string,
+    private profile_image_url: string,
+    private offline_image_url: string,
+    private view_count: string,
+    private email: string
+  ) {}
+}

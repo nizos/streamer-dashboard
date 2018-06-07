@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-07 01:09:10
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 10:39:09
+ * @Last Modified time: 2018-06-07 13:40:03
  */
 
 import { Request, Response, Router } from 'express';
@@ -13,14 +13,18 @@ import * as handlebars from 'handlebars';
 import * as bodyParser from 'body-parser';
 import * as jwt from 'jsonwebtoken';
 import * as mongoose from 'mongoose';
+import * as Socket from 'socket.io';
 import * as http from 'http';
 import * as cors from 'cors';
 import * as path from 'path';
 import { OAuth } from 'oauth';
-import User from '../models/User';
+import User from '../schemas/User';
+import { AppServer } from '../server';
+import { app } from '../index';
 
 class AuthRouter {
   public router: Router;
+  public socket: Socket.Server;
 
   constructor() {
     this.router = Router();
@@ -84,7 +88,7 @@ class AuthRouter {
       const userID = newUser.id;
 
       // find if user exists
-      User.findOneAndRemove({id: userID}, async function(err, result) {
+      User.findOneAndRemove({id: userID}, async function(err: any, result: any) {
         if (err) {
             console.log(`ERROR: Couldn't remove User with similar id.`);
             console.log(err);
@@ -99,6 +103,7 @@ class AuthRouter {
           console.log(err);
         } else {
           console.log(`SUCCESS: User added to database.`);
+          app.emit('authenticated', newUser);
         }
       });
     }
