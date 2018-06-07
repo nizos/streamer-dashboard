@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-07 01:09:10
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 13:40:03
+ * @Last Modified time: 2018-06-07 15:08:14
  */
 
 import { Request, Response, Router } from 'express';
@@ -19,7 +19,7 @@ import * as cors from 'cors';
 import * as path from 'path';
 import { OAuth } from 'oauth';
 import User from '../schemas/User';
-import { AppServer } from '../server';
+import { server, socket } from '../index';
 import { app } from '../index';
 
 class AuthRouter {
@@ -27,8 +27,10 @@ class AuthRouter {
   public socket: Socket.Server;
 
   constructor() {
-    this.router = Router();
+    this.create();
+    this.config();
     this.routes();
+
 
     // Use passport
     passport.use('twitch', new OAuth2Strategy( {
@@ -103,12 +105,21 @@ class AuthRouter {
           console.log(err);
         } else {
           console.log(`SUCCESS: User added to database.`);
-          app.emit('authenticated', newUser);
+          socket.emit('authenticated', newUser);
         }
       });
     }
   }
 
+  // Create router
+  private create(): void {
+    this.router = Router();
+  }
+
+  // Config router
+  private config(): void {
+    this.socket = socket;
+  }
 
   // Set up routes
   public routes() {

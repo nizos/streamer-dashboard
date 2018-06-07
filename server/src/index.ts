@@ -2,12 +2,16 @@
  * @Author: Nizars
  * @Date: 2018-06-06 22:53:09
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 13:20:16
+ * @Last Modified time: 2018-06-07 14:49:56
  */
 
-import * as debug from 'debug';
-import * as http from 'http';
-import { AppServer } from './server';
+import { App } from './classes/app';
+import { Server } from './classes/server';
+import { Socket } from './classes/socket';
+import { Database } from './classes/database';
 
-const app = new AppServer().getApp();
-export { app };
+const app = new App().getApp();
+const database = new Database().getDataBase();
+const server = new Server(app).getServer();
+const socket = new Socket(server).getSocket();
+export { app, database, server, socket };
