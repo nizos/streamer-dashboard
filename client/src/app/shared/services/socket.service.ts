@@ -2,17 +2,18 @@
  * @Author: Nizars
  * @Date: 2018-06-05 02:13:35
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-05 02:15:45
+ * @Last Modified time: 2018-06-07 11:06:12
  */
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
-import { Message } from '../models/message';
+import { Event } from '../models/event';
+import { AppUser } from '../models/appUser';
 
 import * as socketIo from 'socket.io-client';
 
-const SERVER_URL = 'http://localhost:8080';
+const SERVER_URL = 'http://localhost:3000';
 
 @Injectable()
 export class SocketService {
@@ -22,13 +23,9 @@ export class SocketService {
         this.socket = socketIo(SERVER_URL);
     }
 
-    public send(message: Message): void {
-        this.socket.emit('message', message);
-    }
-
-    public onMessage(): Observable<Message> {
-        return new Observable<Message>(observer => {
-            this.socket.on('message', (data: Message) => observer.next(data));
+    public onAuthenticatedUser(): Observable<AppUser> {
+        return new Observable<AppUser>(observer => {
+            this.socket.on('authenticatedUser', (data: AppUser) => observer.next(data));
         });
     }
 

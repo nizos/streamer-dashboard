@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-07 01:09:10
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 09:22:18
+ * @Last Modified time: 2018-06-07 10:39:09
  */
 
 import { Request, Response, Router } from 'express';
@@ -18,7 +18,6 @@ import * as cors from 'cors';
 import * as path from 'path';
 import { OAuth } from 'oauth';
 import User from '../models/User';
-
 
 class AuthRouter {
   public router: Router;
@@ -36,7 +35,6 @@ class AuthRouter {
       callbackURL: process.env.TWITCH_REDIRECT_URI
     },
     function (accessToken, refreshToken, id_token, profile, done) {
-      console.log('Running: usePassport');
       // const decoded = jwt.decode(id_token, {complete: true});
       const newUser = {
         id                 : profile.data[0].id,
@@ -47,15 +45,12 @@ class AuthRouter {
         created_at         : Date.now(),
         updated_at         : Date.now(),
       };
-      // function check for user then add/remove/update
-      console.log(newUser);
       registerUser(newUser);
       done(undefined, profile);
     }));
 
     // Strategy
     OAuth2Strategy.prototype.userProfile = (accessToken, done) => {
-      console.log('Running: strategy');
       const options = {
         url: `${process.env.TWITCH_API_URL}/users?id=${process.env.TWITCH_USER_ID}`,
         method: 'GET',
@@ -66,7 +61,6 @@ class AuthRouter {
         }
       };
       request(options, (error, response, body) => {
-        console.log('Running: strategy request');
         if (response && response.statusCode == 200) {
           done(undefined, JSON.parse(body));
         } else {
@@ -92,21 +86,19 @@ class AuthRouter {
       // find if user exists
       User.findOneAndRemove({id: userID}, async function(err, result) {
         if (err) {
-            console.log('Could not remove previously found AppUser with similar id');
+            console.log(`ERROR: Couldn't remove User with similar id.`);
             console.log(err);
         }
         if (result) {
-            console.log('AppUser with similar id was found and removed');
+            console.log(`NOTICE: User with matching id was found and removed.`);
         }
       });
-
-
       User.create(newUser, async (err: any, newUser: any) => {
         if (err) {
-          console.log(`Error: couldn't register App User`);
+          console.log(`Error: couldn't add User to database.`);
           console.log(err);
         } else {
-          console.log(`SUCCESS: App User added to database`);
+          console.log(`SUCCESS: User added to database.`);
         }
       });
     }

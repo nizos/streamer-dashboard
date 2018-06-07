@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-06 23:13:06
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 07:02:01
+ * @Last Modified time: 2018-06-07 10:38:11
  */
 
 import * as express from 'express';
@@ -14,9 +14,11 @@ import * as handlebars from 'handlebars';
 import * as bodyParser from 'body-parser';
 import * as jwt from 'jsonwebtoken';
 import * as mongoose from 'mongoose';
+import * as socketIo from 'socket.io';
 import * as http from 'http';
 import * as cors from 'cors';
 import * as path from 'path';
+import * as debug from 'debug';
 
 import * as logger from 'morgan';
 import * as helmet from 'helmet';
@@ -26,19 +28,31 @@ import * as cookieParser from 'cookie-parser';
 import UsersRouter from './routes/UsersRouter';
 import AuthRouter from './routes/AuthRouter';
 
-class Server {
+export class AppServer {
 
-  // Set app to of type express.Application
-  public app: express.Application;
+  public static readonly PORT: number = 8080;
+  private app: express.Application;
+  private appServer: http.Server;
+  private io: SocketIO.Server;
+  private port: string | number;
 
   constructor() {
-    this.app = express();
-    this.config();
+    this.createApp();
+    this.configApp();
+    this.createServer();
+    this.sockets();
     this.routes();
+    this.listen();
   }
 
-  // Application config
-  public config(): void {
+  // Create App
+  private createApp(): void {{
+    this.app = express();
+  }}
+
+  // Configure App
+  private configApp(): void {
+    this.port = process.env.SERVER_PORT;
     const MONGO_URI: string = <string>process.env.MONGODB_URI;
     mongoose.connect(MONGO_URI);
 
@@ -63,6 +77,16 @@ class Server {
     });
   }
 
+  // Create server
+  private createServer(): void {
+    this.appServer = http.createServer(this.app);
+  }
+
+  // Sockets
+  private sockets(): void {
+    this.io = socketIo(this.appServer);
+  }
+
   // Application routes
   public routes(): void {
     const router: express.Router = express.Router();
@@ -71,7 +95,23 @@ class Server {
     this.app.use('/api/v1/users', UsersRouter);
     this.app.use('/auth/twitch', AuthRouter);
   }
-}
 
-// export
-export default new Server().app;
+  // Listen
+  private listen(): void {
+    this.appServer.listen(this.port, () => {
+      console.log('Running server on port %s', this.port);
+    });
+
+    this.io.on('connect', (socket: any) => {
+      console.log('Connected client on port %s', this.port);
+      socket.on('disconnect', () => {
+        console.log('Client disconnected');
+      });
+    });
+  }
+
+  // Export
+  public getApp(): express.Application {
+    return this.app;
+  }
+}

@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-07 05:35:32
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 08:26:06
+ * @Last Modified time: 2018-06-07 09:33:44
  */
 
 import { model, Schema } from 'mongoose';
@@ -35,7 +35,8 @@ const UserSchema: Schema = new Schema({
   },
   // ID TOKEN
   id_token: {
-    type: [IdToken.schema]
+    type: [IdToken.schema],
+    required: true
   },
   // Date & Time
   created_at: {
