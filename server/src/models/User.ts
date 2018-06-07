@@ -1,11 +1,13 @@
 /*
  * @Author: Nizars
- * @Date: 2018-06-06 23:35:39
+ * @Date: 2018-06-07 05:35:32
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-06 23:43:55
+ * @Last Modified time: 2018-06-07 07:07:19
  */
 
 import { model, Schema } from 'mongoose';
+import IdToken from './IdToken';
+import Profile from './Profile';
 
 const UserSchema: Schema = new Schema({
   id: {
@@ -14,87 +16,31 @@ const UserSchema: Schema = new Schema({
     unique: true,
     default: ''
   },
-  login: {
-    type: String,
-    required: true,
-    default: ''
+  // PROFILE
+  profile: {
+    type: Schema.Types.ObjectId,
+    ref: 'Profile',
+    required: true
   },
-  display_name: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  prefered_username: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  type: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  broadcaster_type: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  description: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  profile_image_url: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  offline_image_url: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  view_count: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  email: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  client_id: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  redirect_uri: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  response_type: {
-    type: String,
-    required: true,
-    default: ''
-  },
+  // Access token
   access_token: {
     type: String,
     required: true,
     default: ''
   },
+  // Refresh token
   refresh_token: {
     type: String,
     required: true,
     default: ''
   },
-  expires_in: {
-    type: String,
-    required: true,
-    default: ''
-  },
+  // ID TOKEN
   id_token: {
+    type: Schema.Types.ObjectId,
+    ref: 'IdToken',
+    required: true
+  },
+  expires_in: {
     type: String,
     required: true,
     default: ''
@@ -104,51 +50,7 @@ const UserSchema: Schema = new Schema({
     required: true,
     default: ''
   },
-  alg: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  typ: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  kid: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  aud: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  exp: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  iat: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  iss: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  sub: {
-    type: String,
-    required: true,
-    default: ''
-  },
-  azp: {
-    type: String,
-    required: true,
-    default: ''
-  },
+  // Date & Time
   created_at: {
     type: String,
     required: true,

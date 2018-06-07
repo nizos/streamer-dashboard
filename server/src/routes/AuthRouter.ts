@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-07 01:09:10
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 04:42:57
+ * @Last Modified time: 2018-06-07 07:08:46
  */
 
 import { Request, Response, Router } from 'express';
@@ -37,28 +37,17 @@ class AuthRouter {
   },
   function (accessToken, refreshToken, id_token, profile, done) {
     console.log('Running: usePassport');
-    const decoded = jwt.decode(id_token.id_token, {complete: true});
+    // const decoded = jwt.decode(id_token, {complete: true});
     const user = {
-      id                              : profile.data[0].id,
-      login                           : profile.data[0].login,
-      display_name                    : profile.data[0].display_name,
-      type                            : profile.data[0].type,
-      broadcaster_type                : profile.data[0].broadcaster_type,
-      description                     : profile.data[0].description,
-      profile_image_url               : profile.data[0].profile_image_url,
-      offline_image_url               : profile.data[0].offline_image_url,
-      view_count                      : profile.data[0].view_count,
-      email                           : profile.data[0].email,
-      client_id                       : process.env.TWITCH_CLIENT_ID,
-      redirect_uri                    : process.env.TWITCH_REDIRECT_URI,
-      response_type                   : process.env.TWITCH_RES,
-      access_token                    : id_token.access_token,
-      refresh_token                   : refreshToken,
-      expires_in                      : id_token.expires_in,
-      id_token                        : id_token.id_token,
-      scope                           : id_token.scope,
-      created_at                      : Date.now(),
-      updated_at                      : Date.now(),
+      id                 : profile.data[0].id,
+      profile            : profile.data[0],
+      id_token           : id_token.id_token,
+      access_token       : accessToken,
+      refresh_token      : refreshToken,
+      expires_in         : id_token.expires_in,
+      scope              : id_token.scope,
+      created_at         : Date.now(),
+      updated_at         : Date.now(),
     };
     console.log('User: ');
     console.log(user);
@@ -83,14 +72,8 @@ class AuthRouter {
     request(options, (error, response, body) => {
       console.log('Running: strategy request');
       if (response && response.statusCode == 200) {
-        console.log('Response: 200 in usePassport request');
-        console.log('Response: ');
-        console.log(JSON.parse(body));
         done(undefined, JSON.parse(body));
       } else {
-        console.log('Response: !200 in usePassport request');
-        console.log('Response: ');
-        console.log(JSON.parse(body));
         done(JSON.parse(body));
       }
     });
@@ -100,17 +83,13 @@ class AuthRouter {
 
   // Serialize
   passport.serializeUser(function (user, done) {
-    console.log('Running: serialize');
     done(undefined, user);
   });
 
   // Deserialize
   passport.deserializeUser(function (user, done) {
-    console.log('Running: deserialize');
     done(undefined, user);
   });
-
-
 }
 
   // Set up routes
