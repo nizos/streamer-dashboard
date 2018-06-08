@@ -2,35 +2,20 @@
  * @Author: Nizars
  * @Date: 2018-06-07 01:09:10
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 16:44:16
+ * @Last Modified time: 2018-06-08 20:21:35
  */
 
-import { Request, Response, Router } from 'express';
+import * as express from 'express';
 import * as passport from 'passport';
 import * as OAuth2Strategy from 'passport-oauth2';
 import * as request from 'request';
-import * as handlebars from 'handlebars';
-import * as bodyParser from 'body-parser';
-import * as jwt from 'jsonwebtoken';
-import * as mongoose from 'mongoose';
-import * as Socket from 'socket.io';
-import * as http from 'http';
-import * as cors from 'cors';
-import * as path from 'path';
-import { OAuth } from 'oauth';
 import User from '../schemas/User';
-import { server, socket } from '../index';
-import { app } from '../index';
+import { io } from '../index';
 
 class AuthRouter {
-  public router: Router;
-  public io: Socket.Server;
-  public server: any;
-
+  public router: express.Router;
   constructor() {
-    this.create();
-    this.config();
-    this.routes();
+    this.router = express.Router();
 
     // Use passport
     passport.use('twitch', new OAuth2Strategy( {
@@ -92,33 +77,26 @@ class AuthRouter {
       // find if user exists
       User.findOneAndRemove({id: userID}, async function(err: any, result: any) {
         if (err) {
-            console.log(`ERROR: Couldn't remove User with similar id.`);
-            console.log(err);
+            console.log(`[DB] [ERROR] Couldn't remove found user with matching id: ${userID}.`);
+            console.log(`[DB] [ERROR] ${err}`);
         }
         if (result) {
-            console.log(`NOTICE: User with matching id was found and removed.`);
+            console.log(`[DB] User with matching id removed. id: ${userID}.`);
         }
       });
       User.create(newUser, async (err: any, newUser: any) => {
         if (err) {
-          console.log(`Error: couldn't add User to database.`);
-          console.log(err);
+          console.log(`[DB] [ERROR] Couldn't add new user to database. id: ${userID}.`);
+          console.log(`[DB] [ERROR] ${err}`);
         } else {
-          console.log(`SUCCESS: User added to database.`);
-          app.emit('authenticated', newUser);
+          console.log(`[DB] User successfully added to database. id: ${userID}.`);
+          io.emit('authenticated', JSON.stringify(newUser));
         }
       });
     }
-  }
 
-  // Create router
-  private create(): void {
-    this.router = Router();
-  }
+    this.routes();
 
-  // Config router
-  private config(): void {
-    this.io = socket;
   }
 
   // Set up routes

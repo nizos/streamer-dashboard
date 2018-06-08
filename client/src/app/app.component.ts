@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-02 18:57:13
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 16:53:35
+ * @Last Modified time: 2018-06-08 19:32:12
  */
 
 import { Component, OnInit } from '@angular/core';
@@ -17,8 +17,8 @@ import { User } from './shared/models/user';
 })
 export class AppComponent {
   title = 'app';
-  ioConnection: any;
-  authenticatedUsers: User[] = [];
+  // ioConnection: any;
+  user: User;
   constructor(private socketService: SocketService) {
     this.initIoConnection();
   }
@@ -26,14 +26,16 @@ export class AppComponent {
   private initIoConnection(): void {
     this.socketService.initSocket();
 
-    this.ioConnection = this.socketService.onAuthenticated()
-      .subscribe((authenticatedUser: User) => {
-        this.authenticatedUsers.push(authenticatedUser);
-      });
+    // this.ioConnection = this.socketService.onAuthenticated()
+    //   .subscribe(() => {
+    //   });
 
-      this.socketService.onAuthenticated()
-      .subscribe(() => {
-        console.log('Authenticated');
+    this.socketService.onAuthenticated()
+      .subscribe((user: User) => {
+        this.user = user;
+        console.log('Authenticated!');
+        console.log('user:');
+        console.log(this.user);
       });
 
     this.socketService.onEvent(Event.CONNECT)
