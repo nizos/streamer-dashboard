@@ -2,13 +2,13 @@
  * @Author: Nizars
  * @Date: 2018-06-02 18:57:13
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 11:11:29
+ * @Last Modified time: 2018-06-07 16:53:35
  */
 
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from './shared/services/socket.service';
 import { Event } from './shared/models/event';
-import { AppUser } from './shared/models/appUser';
+import { User } from './shared/models/user';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ import { AppUser } from './shared/models/appUser';
 export class AppComponent {
   title = 'app';
   ioConnection: any;
-  authenticatedUsers: AppUser[] = [];
+  authenticatedUsers: User[] = [];
   constructor(private socketService: SocketService) {
     this.initIoConnection();
   }
@@ -26,11 +26,15 @@ export class AppComponent {
   private initIoConnection(): void {
     this.socketService.initSocket();
 
-    this.ioConnection = this.socketService.onAuthenticatedUser()
-      .subscribe((authenticatedUser: AppUser) => {
+    this.ioConnection = this.socketService.onAuthenticated()
+      .subscribe((authenticatedUser: User) => {
         this.authenticatedUsers.push(authenticatedUser);
       });
 
+      this.socketService.onAuthenticated()
+      .subscribe(() => {
+        console.log('Authenticated');
+      });
 
     this.socketService.onEvent(Event.CONNECT)
       .subscribe(() => {

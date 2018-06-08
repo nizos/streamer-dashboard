@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-06 22:53:09
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 14:49:56
+ * @Last Modified time: 2018-06-07 16:45:40
  */
 
 import { App } from './classes/app';

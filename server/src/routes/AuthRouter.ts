@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-07 01:09:10
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-07 15:08:14
+ * @Last Modified time: 2018-06-07 16:44:16
  */
 
 import { Request, Response, Router } from 'express';
@@ -24,13 +24,13 @@ import { app } from '../index';
 
 class AuthRouter {
   public router: Router;
-  public socket: Socket.Server;
+  public io: Socket.Server;
+  public server: any;
 
   constructor() {
     this.create();
     this.config();
     this.routes();
-
 
     // Use passport
     passport.use('twitch', new OAuth2Strategy( {
@@ -105,7 +105,7 @@ class AuthRouter {
           console.log(err);
         } else {
           console.log(`SUCCESS: User added to database.`);
-          socket.emit('authenticated', newUser);
+          app.emit('authenticated', newUser);
         }
       });
     }
@@ -118,7 +118,7 @@ class AuthRouter {
 
   // Config router
   private config(): void {
-    this.socket = socket;
+    this.io = socket;
   }
 
   // Set up routes

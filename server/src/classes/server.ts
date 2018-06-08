@@ -42,4 +42,3 @@ export class Server {
     return this.server;
   }
 }
-
