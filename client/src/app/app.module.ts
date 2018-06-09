@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-09 05:52:46
+ * @Last Modified time: 2018-06-09 07:13:40
  */
 
 // Angular
@@ -95,6 +95,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
+import { FooterComponent } from './ui/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import {MatTableModule} from '@angular/material/table';
     SettingsComponent,
     ProfileComponent,
     HomeComponent,
-    SidebarComponent
+    SidebarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
