@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-05 02:13:35
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-08 19:26:39
+ * @Last Modified time: 2018-06-08 20:30:58
  */
 
 import { Injectable } from '@angular/core';
@@ -16,22 +16,22 @@ const SERVER_URL = 'http://localhost:3000';
 
 @Injectable()
 export class SocketService {
-    private socket;
+  private socket;
 
-    public initSocket(): void {
-        this.socket = socketIo(SERVER_URL);
-    }
+  public initSocket(): void {
+    this.socket = socketIo(SERVER_URL);
+  }
 
-    public onAuthenticated(): Observable<any> {
-        return new Observable<any>(observer => {
-            this.socket.on('authenticated', (data: any) =>
-            observer.next(data));
-        });
-    }
+  public onAuthenticated(): Observable<string> {
+    return new Observable<string>(observer => {
+      this.socket.on('authenticated', (token: string) =>
+        observer.next(token));
+    });
+  }
 
-    public onEvent(event: Event): Observable<any> {
-        return new Observable<Event>(observer => {
-            this.socket.on(event, () => observer.next());
-        });
-    }
+  public onEvent(event: Event): Observable<any> {
+    return new Observable<Event>(observer => {
+      this.socket.on(event, () => observer.next());
+    });
+  }
 }

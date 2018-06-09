@@ -18,7 +18,7 @@ import { User } from './shared/models/user';
 export class AppComponent {
   title = 'app';
   // ioConnection: any;
-  user: User;
+  // user: User;
   constructor(private socketService: SocketService) {
     this.initIoConnection();
   }
@@ -31,11 +31,11 @@ export class AppComponent {
     //   });
 
     this.socketService.onAuthenticated()
-      .subscribe((user: User) => {
-        this.user = user;
+      .subscribe((token: string) => {
         console.log('Authenticated!');
-        console.log('user:');
-        console.log(this.user);
+        console.log('token:');
+        console.log(token);
+        localStorage.setItem('token', token);
       });
 
     this.socketService.onEvent(Event.CONNECT)

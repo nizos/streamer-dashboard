@@ -76,9 +76,9 @@ io.on('connect', (client: any) => {
   clients.push(client);
   console.log(`[IO] ${clients.length} clients are now connected.`);
 
-  client.on('authenticated', (data: any) => {
-    console.log(`[SV] authenticated: user_id: ${data.id}`);
-    io.emit('authenticated', JSON.stringify(data));
+  client.on('authenticated', (token: string) => {
+    console.log(`[SV] authenticated user.`);
+    io.emit('authenticated', token);
   });
 
   client.on('disconnect', () => {
