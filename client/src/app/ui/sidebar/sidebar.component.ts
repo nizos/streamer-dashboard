@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-09 06:48:21
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-09 06:52:42
+ * @Last Modified time: 2018-06-09 07:05:42
  */
 
 
@@ -19,14 +19,14 @@ export class SidebarComponent implements OnInit {
 
   private currentUrl: string;
 
-  constructor(private router: Router, private auth: AuthService) {
+  constructor(private router: Router, private authService: AuthService) {
     router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
   }
 
   ngOnInit() { }
 
   logout() {
-    this.auth.logoutUser();
+    this.authService.signOut();
   }
 
 }

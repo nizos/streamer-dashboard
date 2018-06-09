@@ -158,7 +158,7 @@
       </li>
       <li class="expanded">
         <div class="container sidebar-button-container">
-            <button mat-button class="sidebar-button" routerLink="/signin" routerLinkActive="active" [class.activated]="currentUrl == '/signin'" placement="right" ngbTooltip="Sign in">
+            <button mat-button class="sidebar-button" *ngIf="!authService.signedIn()" routerLink="/signin" routerLinkActive="active" [class.activated]="currentUrl == '/signin'" placement="right" ngbTooltip="Sign in">
             <div class="row sidebar-button-row">
               <div class="col sidebar-icon-col">
                 <i class="sidebar-button-icon material-icons">account_circle</i>
@@ -172,7 +172,7 @@
       </li>
       <li class="expanded">
         <div class="container sidebar-button-container">
-            <button mat-button class="sidebar-button" (click)="logout()" routerLinkActive="active" [class.activated]="currentUrl == '/signout'" placement="right" ngbTooltip="Sign out">
+            <button mat-button class="sidebar-button" *ngIf="authService.signedIn()" (click)="logout()" routerLinkActive="active" [class.activated]="currentUrl == '/signout'" placement="right" ngbTooltip="Sign out">
             <div class="row sidebar-button-row">
               <div class="col sidebar-icon-col">
                 <i class="sidebar-button-icon material-icons">exit_to_app</i>

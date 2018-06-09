@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-09 05:13:06
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-09 06:45:16
+ * @Last Modified time: 2018-06-09 07:01:18
  */
 
 import { Injectable } from '@angular/core';
@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(): boolean {
-    if (this.authService.loggedIn()) {
+    if (this.authService.signedIn()) {
       return true;
     } else {
       this.router.navigate(['/signin']);

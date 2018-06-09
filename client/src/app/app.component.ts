@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-02 18:57:13
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-09 05:52:30
+ * @Last Modified time: 2018-06-09 07:04:50
  */
 
 import { Component } from '@angular/core';
