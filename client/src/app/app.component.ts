@@ -2,13 +2,13 @@
  * @Author: Nizars
  * @Date: 2018-06-02 18:57:13
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-08 19:32:12
+ * @Last Modified time: 2018-06-09 05:52:30
  */
 
-import { Component, OnInit } from '@angular/core';
-import { SocketService } from './shared/services/socket.service';
+import { Component } from '@angular/core';
+import { SocketService } from './socket/socket.service';
 import { Event } from './shared/models/event';
-import { User } from './shared/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -17,36 +17,29 @@ import { User } from './shared/models/user';
 })
 export class AppComponent {
   title = 'app';
-  // ioConnection: any;
-  // user: User;
-  constructor(private socketService: SocketService) {
+
+  constructor(private socketService: SocketService, private router: Router) {
     this.initIoConnection();
   }
 
   private initIoConnection(): void {
     this.socketService.initSocket();
 
-    // this.ioConnection = this.socketService.onAuthenticated()
-    //   .subscribe(() => {
-    //   });
-
     this.socketService.onAuthenticated()
       .subscribe((token: string) => {
         console.log('Authenticated!');
-        console.log('token:');
-        console.log(token);
         localStorage.setItem('token', token);
+        this.router.navigate(['/home']);
       });
 
     this.socketService.onEvent(Event.CONNECT)
       .subscribe(() => {
-        console.log('connected');
+        console.log('Connected');
       });
 
     this.socketService.onEvent(Event.DISCONNECT)
       .subscribe(() => {
-        console.log('disconnected');
+        console.log('Disconnected');
       });
   }
-
 }

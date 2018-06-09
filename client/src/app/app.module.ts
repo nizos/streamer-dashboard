@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-03 00:55:51
+ * @Last Modified time: 2018-06-09 05:52:46
  */
 
 // Angular
@@ -44,7 +44,13 @@ import { SidebarComponent } from './ui/sidebar/sidebar.component';
 
 // Services
 import { UsersService } from './pages/users/users.service';
-import { SocketService } from './shared/services/socket.service';
+import { SocketService } from './socket/socket.service';
+
+// Auth
+import { AuthGuard } from './auth/auth-guard/auth.guard';
+import { AuthService } from './auth/auth-service/auth.service';
+import { TokenInterceptorService } from './auth/token-interceptor/token-interceptor.service';
+
 
 // Ng module
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -89,8 +95,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
-
-
 
 @NgModule({
   declarations: [
@@ -161,8 +165,15 @@ import {MatTableModule} from '@angular/material/table';
     NgbModule.forRoot()
   ],
   providers: [
+    AuthService,
+    AuthGuard,
     SocketService,
-    UsersService
+    UsersService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [
     AppComponent

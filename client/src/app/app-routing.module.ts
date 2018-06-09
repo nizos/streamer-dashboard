@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 06:30:25
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-02 19:47:06
+ * @Last Modified time: 2018-06-09 05:55:33
  */
 
 // Angular
@@ -26,6 +26,7 @@ import { SupportComponent } from './pages/support/support.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
+import { AuthGuard } from './auth/auth-guard/auth.guard';
 
 const routes: Routes = [
     {
@@ -34,47 +35,58 @@ const routes: Routes = [
     },
     {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'channels',
-        component: ChannelsComponent
+        component: ChannelsComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'streams',
-        component: StreamsComponent
+        component: StreamsComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'videos',
-        component: VideosComponent
+        component: VideosComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'clips',
-        component: ClipsComponent
+        component: ClipsComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'users',
-        component: UsersComponent
+        component: UsersComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'games',
-        component: GamesComponent
+        component: GamesComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'chat',
-        component: ChatComponent
+        component: ChatComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'bot',
-        component: BotComponent
+        component: BotComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'settings',
-        component: SettingsComponent
+        component: SettingsComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'support',
