@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-07 01:09:10
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-08 20:21:35
+ * @Last Modified time: 2018-06-09 06:01:13
  */
 
 import * as express from 'express';
@@ -90,8 +90,6 @@ class AuthRouter {
           console.log(`[DB] [ERROR] ${err}`);
         } else {
           console.log(`[DB] User successfully added to database. id: ${userID}.`);
-          console.log(`newUser id_token:`);
-          console.log(newUser.id_token[0].id_token);
           io.emit('authenticated', newUser.id_token[0].id_token);
         }
       });

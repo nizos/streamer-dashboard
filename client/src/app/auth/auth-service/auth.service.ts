@@ -2,12 +2,13 @@
  * @Author: Nizars
  * @Date: 2018-06-09 05:13:20
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-09 05:58:31
+ * @Last Modified time: 2018-06-09 06:38:39
  */
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+
 @Injectable()
 export class AuthService {
 
@@ -15,7 +16,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   loginUser(user) {
-    return this.http.post<any>(this.loginUrl, user);
+    return this.http.get<any>(this.loginUrl, user);
   }
 
   loggedIn() {

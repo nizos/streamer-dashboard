@@ -172,7 +172,7 @@
       </li>
       <li class="expanded">
         <div class="container sidebar-button-container">
-            <button mat-button class="sidebar-button" routerLink="/signout" routerLinkActive="active" [class.activated]="currentUrl == '/signout'" data-toggle="tooltip" data-placement="right" title="Tooltip on right">
+            <button mat-button class="sidebar-button" (click)="logout()" routerLinkActive="active" [class.activated]="currentUrl == '/signout'" placement="right" ngbTooltip="Sign out">
             <div class="row sidebar-button-row">
               <div class="col sidebar-icon-col">
                 <i class="sidebar-button-icon material-icons">exit_to_app</i>
