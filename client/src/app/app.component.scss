@@ -2,16 +2,33 @@
  * @Author: Nizars
  * @Date: 2018-06-02 22:34:02
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-09 08:45:13
+ * @Last Modified time: 2018-06-09 10:10:47
  */
 
 
  #page-container {
   height: 100%;
-  overflow: hidden;
+  // overflow: hidden;
   margin: 0px;
   display: flex;
+  // overflow-y: auto;
 }
+
+
+.navbar-body {
+  min-width: 100%;
+  // max-width: 100%;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+}
+
+
+// .navbar-body::-webkit-scrollbar {
+//   display: none;
+//  }
 
 .column {
   height: 100%;
@@ -25,8 +42,12 @@
   min-width: 70px;
   max-width: 70px;
   transition: all 0.3s;
-  background: #343A40;
-  overflow: hidden;
+  // background: #343A40;
+  // overflow: hidden;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
 }
 #sidebar-column.expanded {
   min-width: 250px;
@@ -62,7 +83,7 @@
   flex-grow: 1;
   overflow-y: auto;
   transition: all 0.3s;
-  background-color: #343A40;
+  // background-color: #343A40;
   // overflow: hidden;
 }
 
