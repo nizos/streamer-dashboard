@@ -48,7 +48,7 @@
   min-width: 70px;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s;
+  // transition: all 0.3s;
 }
 
 // SIDEBAR
@@ -56,9 +56,11 @@
   flex-shrink: 0;
   min-width: 70px;
   max-width: 250px;
-  transition: all 0.3s;
+  // transition: all 0.3s;
   // background: #343A40;
   // overflow: hidden;
+  height: 100vh;
+  background: #2196F3;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -74,12 +76,14 @@
 .sidebar-body {
   flex-grow: 1;
   overflow-y: auto;
-  transition: all 0.3s;
+  // transition: all 0.3s;
   min-width: 70px;
   max-width: 250px;
-  // background-color: #343A40;
+  height: 100%;
+  background: #2196F3;
   // overflow: hidden;
 }
+
 
 // .sidebar-body.expanded {
 //   min-width: 250px;
