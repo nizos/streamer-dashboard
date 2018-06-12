@@ -1,0 +1,188 @@
+<div class="wrapper">
+  <nav id="sidebar">
+    <ul class="list-unstyled components">
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" id="sidebar-collapse" placement="right" ngbTooltip="Toggle side bar">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">menu</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Toggle Sidebar</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" routerLink="/home" routerLinkActive="active" [class.activated]="currentUrl == '/home'" placement="right" ngbTooltip="Home">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">home</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Home</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" routerLink="/dashboard" routerLinkActive="active" [class.activated]="currentUrl == '/dashboard'" placement="right" ngbTooltip="Dashboard">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">dashboard</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Dashboard</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" routerLink="/channels" routerLinkActive="active" [class.activated]="currentUrl == '/channels'" placement="right" ngbTooltip="Channels">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">web</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Channels</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" routerLink="/streams" routerLinkActive="active" [class.activated]="currentUrl == '/streams'" placement="right" ngbTooltip="Streams">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">ondemand_video</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Streams</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" routerLink="/videos" routerLinkActive="active" [class.activated]="currentUrl == '/videos'" placement="right" ngbTooltip="Videos">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">subscriptions</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Videos</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" routerLink="/clips" routerLinkActive="active" [class.activated]="currentUrl == '/clips'" placement="right" ngbTooltip="Clips">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">movie</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Clips</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" routerLink="/users" routerLinkActive="active" [class.activated]="currentUrl == '/users'" placement="right" ngbTooltip="Users">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">group</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Users</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" routerLink="/games" routerLinkActive="active" [class.activated]="currentUrl == '/games'" placement="right" ngbTooltip="Games">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">games</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Games</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" routerLink="/chat" routerLinkActive="active" [class.activated]="currentUrl == '/chat'" placement="right" ngbTooltip="Chat">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">chat</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Chat</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" routerLink="/bot" routerLinkActive="active" [class.activated]="currentUrl == '/bot'" placement="right" ngbTooltip="Bot">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">adb</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Bot</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" *ngIf="!authService.signedIn()" routerLink="/signin" routerLinkActive="active" [class.activated]="currentUrl == '/signin'" placement="right" ngbTooltip="Sign in">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">account_circle</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Sign in</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+      <li class="expanded">
+        <div class="container sidebar-button-container">
+          <button class="sidebar-button btn btn-primary" *ngIf="authService.signedIn()" (click)="logout()" routerLinkActive="active" [class.activated]="currentUrl == '/signout'" placement="right" ngbTooltip="Sign out">
+            <div class="row sidebar-button-row">
+              <div class="col sidebar-icon-col">
+                <i class="sidebar-button-icon material-icons">exit_to_app</i>
+              </div>
+              <div class="col align-self-center sidebar-text-col">
+                <i class="sidebar-button-text">Sign out</i>
+              </div>
+            </div>
+          </button>
+          </div>
+      </li>
+    </ul>
+  </nav>
+</div>

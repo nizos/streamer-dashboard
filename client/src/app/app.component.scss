@@ -2,9 +2,22 @@
  * @Author: Nizars
  * @Date: 2018-06-02 22:34:02
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-09 10:10:47
+ * @Last Modified time: 2018-06-12 03:25:43
  */
 
+// PAGE
+#page-column {
+  background-color: #f3f3f3;
+  transition: all 0.3s;
+  flex: auto;
+}
+
+.page-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px;
+  transition: all 0.3s;
+}
 
  #page-container {
   height: 100%;
@@ -14,7 +27,7 @@
   // overflow-y: auto;
 }
 
-
+// NAVBAR
 .navbar-body {
   min-width: 100%;
   // max-width: 100%;
@@ -25,77 +38,56 @@
   height: 70px;
 }
 
-
 // .navbar-body::-webkit-scrollbar {
 //   display: none;
 //  }
 
+// COLUMN
 .column {
   height: 100%;
+  min-width: 70px;
   display: flex;
   flex-direction: column;
   transition: all 0.3s;
 }
 
+// SIDEBAR
 #sidebar-column {
   flex-shrink: 0;
   min-width: 70px;
-  max-width: 70px;
+  max-width: 250px;
   transition: all 0.3s;
   // background: #343A40;
   // overflow: hidden;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-
 }
+
 #sidebar-column.expanded {
-  min-width: 250px;
-  max-width: 250px;
   transition: all 0.3s;
   overflow: hidden;
-}
-
-#page-column {
-  background-color: #f3f3f3;
-  transition: all 0.3s;
-  flex: auto;
-}
-
-.sidebar-header {
-  flex-shrink: 0;
-  background-color: #333;
-  color: white;
-  padding: 20px;
-  transition: all 0.3s;
-}
-
-.page-header {
-  display: inline-flex;
-  flex-shrink: 0;
-  background-color: #333;
-  color: white;
-  padding: 20px;
-  transition: all 0.3s;
+  min-width: 70px;
+  max-width: 250px;
 }
 
 .sidebar-body {
   flex-grow: 1;
   overflow-y: auto;
   transition: all 0.3s;
+  min-width: 70px;
+  max-width: 250px;
   // background-color: #343A40;
   // overflow: hidden;
 }
 
+// .sidebar-body.expanded {
+//   min-width: 250px;
+//   max-width: 250px;
+// }
+
 .sidebar-body::-webkit-scrollbar {
   display: none;
- }
-
-.page-body {
-  flex-grow: 1;
-  overflow-y: auto;
-  padding: 20px;
-  transition: all 0.3s;
 }
 
 
@@ -103,10 +95,12 @@
 
 
 
- .box-shadow {
+// CARD
+.box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
+// BACKGROUND
 .background {
 position: absolute;
 top: 0;

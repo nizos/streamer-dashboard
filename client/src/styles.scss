@@ -1,32 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "~bootswatch/dist/materia/variables";
-@import "~bootstrap/scss/bootstrap";
-@import "~bootswatch/dist/materia/bootswatch";
+// @import "~bootswatch/dist/materia/variables";
+// @import "~bootstrap/scss/bootstrap";
+// @import "~bootswatch/dist/materia/bootswatch";
+
+
+// @import "~bootstrap-material-design/dist/css/bootstrap-material-design.css";
+// @import "~bootstrap/scss/bootstrap";
+// @import "~bootstrap-material-design/scss/bootstrap-material-design.scss";
+// @import "~bootstrap-material-design/scss/variables";
+// @import "~bootstrap-material-design/scss/mixins";
+
+// @import "~bootstrap-material-design/dist/css/bootstrap-material-design.css";
+// @import "~bootstrap-material-design/scss";
+// @import "~bootstrap-material-design/dist";
+
+// @import "~bootstrap-material-design/dist/css/bootstrap-material-design.css";
+// @import "~bootstrap-material-design/dist/js/bootstrap-material-design.js";
+// @import "~bootstrap-material-design/js/bootstrapMaterialDesign.js";
+
+// @import "~bootstrap-material-design/scss/bootstrap-material-design.scss";
+// @import "~bootstrap-material-design/scss/variables";
+// @import "~bootstrap-material-design/scss/mixins";
+
 
 body {
   margin: 0;
   background-color: rgb(243, 243, 243);
-  // height: 100vh;
-}
-.background {
-  position: absolute;
-  top     : 0;
-  bottom  : 0;
-  left    : 0;
-  right   : 0;
-  z-index : -1;
-}
-
-@keyframes pop {
-  0%   { transform: scale(0); box-shadow:none; }
-  50% { transform: scale(1.5); box-shadow:0 0 7px #0DFFFF; }
-  100% { transform: scale(1); box-shadow:0 0 5px #0DFFFF; }
-}
-
-@keyframes ellipsis {
-  0%   { transform:rotate(0deg); }
-  100% { transform:rotate(360deg); }
 }
 
 #loading-area {
@@ -70,34 +70,11 @@ body {
   z-index: 1;
 }
 
-.loading-circle {
-  float:left;
-  margin-left:9px;
-  border-radius:100%;
-  width:10px;
-  height:10px;
-  background:#343A40;
-  animation: pop 1s infinite alternate;
-  transform:scale(0);
-  z-index: 1;
-}
-
-.loading-circle:nth-child(1) {
-  margin-left:5px;
-}
-
-.loading-circle:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.loading-circle:nth-child(3) {
-  animation-delay: 0.2s;
-}
-
-.loading-circle:nth-child(4) {
-  animation-delay: 0.3s;
-}
-
-.loading-circle:nth-child(5) {
-  animation-delay: 0.39s;
+.background {
+  position: absolute;
+  top     : 0;
+  bottom  : 0;
+  left    : 0;
+  right   : 0;
+  z-index : -1;
 }
