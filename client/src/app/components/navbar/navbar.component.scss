@@ -5,37 +5,55 @@
  * @Last Modified time: 2018-06-12 10:40:59
  */
 
-//  @font-face { font-family: "BebasNeue-Light"; src: url("../../../assets/fonts/BebasNeue-Light.ttf"); }
-
-.navbar {
-  max-height: 70px;
-  min-height: 70px;
-  margin: 0px;
+ // NAV
+nav {
+  min-height: 80px;
+  max-height: 80px;
+  line-height: 80px;
 }
 
-.navbar-brand {
-  color: #fff !important;
+.hide-on-med-and-down {
+  max-height: 80px;
 }
 
-.nav-item {
-  list-style: none;
+// BRAND LOGO
+.brand-logo {
+  padding: 0px 0px 0px 20px;
+  line-height: 80px;
 }
 
-.nav-link {
-  color: #fff;
-}
-
-
-.navbar-button-icon  {
-  color: #fff;
-  padding-left: 5px;
-  padding-right: 5px;
-  font-size: 44px;
+// NAV ICONS
+.material-icons {
+  line-height: 80px;
+  min-height: 80px;
+  max-height: 80px;
+  font-size: 24px;
 }
 
 
-
-.dropdown-toggle::after {
-  display: none;
+// SEARCH BAR
+#nav-search-bar {
+  min-height: 80px;
+  max-height: 80px;
 }
 
+
+// SEARCH FIELD
+#search-field {
+  background-color: white !important;
+  min-height: 80px;
+  max-height: 80px;
+  min-width: 0px;
+  max-width: 0px;
+  padding-left: 0px;
+  transition-delay: padding-left 1s;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+#search-field.expanded {
+  min-width: 400px;
+  max-width: 400px;
+  padding-left: 40px;
+  transition-delay: padding-left 1s;
+  transition: all 0.5s ease-in-out 0s;
+}
