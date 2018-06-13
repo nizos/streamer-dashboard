@@ -35,7 +35,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 70px;
+  height: 64px;
 }
 
 // .navbar-body::-webkit-scrollbar {
@@ -45,7 +45,7 @@
 // COLUMN
 .column {
   height: 100%;
-  min-width: 70px;
+  min-width: 64px;
   display: flex;
   flex-direction: column;
   // transition: all 0.3s;
@@ -54,7 +54,7 @@
 // SIDEBAR
 #sidebar-column {
   flex-shrink: 0;
-  min-width: 70px;
+  min-width: 64px;
   max-width: 250px;
   // transition: all 0.3s;
   // background: #343A40;
@@ -64,12 +64,13 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  left: 0;
 }
 
 #sidebar-column.expanded {
   transition: all 0.3s;
   overflow: hidden;
-  min-width: 70px;
+  min-width: 64px;
   max-width: 250px;
 }
 
@@ -77,10 +78,11 @@
   flex-grow: 1;
   overflow-y: auto;
   // transition: all 0.3s;
-  min-width: 70px;
+  min-width: 64px;
   max-width: 250px;
   height: 100%;
   background: #2196F3;
+  left: 0;
   // overflow: hidden;
 }
 
