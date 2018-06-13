@@ -2,12 +2,40 @@
  * @Author: Nizars
  * @Date: 2018-06-09 09:58:33
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-12 04:54:51
+ * @Last Modified time: 2018-06-12 10:40:59
  */
+
+//  @font-face { font-family: "BebasNeue-Light"; src: url("../../../assets/fonts/BebasNeue-Light.ttf"); }
 
 .navbar {
   max-height: 70px;
   min-height: 70px;
   margin: 0px;
+}
+
+.navbar-brand {
+  color: #fff !important;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.nav-link {
+  color: #fff;
+}
+
+
+.navbar-button-icon  {
+  color: #fff;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 44px;
+}
+
+
+
+.dropdown-toggle::after {
+  display: none;
 }
 
