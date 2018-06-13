@@ -46,10 +46,6 @@
           $('#sidebar').toggleClass('expanded');
           $('#sidebar-column').toggleClass('expanded');
       });
-  });
-</script>
-<script type="text/javascript">
-  window.onload = (function () {
       $('#toggle-search').on('click', function () {
         $('#nav-search-bar').toggleClass('expanded');
         $('#search-field').toggleClass('expanded').focus();
@@ -57,6 +53,7 @@
       $('#search-field').on('blur', function () {
         $('#search-field').toggleClass('expanded');
       });
+      $('.tooltipped').tooltip();
   });
 </script>
 <!-- <script>
