@@ -29,83 +29,59 @@
 #sidebar.expanded {
   min-width: 250px;
   max-width: 250px;
-  transition: all 0.3s;
 }
 
-// SIDEBAR LIST
-#sidebar ul li {
-  display: block;
-  min-width: 64px;
-  max-width: 64px;
-  transition: all 0.3s;
-}
-
-#sidebar.expanded ul li {
-  min-width: 250px;
-  max-width: 250px;
-  transition: all 0.3s;
-}
-
-#sidebar ul li a .btn-text{
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.5s;
-  font-style: normal;
-}
-
-#sidebar.expanded ul li a .btn-text {
-  visibility: visible;
-  opacity: 1;
-  transition: all 0.5s;
-}
-
-// BUTTON
+// SIDEBAR BUTTON
 #sidebar .btn {
   padding-top: 0px;
   padding-right: 0px;
   padding-bottom: 0px;
   padding-left: 20px;
   margin-left: 0px;
-
   min-height: 64px;
   max-height: 64px;
   min-width: 64px;
   max-width: 64px;
   transition: all 0.3s;
+
 }
 
 #sidebar.expanded .btn {
-  padding-top: 0px;
-  padding-right: 0px;
-  padding-bottom: 0px;
-  padding-left: 20px;
-  margin-left: 0px;
-
-  min-height: 64px;
-  max-height: 64px;
   min-width: 250px;
   max-width: 250px;
-  transition: all 0.3s;
 }
 
-// // TEXT
-// #sidebar .btn .btn-text{
-//   display: none;
-//   visibility: hidden;
-//   transition: all 0.3s;
-//   text-decoration: none;
-// }
+// SIDEBAR BUTTON CONTENT
+.btn-content-row {
+  min-height: 64px;
+  max-height: 64px;
+  margin: 0px;
+}
 
-// #sidebar.expanded .btn .btn-text{
-//   display: inline;
-//   visibility: visible;
-//   transition-delay: display 1.0s;
-//   transition: all 0.3s;
-// }
+// SIDEBAR BUTTON ICON
+.material-icons {
+  min-height: 64px;
+  max-height: 64px;
+  line-height: 64px;
+}
 
+// SIDEBAR BUTTON TEXT
+#sidebar .btn-text{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  visibility: hidden;
+  overflow: hidden;
+  min-height: 64px;
+  max-height: 64px;
+  opacity: 0;
+  font-style: normal;
+  transition: all 0.5s;
+}
+
+#sidebar.expanded .btn-text {
+  visibility: visible;
+  opacity: 1;
+}
 
 /* ---------------------------------------------------
   CONTENT STYLE
