@@ -1,110 +1,108 @@
-<div class="wrapper">
-  <nav id="sidebar">
-    <ul class="list-unstyled components">
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" id="sidebar-collapse" data-position="right" data-tooltip="Toggle side bar">
-          <i class="btn-content-row row">
-            <i class="material-icons left">menu</i>
-            <i class="btn-text left-align valign-wrapper">Toggle sidebar</i>
-          </i>
-        </a>
-      </li>
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" data-position="right" data-tooltip="Home" routerLink="/home" routerLinkActive="active" [class.activated]="currentUrl == '/home'">
-          <i class="btn-content-row row">
-            <i class="material-icons left">home</i>
-            <i class="btn-text left-align valign-wrapper">Home</i>
-          </i>
-        </a>
-      </li>
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" data-position="right" data-tooltip="Dashboard" routerLink="/dashboard" routerLinkActive="active" [class.activated]="currentUrl == '/dashboard'">
-          <i class="btn-content-row row">
-            <i class="material-icons left">dashboard</i>
-            <i class="btn-text left-align valign-wrapper">Dashboard</i>
-          </i>
-        </a>
-      </li>
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" data-position="right" data-tooltip="Channels" routerLink="/channels" routerLinkActive="active" [class.activated]="currentUrl == '/channels'">
-          <i class="btn-content-row row">
-            <i class="material-icons left">web</i>
-            <i class="btn-text left-align valign-wrapper">Channels</i>
-          </i>
-        </a>
-      </li>
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" data-position="right" data-tooltip="Streams" routerLink="/streams" routerLinkActive="active" [class.activated]="currentUrl == '/streams'">
-          <i class="btn-content-row row">
-            <i class="material-icons left">subscriptions</i>
-            <i class="btn-text left-align valign-wrapper">Videos</i>
-          </i>
-        </a>
-      </li>
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" data-position="right" data-tooltip="Clips" routerLink="/clips" routerLinkActive="active" [class.activated]="currentUrl == '/clips'">
-          <i class="btn-content-row row">
-            <i class="material-icons left">movie</i>
-            <i class="btn-text left-align valign-wrapper">Clips</i>
-          </i>
-        </a>
-      </li>
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" data-position="right" data-tooltip="Streams" routerLink="/streams" routerLinkActive="active" [class.activated]="currentUrl == '/streams'">
-          <i class="btn-content-row row">
-            <i class="material-icons left">ondemand_video</i>
-            <i class="btn-text left-align valign-wrapper">Streams</i>
-          </i>
-        </a>
-      </li>
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" data-position="right" data-tooltip="Users" routerLink="/users" routerLinkActive="active" [class.activated]="currentUrl == '/users'">
-          <i class="btn-content-row row">
-            <i class="material-icons left">group</i>
-            <i class="btn-text left-align valign-wrapper">Users</i>
-          </i>
-        </a>
-      </li>
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" data-position="right" data-tooltip="Games" routerLink="/games" routerLinkActive="active" [class.activated]="currentUrl == '/games'">
-          <i class="btn-content-row row">
-            <i class="material-icons left">games</i>
-            <i class="btn-text left-align valign-wrapper">Games</i>
-          </i>
-        </a>
-      </li>
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" data-position="right" data-tooltip="Chat" routerLink="/chat" routerLinkActive="active" [class.activated]="currentUrl == '/chat'">
-          <i class="btn-content-row row">
-            <i class="material-icons left">chat</i>
-            <i class="btn-text left-align valign-wrapper">Chat</i>
-          </i>
-        </a>
-      </li>
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" data-position="right" data-tooltip="Bot" routerLink="/bot" routerLinkActive="active" [class.activated]="currentUrl == '/bot'">
-          <i class="btn-content-row row">
-            <i class="material-icons left">adb</i>
-            <i class="btn-text left-align valign-wrapper">Bot</i>
-          </i>
-        </a>
-      </li>
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" data-position="right" data-tooltip="Sign in" *ngIf="!authService.signedIn()" routerLink="/signin" routerLinkActive="active" [class.activated]="currentUrl == '/signin'">
-          <i class="btn-content-row row">
-            <i class="material-icons left">account_circle</i>
-            <i class="btn-text left-align valign-wrapper">Sign in</i>
-          </i>
-        </a>
-      </li>
-      <li class="expanded">
-        <a class="btn waves-effect waves-light tooltipped" data-position="right" data-tooltip="Sign out" *ngIf="authService.signedIn()" (click)="logout()" routerLinkActive="active" [class.activated]="currentUrl == '/signout'">
-          <i class="btn-content-row row">
-            <i class="material-icons left">exit_to_app</i>
-            <i class="btn-text left-align valign-wrapper">Sign out</i>
-          </i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</div>
+<nav id="sidebar">
+  <ul class="list-unstyled">
+    <li class="expanded">
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" id="sidebar-collapse" data-position="right" data-tooltip="Toggle side bar">
+        <i class="btn-content-row row">
+          <i class="material-icons left">menu</i>
+          <i class="btn-text left-align">Toggle sidebar</i>
+        </i>
+      </a>
+    </li>
+    <li class="expanded">
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" data-position="right" data-tooltip="Home" routerLink="/home" routerLinkActive="active" [class.activated]="currentUrl == '/home'">
+        <i class="btn-content-row row">
+          <i class="material-icons left">home</i>
+          <i class="btn-text left-align">Home</i>
+        </i>
+      </a>
+    </li>
+    <li class="expanded">
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" data-position="right" data-tooltip="Dashboard" routerLink="/dashboard" routerLinkActive="active" [class.activated]="currentUrl == '/dashboard'">
+        <i class="btn-content-row row">
+          <i class="material-icons left">dashboard</i>
+          <i class="btn-text left-align">Dashboard</i>
+        </i>
+      </a>
+    </li>
+    <li class="expanded">
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" data-position="right" data-tooltip="Channels" routerLink="/channels" routerLinkActive="active" [class.activated]="currentUrl == '/channels'">
+        <i class="btn-content-row row">
+          <i class="material-icons left">web</i>
+          <i class="btn-text left-align">Channels</i>
+        </i>
+      </a>
+    </li>
+    <li class="expanded">
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" data-position="right" data-tooltip="Streams" routerLink="/streams" routerLinkActive="active" [class.activated]="currentUrl == '/streams'">
+        <i class="btn-content-row row">
+          <i class="material-icons left">subscriptions</i>
+          <i class="btn-text left-align">Videos</i>
+        </i>
+      </a>
+    </li>
+    <li class="expanded">
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" data-position="right" data-tooltip="Clips" routerLink="/clips" routerLinkActive="active" [class.activated]="currentUrl == '/clips'">
+        <i class="btn-content-row row">
+          <i class="material-icons left">movie</i>
+          <i class="btn-text left-align">Clips</i>
+        </i>
+      </a>
+    </li>
+    <li class="expanded">
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" data-position="right" data-tooltip="Streams" routerLink="/streams" routerLinkActive="active" [class.activated]="currentUrl == '/streams'">
+        <i class="btn-content-row row">
+          <i class="material-icons left">ondemand_video</i>
+          <i class="btn-text left-align">Streams</i>
+        </i>
+      </a>
+    </li>
+    <li class="expanded">
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" data-position="right" data-tooltip="Users" routerLink="/users" routerLinkActive="active" [class.activated]="currentUrl == '/users'">
+        <i class="btn-content-row row">
+          <i class="material-icons left">group</i>
+          <i class="btn-text left-align">Users</i>
+        </i>
+      </a>
+    </li>
+    <li class="expanded">
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" data-position="right" data-tooltip="Games" routerLink="/games" routerLinkActive="active" [class.activated]="currentUrl == '/games'">
+        <i class="btn-content-row row">
+          <i class="material-icons left">games</i>
+          <i class="btn-text left-align">Games</i>
+        </i>
+      </a>
+    </li>
+    <li class="expanded">
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" data-position="right" data-tooltip="Chat" routerLink="/chat" routerLinkActive="active" [class.activated]="currentUrl == '/chat'">
+        <i class="btn-content-row row">
+          <i class="material-icons left">chat</i>
+          <i class="btn-text left-align">Chat</i>
+        </i>
+      </a>
+    </li>
+    <li class="expanded">
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" data-position="right" data-tooltip="Bot" routerLink="/bot" routerLinkActive="active" [class.activated]="currentUrl == '/bot'">
+        <i class="btn-content-row row">
+          <i class="material-icons left">adb</i>
+          <i class="btn-text left-align">Bot</i>
+        </i>
+      </a>
+    </li>
+    <li class="expanded" *ngIf="!authService.signedIn()" >
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" data-position="right" data-tooltip="Sign in" routerLink="/signin" routerLinkActive="active" [class.activated]="currentUrl == '/signin'">
+        <i class="btn-content-row row">
+          <i class="material-icons left">account_circle</i>
+          <i class="btn-text left-align">Sign in</i>
+        </i>
+      </a>
+    </li>
+    <li class="expanded" *ngIf="authService.signedIn()">
+      <a class="btn waves-effect waves-light tooltipped z-depth-0" data-position="right" data-tooltip="Sign out" (click)="logout()" routerLinkActive="active" [class.activated]="currentUrl == '/signout'">
+        <i class="btn-content-row row">
+          <i class="material-icons left">exit_to_app</i>
+          <i class="btn-text left-align">Sign out</i>
+        </i>
+      </a>
+    </li>
+  </ul>
+</nav>
