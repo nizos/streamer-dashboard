@@ -1,31 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
-
-// @import "~bootswatch/dist/materia/variables";
-// @import "~bootstrap/scss/bootstrap";
-// @import "~bootswatch/dist/materia/bootswatch";
-
-
-// @import "~bootstrap-material-design/dist/css/bootstrap-material-design.css";
-// @import "~bootstrap/scss/bootstrap";
-// @import "~bootstrap-material-design/scss/bootstrap-material-design.scss";
-// @import "~bootstrap-material-design/scss/variables";
-// @import "~bootstrap-material-design/scss/mixins";
-
-// @import "~bootstrap-material-design/dist/css/bootstrap-material-design.css";
-// @import "~bootstrap-material-design/scss";
-// @import "~bootstrap-material-design/dist";
-
-// @import "~bootstrap-material-design/dist/css/bootstrap-material-design.css";
-// @import "~bootstrap-material-design/dist/js/bootstrap-material-design.js";
-// @import "~bootstrap-material-design/js/bootstrapMaterialDesign.js";
-
-// @import "~bootstrap-material-design/scss/bootstrap-material-design.scss";
-// @import "~bootstrap-material-design/scss/variables";
-// @import "~bootstrap-material-design/scss/mixins";
 
 body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   margin: 0;
   background-color: rgb(243, 243, 243);
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 #loading-area {

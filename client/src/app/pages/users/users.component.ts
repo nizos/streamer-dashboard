@@ -2,19 +2,20 @@
  * @Author: Nizars
  * @Date: 2018-05-26 13:06:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-02 20:29:02
+ * @Last Modified time: 2018-06-13 15:12:49
  */
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsersService } from './users.service';
 import { User } from './users.model';
+declare var $: any;
 
 @Component({
     selector: 'app-users',
     templateUrl: './users.component.html',
     styleUrls: ['./users.component.scss']
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
     loadingStarted = false;
     loadingEnded = false;
     userId = '';
@@ -32,6 +33,12 @@ export class UsersComponent {
     );
     constructor(private usersService: UsersService) {
 
+    }
+
+    ngOnInit() {
+      $(document).ready(function() {
+        $('ul.tabs').tabs();
+      });
     }
 
     getUserById(userId) {
