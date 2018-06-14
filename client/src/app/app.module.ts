@@ -46,7 +46,7 @@ import { SupportComponent } from './pages/support/support.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
-
+import { LandingComponent } from './pages/landing/landing.component';
 
 
 // Services
@@ -120,6 +120,7 @@ import { TokenInterceptorService } from './auth/token-interceptor/token-intercep
     DashboardComponent,
     GamesComponent,
     HomeComponent,
+    LandingComponent,
     ProfileComponent,
     StreamsComponent,
     SupportComponent,

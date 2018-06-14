@@ -18,6 +18,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ChannelsComponent } from './pages/channels/channels.component';
 import { StreamsComponent } from './pages/streams/streams.component';
 import { VideosComponent } from './pages/videos/videos.component';
+import { LandingComponent } from './pages/landing/landing.component';
 import { ClipsComponent } from './pages/clips/clips.component';
 import { GamesComponent } from './pages/games/games.component';
 import { ChatComponent } from './pages/chat/chat.component';
@@ -31,75 +32,85 @@ import { AuthGuard } from './auth/auth-guard/auth.guard';
 
 const routes: Routes = [
   {
-      path: 'home',
-      component: HomeComponent
+    path: '',
+    redirectTo: 'landing',
+    pathMatch: 'full'
   },
   {
-      path: 'dashboard',
-      component: DashboardComponent,
-      canActivate: [AuthGuard]
+    path: 'landing',
+    component: LandingComponent
   },
   {
-      path: 'channels',
-      component: ChannelsComponent,
-      canActivate: [AuthGuard]
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'streams',
-      component: StreamsComponent,
-      canActivate: [AuthGuard]
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'videos',
-      component: VideosComponent,
-      canActivate: [AuthGuard]
+    path: 'channels',
+    component: ChannelsComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'clips',
-      component: ClipsComponent,
-      canActivate: [AuthGuard]
+    path: 'streams',
+    component: StreamsComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'users',
-      component: UsersComponent,
-      canActivate: [AuthGuard]
+    path: 'videos',
+    component: VideosComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'games',
-      component: GamesComponent,
-      canActivate: [AuthGuard]
+    path: 'clips',
+    component: ClipsComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'chat',
-      component: ChatComponent,
-      canActivate: [AuthGuard]
+    path: 'users',
+    component: UsersComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'bot',
-      component: BotComponent,
-      canActivate: [AuthGuard]
+    path: 'games',
+    component: GamesComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'profile',
-      component: ProfileComponent,
-      canActivate: [AuthGuard]
+    path: 'chat',
+    component: ChatComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'settings',
-      component: SettingsComponent,
-      canActivate: [AuthGuard]
+    path: 'bot',
+    component: BotComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'support',
-      component: SupportComponent
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'about',
-      component: AboutComponent
+    path: 'settings',
+    component: SettingsComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'signin',
-      component: SigninComponent
+    path: 'support',
+    component: SupportComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'signin',
+    component: SigninComponent
   }
 ];
 
