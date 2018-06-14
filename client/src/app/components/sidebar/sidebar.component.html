@@ -1,7 +1,7 @@
 <nav id="sidebar" class="blue-grey darken-3 ">
   <ul class="list-unstyled">
     <li class="expanded">
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" id="sidebar-collapse" data-position="right" data-tooltip="Toggle side bar">
+      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" id="sidebar-toggler" id="sidebar-button" data-position="right" data-tooltip="Toggle side bar" (click)="toggleSidebar()">
         <i class="btn-content-row row">
           <i class="material-icons left">menu</i>
           <i class="btn-text left-align">Toggle sidebar</i>
@@ -9,7 +9,7 @@
       </a>
     </li>
     <li class="expanded">
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" data-position="right" data-tooltip="Home" routerLink="/home" routerLinkActive="active" [class.activated]="currentUrl == '/home'">
+      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" id="sidebar-button" data-position="right" data-tooltip="Home" routerLink="/home" routerLinkActive="active" [class.activated]="currentUrl == '/home'">
         <i class="btn-content-row row">
           <i class="material-icons left">home</i>
           <i class="btn-text left-align">Home</i>
@@ -17,7 +17,7 @@
       </a>
     </li>
     <li class="expanded">
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" data-position="right" data-tooltip="Dashboard" routerLink="/dashboard" routerLinkActive="active" [class.activated]="currentUrl == '/dashboard'">
+      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" id="sidebar-button" data-position="right" data-tooltip="Dashboard" routerLink="/dashboard" routerLinkActive="active" [class.activated]="currentUrl == '/dashboard'">
         <i class="btn-content-row row">
           <i class="material-icons left">dashboard</i>
           <i class="btn-text left-align">Dashboard</i>
@@ -25,7 +25,7 @@
       </a>
     </li>
     <li class="expanded">
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" data-position="right" data-tooltip="Channels" routerLink="/channels" routerLinkActive="active" [class.activated]="currentUrl == '/channels'">
+      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" id="sidebar-button" data-position="right" data-tooltip="Channels" routerLink="/channels" routerLinkActive="active" [class.activated]="currentUrl == '/channels'">
         <i class="btn-content-row row">
           <i class="material-icons left">web</i>
           <i class="btn-text left-align">Channels</i>
@@ -33,7 +33,7 @@
       </a>
     </li>
     <li class="expanded">
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" data-position="right" data-tooltip="Streams" routerLink="/streams" routerLinkActive="active" [class.activated]="currentUrl == '/streams'">
+      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" id="sidebar-button" data-position="right" data-tooltip="Streams" routerLink="/streams" routerLinkActive="active" [class.activated]="currentUrl == '/streams'">
         <i class="btn-content-row row">
           <i class="material-icons left">subscriptions</i>
           <i class="btn-text left-align">Videos</i>
@@ -41,7 +41,7 @@
       </a>
     </li>
     <li class="expanded">
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" data-position="right" data-tooltip="Clips" routerLink="/clips" routerLinkActive="active" [class.activated]="currentUrl == '/clips'">
+      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" id="sidebar-button" data-position="right" data-tooltip="Clips" routerLink="/clips" routerLinkActive="active" [class.activated]="currentUrl == '/clips'">
         <i class="btn-content-row row">
           <i class="material-icons left">movie</i>
           <i class="btn-text left-align">Clips</i>
@@ -49,7 +49,7 @@
       </a>
     </li>
     <li class="expanded">
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" data-position="right" data-tooltip="Streams" routerLink="/streams" routerLinkActive="active" [class.activated]="currentUrl == '/streams'">
+      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" id="sidebar-button" data-position="right" data-tooltip="Streams" routerLink="/streams" routerLinkActive="active" [class.activated]="currentUrl == '/streams'">
         <i class="btn-content-row row">
           <i class="material-icons left">ondemand_video</i>
           <i class="btn-text left-align">Streams</i>
@@ -57,7 +57,7 @@
       </a>
     </li>
     <li class="expanded">
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" data-position="right" data-tooltip="Users" routerLink="/users" routerLinkActive="active" [class.activated]="currentUrl == '/users'">
+      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" id="sidebar-button" data-position="right" data-tooltip="Users" routerLink="/users" routerLinkActive="active" [class.activated]="currentUrl == '/users'">
         <i class="btn-content-row row">
           <i class="material-icons left">group</i>
           <i class="btn-text left-align">Users</i>
@@ -65,7 +65,7 @@
       </a>
     </li>
     <li class="expanded">
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" data-position="right" data-tooltip="Games" routerLink="/games" routerLinkActive="active" [class.activated]="currentUrl == '/games'">
+      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" id="sidebar-button" data-position="right" data-tooltip="Games" routerLink="/games" routerLinkActive="active" [class.activated]="currentUrl == '/games'">
         <i class="btn-content-row row">
           <i class="material-icons left">games</i>
           <i class="btn-text left-align">Games</i>
@@ -73,7 +73,7 @@
       </a>
     </li>
     <li class="expanded">
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" data-position="right" data-tooltip="Chat" routerLink="/chat" routerLinkActive="active" [class.activated]="currentUrl == '/chat'">
+      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" id="sidebar-button" data-position="right" data-tooltip="Chat" routerLink="/chat" routerLinkActive="active" [class.activated]="currentUrl == '/chat'">
         <i class="btn-content-row row">
           <i class="material-icons left">chat</i>
           <i class="btn-text left-align">Chat</i>
@@ -81,7 +81,7 @@
       </a>
     </li>
     <li class="expanded">
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" data-position="right" data-tooltip="Bot" routerLink="/bot" routerLinkActive="active" [class.activated]="currentUrl == '/bot'">
+      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" id="sidebar-button" data-position="right" data-tooltip="Bot" routerLink="/bot" routerLinkActive="active" [class.activated]="currentUrl == '/bot'">
         <i class="btn-content-row row">
           <i class="material-icons left">adb</i>
           <i class="btn-text left-align">Bot</i>
