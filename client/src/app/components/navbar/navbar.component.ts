@@ -6,6 +6,9 @@
  */
 
 import { Component, OnInit, ElementRef } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { AuthService } from '../../auth/auth-service/auth.service';
+
 declare var $: any;
 declare var M: any;
 
@@ -16,8 +19,10 @@ declare var M: any;
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() {
+  private currentUrl: string;
 
+  constructor(private router: Router, private authService: AuthService) {
+    router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
   }
 
   ngOnInit() {
@@ -29,5 +34,9 @@ export class NavbarComponent implements OnInit {
       };
       const instances = M.Dropdown.init(elems, options);
     });
+  }
+
+  logout() {
+    this.authService.signOut();
   }
 }

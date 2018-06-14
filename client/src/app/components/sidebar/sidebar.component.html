@@ -88,21 +88,5 @@
         </i>
       </a>
     </li>
-    <li class="expanded" *ngIf="!authService.signedIn()" >
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" data-position="right" data-tooltip="Sign in" routerLink="/signin" routerLinkActive="active" [class.activated]="currentUrl == '/signin'">
-        <i class="btn-content-row row">
-          <i class="material-icons left">account_circle</i>
-          <i class="btn-text left-align">Sign in</i>
-        </i>
-      </a>
-    </li>
-    <li class="expanded" *ngIf="authService.signedIn()">
-      <a class="btn waves-effect waves-light blue-grey darken-3 tooltipped z-depth-0" data-position="right" data-tooltip="Sign out" (click)="logout()" routerLinkActive="active" [class.activated]="currentUrl == '/signout'">
-        <i class="btn-content-row row">
-          <i class="material-icons left">exit_to_app</i>
-          <i class="btn-text left-align">Sign out</i>
-        </i>
-      </a>
-    </li>
   </ul>
 </nav>
