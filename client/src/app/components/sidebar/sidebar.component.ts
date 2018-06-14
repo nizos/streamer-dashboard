@@ -37,6 +37,11 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     document.addEventListener('DOMContentLoaded', function() {
       this.tooltipsElements = document.querySelectorAll('.tooltipped');
+      this.tooltipsOptions = {
+        'position': 'right',
+        'enterDelay': 300,
+        'outDuration': 100
+      };
       this.tooltipsInstances = M.Tooltip.init(this.tooltipsElements, this.tooltipsOptions);
     });
   }

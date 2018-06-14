@@ -33,11 +33,6 @@ import { AuthGuard } from './auth/auth-guard/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'landing',
-    pathMatch: 'full'
-  },
-  {
-    path: 'landing',
     component: LandingComponent
   },
   {
