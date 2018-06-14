@@ -6,6 +6,8 @@
  */
 
 import { Component, OnInit, ElementRef } from '@angular/core';
+declare var $: any;
+declare var M: any;
 
 @Component({
   selector: 'app-navbar',
@@ -19,6 +21,13 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.addEventListener('DOMContentLoaded', function() {
+      const elems = document.querySelectorAll('.dropdown-trigger');
+      const options = {
+        'coverTrigger': false,
+        'alignment': 'right'
+      };
+      const instances = M.Dropdown.init(elems, options);
+    });
   }
-
 }

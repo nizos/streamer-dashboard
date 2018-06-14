@@ -9,7 +9,6 @@
 nav {
   min-height: 80px;
   max-height: 80px;
-  line-height: 80px;
 }
 
 .hide-on-med-and-down {
@@ -29,7 +28,6 @@ nav {
   max-height: 80px;
   font-size: 24px;
 }
-
 
 // SEARCH BAR
 #nav-search-bar {
@@ -56,4 +54,23 @@ nav {
   padding-left: 40px;
   transition-delay: padding-left 1s;
   transition: all 0.5s ease-in-out 0s;
+}
+
+.navbar-btn {
+  border-radius: 0px !important;
+  min-height: 80px;
+  max-height: 80px;
+  min-width: 80px;
+  max-width: 80px;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.navbar-buttons {
+  padding: 0px !important;
+  margin: 0px !important;
+  min-height: 80px;
+  max-height: 80px;
+  min-width: 80px;
+  max-width: 80px;
 }
