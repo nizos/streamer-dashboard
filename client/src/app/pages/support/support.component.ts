@@ -2,11 +2,10 @@
  * @Author: Nizars
  * @Date: 2018-06-13 15:09:59
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-13 15:12:37
+ * @Last Modified time: 2018-06-15 14:44:12
  */
 
 import { Component, OnInit } from '@angular/core';
-declare var $: any;
 
 @Component({
   selector: 'app-support',
@@ -15,12 +14,16 @@ declare var $: any;
 })
 export class SupportComponent implements OnInit {
 
+  // CONSTRUCTOR
   constructor() { }
 
+  // INITIALIZE
   ngOnInit() {
-    $(document).ready(function() {
-      $('ul.tabs').tabs();
-    });
+
   }
 
+  tabOnShow() {
+
+  }
 }
+

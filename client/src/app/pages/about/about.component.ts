@@ -2,12 +2,11 @@
  * @Author: Nizars
  * @Date: 2018-06-13 15:07:48
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-13 15:07:48
+ * @Last Modified time: 2018-06-15 11:54:06
  */
 
 
 import { Component, OnInit } from '@angular/core';
-declare var $: any;
 
 @Component({
   selector: 'app-about',
@@ -16,11 +15,16 @@ declare var $: any;
 })
 export class AboutComponent implements OnInit {
 
+  // CONSTRUCTOR
   constructor() { }
 
+  // INITIALIZE
   ngOnInit() {
-    $(document).ready(function() {
-      $('ul.tabs').tabs();
-    });
+
+  }
+
+  tabOnShow() {
+
   }
 }
+

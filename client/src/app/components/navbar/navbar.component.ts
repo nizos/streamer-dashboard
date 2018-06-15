@@ -2,15 +2,13 @@
  * @Author: Nizars
  * @Date: 2018-06-12 01:45:41
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-12 04:59:23
+ * @Last Modified time: 2018-06-15 11:31:23
  */
 
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../auth/auth-service/auth.service';
-
 declare var $: any;
-declare var M: any;
 
 @Component({
   selector: 'app-navbar',
@@ -26,14 +24,14 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    document.addEventListener('DOMContentLoaded', function() {
-      const elems = document.querySelectorAll('.dropdown-trigger');
-      const options = {
-        'coverTrigger': false,
-        'alignment': 'right'
-      };
-      const instances = M.Dropdown.init(elems, options);
-    });
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   const elems = document.querySelectorAll('.dropdown-trigger');
+    //   const options = {
+    //     'coverTrigger': false,
+    //     'alignment': 'right'
+    //   };
+    //   const instances = M.Dropdown.init(elems, options);
+    // });
   }
 
   logout() {

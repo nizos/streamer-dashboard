@@ -2,11 +2,10 @@
  * @Author: Nizars
  * @Date: 2018-06-13 15:07:35
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-13 15:11:00
+ * @Last Modified time: 2018-06-15 11:54:03
  */
 
 import { Component, OnInit } from '@angular/core';
-declare var $: any;
 
 @Component({
   selector: 'app-bot',
@@ -15,12 +14,16 @@ declare var $: any;
 })
 export class BotComponent implements OnInit {
 
+  // CONSTRUCTOR
   constructor() { }
 
+  // INITIALIZE
   ngOnInit() {
-    $(document).ready(function() {
-      $('ul.tabs').tabs();
-    });
+
   }
 
+  tabOnShow() {
+
+  }
 }
+

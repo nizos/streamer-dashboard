@@ -1,0 +1,118 @@
+/*
+ * @Author: Nizars
+ * @Date: 2018-06-15 10:33:07
+ * @Last Modified by: Nizars
+ * @Last Modified time: 2018-06-15 14:35:15
+ */
+
+$roboto-font-path: "~materialize-css/dist/fonts/roboto/";
+@import "~materialize-css/dist/css/materialize.min.css";
+@import "~@mdi/font/css/materialdesignicons.min.css";
+
+// OVERRIDES
+.card-content {
+  padding: 0px !important;
+  
+}
+
+
+
+.tab-content {
+  color: #343A40;
+  padding: 24px;
+}
+
+.card-title {
+  padding: 24px;
+  margin: 0px !important;
+  color: #ffffff;
+  background-color: #2196f3;
+}
+
+.tabs .indicator {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background-color: #13a0ff !important;
+  will-change: left, right;
+}
+
+.tabs .tab a{
+  background-color: #e3f2fd !important;
+  color: #2196f3 !important;
+}
+ /*when hover*/
+ .tabs .tab a:hover{
+  background-color: #e3f2fd !important;
+  color: #2196f3 !important;
+}
+/*when active*/
+.tabs .tab a.active{
+  background-color: #e3f2fd !important;
+  color: #2196f3 !important;
+}
+
+
+// STYLE
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+  background-color: rgb(243, 243, 243);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+#loading-area {
+  width:99px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:200px;
+  z-index: 1;
+}
+
+.loading-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  background:#F3F3F3;
+}
+
+.loading-box {
+  background:#333;
+  width:15px;
+  height:5px;
+  position:relative;
+  top:7px;
+  left:77px;
+  transform-origin:bottom right;
+  animation:ellipsis 2s 0.5s infinite ease-in-out;
+  z-index: 1;
+}
+
+.loading-text {
+  font-family: 'Montserrat', sans-serif;
+  color: #343A40;
+  font-size: 32px;
+  position: relative;
+  top: 15px;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+}
+
+.background {
+  position: absolute;
+  top     : 0;
+  bottom  : 0;
+  left    : 0;
+  right   : 0;
+  z-index : -1;
+}

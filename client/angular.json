@@ -46,18 +46,13 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "./node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
-              "./node_modules/ngx-toastr/toastr.css",
-              "./src/assets/materialize-css/sass/materialize.scss",
-              "./src/styles.scss"
+              "./src/style.scss",
+              "./node_modules/materialize-css/dist/css/materialize.min.css",
+              "./node_modules/@mdi/font/css/materialdesignicons.min.css"
             ],
             "scripts": [
-              "./node_modules/chart.js/dist/Chart.min.js",
               "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/tether/dist/js/tether.min.js",
-              "./node_modules/popper.js/dist/umd/popper.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "./src/assets/materialize-css/dist/js/materialize.min.js"
+              "./node_modules/materialize-css/dist/js/materialize.min.js"
             ]
           },
           "configurations": {

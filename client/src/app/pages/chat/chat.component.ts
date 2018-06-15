@@ -2,11 +2,10 @@
  * @Author: Nizars
  * @Date: 2018-06-13 15:08:19
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-13 15:11:07
+ * @Last Modified time: 2018-06-15 14:41:10
  */
 
 import { Component, OnInit } from '@angular/core';
-declare var $: any;
 
 @Component({
   selector: 'app-chat',
@@ -15,12 +14,15 @@ declare var $: any;
 })
 export class ChatComponent implements OnInit {
 
+  // CONSTRUCTOR
   constructor() { }
 
+  // INITIALIZE
   ngOnInit() {
-    $(document).ready(function() {
-      $('ul.tabs').tabs();
-    });
+
   }
 
+  tabOnShow() {
+
+  }
 }

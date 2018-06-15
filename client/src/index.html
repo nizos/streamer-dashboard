@@ -28,44 +28,60 @@
             <div class="loading-background"></div>
           </div>
     </app-root>
+    
     <!--     JavaScripts     -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script> -->
 <script>
-  window.onload = function () {
-    Particles.init({
-      selector: '.background',
-      color: ['#DA0463', '#404B69', '#DBEDF3'],
-      maxParticles: 200,
-      connectParticles: true
-    });
-  };
+  // window.onload = function () {
+  //   Particles.init({
+  //     selector: '.background',
+  //     color: ['#DA0463', '#404B69', '#DBEDF3'],
+  //     maxParticles: 200,
+  //     connectParticles: true
+  //   });
+  // };
 </script>
 <script type="text/javascript">
-  window.onload = (function () {
+  // window.onload = (function () {
+
+//       // TAB Color
+//    $(".tabs" ).css("background-color", themeColor);
+
+// // TAB Indicator/Underline Color
+// $(".tabs>.indicator").css("background-color", '#FFF');
+
+// // TAB Text Color
+// $(".tabs>li>a").css("color", '#FFF');
+
+  //   $(document).ready(function(){
+  //   $('.tabs').tabs();
+  // });
 
     // // SIDEBAR COLLAPSE
     // $('#sidebar-toggler').on('click', function () {
     //   $('#sidebar').toggleClass('expanded');
     //   $('#sidebar-column').toggleClass('expanded');
     // });
-    $(document).ready(function(){
-    $('.parallax').parallax();
-  });
+  //   $(document).ready(function(){
+  //   $('.parallax').parallax();
+  // });
 
-    // SEARCH
-    $('#toggle-search').on('click', function () {
-      if ($('#search-field').hasClass('expanded')) {
-        $('#search-field').removeClass('expanded');
-      } else {
-        $('#search-field').addClass('expanded').focus();
-      }
-    });
-    $('#search-field').on('blur', function () {
-      $('#search-field').toggleClass('expanded');
-    });
+ 
+    // // SEARCH
+    // $('#toggle-search').on('click', function () {
+    //   if ($('#search-field').hasClass('expanded')) {
+    //     $('#search-field').removeClass('expanded');
+    //   } else {
+    //     $('#search-field').addClass('expanded').focus();
+    //   }
+    // });
+    // $('#search-field').on('blur', function () {
+    //   $('#search-field').toggleClass('expanded');
+    // });
 
 
-  });
+  // });
 </script>
 <!-- <script>
   window.onload = (function () {

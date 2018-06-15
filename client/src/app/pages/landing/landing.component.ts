@@ -2,12 +2,10 @@
  * @Author: Nizars
  * @Date: 2018-06-13 15:09:09
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-13 15:11:24
+ * @Last Modified time: 2018-06-15 10:48:27
  */
 
 import { Component, OnInit } from '@angular/core';
-declare var $: any;
-declare var M: any;
 
 @Component({
   selector: 'app-landing',
@@ -16,11 +14,16 @@ declare var M: any;
 })
 export class LandingComponent implements OnInit {
 
+  // CONSTRUCTOR
   constructor() { }
 
+  // INITIALIZE
   ngOnInit() {
-    $(document).ready(function() {
-      $('ul.tabs').tabs();
-    });
+
+  }
+
+  tabOnShow() {
+
   }
 }
+

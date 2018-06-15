@@ -2,10 +2,10 @@
  * @Author: Nizars
  * @Date: 2018-06-02 18:57:13
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-09 07:04:50
+ * @Last Modified time: 2018-06-15 13:24:15
  */
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SocketService } from './socket/socket.service';
 import { Event } from './shared/models/event';
 import { Router } from '@angular/router';
@@ -15,11 +15,14 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
 
   constructor(private socketService: SocketService, private router: Router) {
     this.initIoConnection();
+  }
+
+  ngOnInit () {
   }
 
   private initIoConnection(): void {

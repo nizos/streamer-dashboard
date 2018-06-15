@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-09 06:48:21
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-12 05:00:49
+ * @Last Modified time: 2018-06-15 13:23:52
  */
 
 import { Component, OnInit } from '@angular/core';
@@ -35,15 +35,16 @@ export class SidebarComponent implements OnInit {
 
   // INITIALIZE
   ngOnInit() {
-    document.addEventListener('DOMContentLoaded', function() {
-      this.tooltipsElements = document.querySelectorAll('.tooltipped');
-      this.tooltipsOptions = {
-        'position': 'right',
-        'enterDelay': 300,
-        'outDuration': 100
-      };
-      this.tooltipsInstances = M.Tooltip.init(this.tooltipsElements, this.tooltipsOptions);
-    });
+
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   this.tooltipsElements = document.querySelectorAll('.tooltipped');
+    //   this.tooltipsOptions = {
+    //     'position': 'right',
+    //     'enterDelay': 300,
+    //     'outDuration': 100
+    //   };
+    //   this.tooltipsInstances = M.Tooltip.init(this.tooltipsElements, this.tooltipsOptions);
+    // });
   }
 
   // TOGGLE SIDEBAR

@@ -1,17 +1,14 @@
-<div class="card">
-    <div class="card-content blue-grey darken-3">
-      <h3 class="white-text">Clips</h3>
-    </div>
-    <div class="card-tabs">
-      <ul class="tabs tabs-fixed-width blue-grey darken-3">
-        <li class="tab"><a href="#clips-tab1" class="active white-text">Tab 1</a></li>
-        <li class="tab"><a href="#clips-tab2" class="white-text">Tab 2</a></li>
-        <li class="tab"><a href="#clips-tab3" class="white-text">Tab 3</a></li>
-      </ul>
-    </div>
-    <div class="card-content blue-grey lighten-5">
-      <div id="clips-tab1">Tab 1 contant</div>
-      <div id="clips-tab2">Tab 2 contant</div>
-      <div id="clips-tab3">Tab 3 contant</div>
-    </div>
-  </div>
+<mz-card [hoverable]="true">
+  <mz-card-title>Clips</mz-card-title>
+  <mz-card-content class="grey darken-2 white-text">
+    <mz-tab [fixedTabWidth]="'true'" [onShow]="tabOnShow()">
+      <mz-tab-item [label]="'Tab 1'" class="tab-content">Tab 1 content</mz-tab-item>
+      <mz-tab-item [active]="'true'" [label]="'Tab 2'" class="tab-content">Tab 2 content</mz-tab-item>
+      <mz-tab-item [label]="'Tab 3'" class="tab-content">Tab 3 content</mz-tab-item>
+    </mz-tab>
+  </mz-card-content>
+  <mz-card-action>
+    <a href="#">This is a link</a>
+    <a href="#">This is a link</a>
+  </mz-card-action>
+</mz-card>
