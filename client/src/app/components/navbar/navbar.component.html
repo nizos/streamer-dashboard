@@ -4,7 +4,9 @@
 
     <!-- SEARCH FIELD -->
     <mz-navbar-item>
-        <input mz-input id="search-field" [label]="'Search'" [validate]="true" [dataError]="'Search is invalid'" [dataSuccess]="'Search is valid'" placeholder="Search" length="150" type="text">
+      <mz-input-container>
+        <input mz-input id="search-field" placeholder="Search" type="text">
+      </mz-input-container>
     </mz-navbar-item>
 
     <!-- SEARCH BUTTON -->

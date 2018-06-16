@@ -16,17 +16,10 @@ declare var M: any;
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+
   // ROUTER
   private currentUrl: string;
-
-  // TOOLTIPS
-  public tooltipsElements: any;
-  public tooltipsInstances: any;
-  public tooltipsOptions: any = {
-    'position': 'right',
-    'enterDelay': 300,
-    'outDuration': 100
-  };
+  tooltipDelay = 250;
 
   // CONSTRUCTOR
   constructor(private router: Router, private authService: AuthService) {
@@ -35,16 +28,7 @@ export class SidebarComponent implements OnInit {
 
   // INITIALIZE
   ngOnInit() {
-
-    // document.addEventListener('DOMContentLoaded', function() {
-    //   this.tooltipsElements = document.querySelectorAll('.tooltipped');
-    //   this.tooltipsOptions = {
-    //     'position': 'right',
-    //     'enterDelay': 300,
-    //     'outDuration': 100
-    //   };
-    //   this.tooltipsInstances = M.Tooltip.init(this.tooltipsElements, this.tooltipsOptions);
-    // });
+    this.tooltipDelay = 250;
   }
 
   // TOGGLE SIDEBAR
@@ -64,25 +48,12 @@ export class SidebarComponent implements OnInit {
 
   // ENABLE TOOLTIPS
   enableTooltips() {
-    const sidebarButtons = Array.from(document.querySelectorAll('#sidebar-button'));
-    sidebarButtons.forEach(sidebarButton => {
-      if (!sidebarButton.classList.contains('tooltipped')) {
-        sidebarButton.classList.add('tooltipped');
-        M.Tooltip.init(sidebarButton, this.tooltipsOptions);
-      }
-    });
+    this.tooltipDelay = 250;
   }
 
   // DISABLE TOOLTIPS
   disableTooltips() {
-    const sidebarButtons = Array.from(document.querySelectorAll('#sidebar-button'));
-    sidebarButtons.forEach(sidebarButton => {
-      if (sidebarButton.classList.contains('tooltipped')) {
-        sidebarButton.classList.remove('tooltipped');
-        const instance = M.Tooltip.getInstance(sidebarButton);
-        instance.destroy();
-      }
-    });
+    this.tooltipDelay = 10000;
   }
 
   // LOGG OUT
