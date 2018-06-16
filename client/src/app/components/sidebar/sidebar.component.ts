@@ -8,7 +8,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../auth/auth-service/auth.service';
-declare var M: any;
 
 @Component({
   selector: 'app-sidebar',
@@ -20,6 +19,36 @@ export class SidebarComponent implements OnInit {
   // ROUTER
   private currentUrl: string;
   tooltipDelay = 250;
+  sidebarExpanded = false;
+
+  sidebarCollapsedNavStyle = {
+    'min-width': '64px',
+    'max-width': '64px',
+  };
+  sidebarCollapsedButtonStyle = {
+    'min-width': '64px',
+    'max-width': '64px',
+  };
+  sidebarCollapsedTextStyle = {
+    'visibility': 'hidden',
+    'opacity': '0',
+  };
+  sidebarExpandedNavStyle = {
+    'min-width': '250px',
+    'max-width': '250px',
+  };
+  sidebarExpandedButtonStyle = {
+    'min-width': '250px',
+    'max-width': '250px',
+  };
+  sidebarExpandedTextStyle = {
+    'visibility': 'visible',
+    'opacity': '1',
+  };
+
+  sidebarNavStyle = this.sidebarCollapsedNavStyle;
+  sidebarButtonStyle = this.sidebarCollapsedButtonStyle;
+  sidebarTextStyle = this.sidebarCollapsedTextStyle;
 
   // CONSTRUCTOR
   constructor(private router: Router, private authService: AuthService) {
@@ -29,19 +58,25 @@ export class SidebarComponent implements OnInit {
   // INITIALIZE
   ngOnInit() {
     this.tooltipDelay = 250;
+    this.sidebarNavStyle = {
+      'min-width': '64px',
+      'max-width': '64px',
+    };
   }
 
   // TOGGLE SIDEBAR
   toggleSidebar() {
-    const sidebar = document.querySelector('#sidebar');
-    const sidebarColumn = document.querySelector('#sidebar-column');
-    if (sidebar.classList.contains('expanded')) {
-      sidebarColumn.classList.remove('expanded');
-      sidebar.classList.remove('expanded');
+    if (this.sidebarExpanded) {
+      this.sidebarNavStyle = this.sidebarCollapsedNavStyle;
+      this.sidebarButtonStyle = this.sidebarCollapsedButtonStyle;
+      this.sidebarTextStyle = this.sidebarCollapsedTextStyle;
+      this.sidebarExpanded = false;
       this.enableTooltips();
     } else {
-      sidebarColumn.classList.add('expanded');
-      sidebar.classList.add('expanded');
+      this.sidebarNavStyle = this.sidebarExpandedNavStyle;
+      this.sidebarButtonStyle = this.sidebarExpandedButtonStyle;
+      this.sidebarTextStyle = this.sidebarExpandedTextStyle;
+      this.sidebarExpanded = true;
       this.disableTooltips();
     }
   }

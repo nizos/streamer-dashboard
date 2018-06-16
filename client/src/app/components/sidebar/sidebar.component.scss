@@ -11,15 +11,14 @@
 
 // SIDEBAR
 #sidebar {
-  min-width: 64px;
-  max-width: 64px;
+
   background: #2196F3;
   transition: all 0.3s;
 }
-#sidebar.expanded {
-  min-width: 250px;
-  max-width: 250px;
-}
+// #sidebar.expanded {
+//   // min-width: 250px;
+//   // max-width: 250px;
+// }
 
 // SIDEBAR BUTTON
 #sidebar .btn {

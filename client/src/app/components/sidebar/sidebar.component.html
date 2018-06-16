@@ -1,4 +1,4 @@
-<nav id="sidebar" class="blue-grey darken-3 ">
+<nav id="sidebar" class="blue-grey darken-3" [ngStyle]="sidebarNavStyle">
   <ul class="list-unstyled">
 
     <li class="sidebar-item expanded">
@@ -8,6 +8,7 @@
       id="sidebar-toggler"
       id="sidebar-button"
 
+      [ngStyle]="sidebarButtonStyle"
       [tooltip]="'Toggle sidebar'"
       [position]="'right'"
       [html]="true"
@@ -15,7 +16,11 @@
 
       (click)="toggleSidebar()">
 
-        <i class="btn-content-row row"><i class="material-icons left">menu</i><i class="btn-text left-align">Toggle sidebar</i></i>
+        <i class="btn-content-row row">
+          <i class="material-icons left">menu</i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Toggle sidebar</i>
+        </i>
 
       </button>
     </li>
@@ -26,6 +31,7 @@
       class="sidebar-btn btn waves-effect waves-light blue-grey darken-3 z-depth-0"
       id="sidebar-button"
 
+      [ngStyle]="sidebarButtonStyle"
       [tooltip]="'Home'"
       [position]="'right'"
       [html]="true"
@@ -35,7 +41,11 @@
       routerLinkActive="active"
       [class.activated]="currentUrl == '/home'">
 
-        <i class="btn-content-row row"><i class="material-icons left">home</i><i class="btn-text left-align">Home</i></i>
+        <i class="btn-content-row row">
+          <i class="material-icons left">home</i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Home</i>
+        </i>
 
       </button>
     </li>
@@ -46,6 +56,7 @@
       class="sidebar-btn btn waves-effect waves-light blue-grey darken-3 z-depth-0"
       id="sidebar-button"
 
+      [ngStyle]="sidebarButtonStyle"
       [tooltip]="'Dashboard'"
       [position]="'right'"
       [html]="true"
@@ -55,7 +66,12 @@
       routerLinkActive="active"
       [class.activated]="currentUrl == '/dashboard'">
 
-        <i class="btn-content-row row"><i class="material-icons left">dashboard</i><i class="btn-text left-align">Dashboard</i></i>
+
+        <i class="btn-content-row row">
+          <i class="material-icons left">dashboard</i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Dashboard</i>
+        </i>
 
       </button>
     </li>
@@ -66,6 +82,7 @@
       class="sidebar-btn btn waves-effect waves-light blue-grey darken-3 z-depth-0"
       id="sidebar-button"
 
+      [ngStyle]="sidebarButtonStyle"
       [tooltip]="'Channels'"
       [position]="'right'"
       [html]="true"
@@ -75,7 +92,11 @@
       routerLinkActive="active"
       [class.activated]="currentUrl == '/channels'">
 
-        <i class="btn-content-row row"><i class="material-icons left">web</i><i class="btn-text left-align">Channels</i></i>
+        <i class="btn-content-row row">
+          <i class="material-icons left">web</i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Channels</i>
+        </i>
 
       </button>
     </li>
@@ -86,6 +107,7 @@
       class="sidebar-btn btn waves-effect waves-light blue-grey darken-3 z-depth-0"
       id="sidebar-button"
 
+      [ngStyle]="sidebarButtonStyle"
       [tooltip]="'Videos'"
       [position]="'right'"
       [html]="true"
@@ -95,7 +117,11 @@
       routerLinkActive="active"
       [class.activated]="currentUrl == '/videos'">
 
-        <i class="btn-content-row row"><i class="material-icons left">subscriptions</i><i class="btn-text left-align">Videos</i></i>
+        <i class="btn-content-row row">
+          <i class="material-icons left">subscriptions</i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Videos</i>
+        </i>
 
       </button>
     </li>
@@ -105,6 +131,7 @@
       class="sidebar-btn btn waves-effect waves-light blue-grey darken-3 z-depth-0"
       id="sidebar-button"
 
+      [ngStyle]="sidebarButtonStyle"
       [tooltip]="'Dashboard'"
       [position]="'right'"
       [html]="true"
@@ -114,7 +141,11 @@
       routerLinkActive="active"
       [class.activated]="currentUrl == '/clips'">
 
-        <i class="btn-content-row row"><i class="material-icons left">movie</i><i class="btn-text left-align">Clips</i></i>
+        <i class="btn-content-row row">
+          <i class="material-icons left">movie</i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Clips</i>
+        </i>
 
       </button>
     </li>
@@ -125,6 +156,7 @@
       class="sidebar-btn btn waves-effect waves-light blue-grey darken-3 z-depth-0"
       id="sidebar-button"
 
+      [ngStyle]="sidebarButtonStyle"
       [tooltip]="'Streams'"
       [position]="'right'"
       [html]="true"
@@ -134,7 +166,11 @@
       routerLinkActive="active"
       [class.activated]="currentUrl == '/streams'">
 
-        <i class="btn-content-row row"><i class="material-icons left">ondemand_video</i><i class="btn-text left-align">Streams</i></i>
+        <i class="btn-content-row row">
+          <i class="material-icons left">ondemand_video</i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Streams</i>
+        </i>
 
       </button>
     </li>
@@ -150,11 +186,16 @@
       [html]="true"
       [delay]="tooltipDelay"
 
+      [ngStyle]="sidebarButtonStyle"
       routerLink="/users"
       routerLinkActive="active"
       [class.activated]="currentUrl == '/users'">
 
-        <i class="btn-content-row row"><i class="material-icons left">group</i><i class="btn-text left-align">Users</i></i>
+        <i class="btn-content-row row">
+          <i class="material-icons left">group</i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Users</i>
+        </i>
 
       </button>
     </li>
@@ -165,6 +206,7 @@
       class="sidebar-btn btn waves-effect waves-light blue-grey darken-3 z-depth-0"
       id="sidebar-button"
 
+      [ngStyle]="sidebarButtonStyle"
       [tooltip]="'Games'"
       [position]="'right'"
       [html]="true"
@@ -174,7 +216,11 @@
       routerLinkActive="active"
       [class.activated]="currentUrl == '/games'">
 
-        <i class="btn-content-row row"><i class="material-icons left">games</i><i class="btn-text left-align">Games</i></i>
+        <i class="btn-content-row row">
+          <i class="material-icons left">games</i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Games</i>
+        </i>
 
       </button>
     </li>
@@ -185,6 +231,7 @@
       class="sidebar-btn btn waves-effect waves-light blue-grey darken-3 z-depth-0"
       id="sidebar-button"
 
+      [ngStyle]="sidebarButtonStyle"
       [tooltip]="'Chat'"
       [position]="'right'"
       [html]="true"
@@ -194,7 +241,11 @@
       routerLinkActive="active"
       [class.activated]="currentUrl == '/chat'">
 
-        <i class="btn-content-row row"><i class="material-icons left">chat</i><i class="btn-text left-align">Chat</i></i>
+        <i class="btn-content-row row">
+          <i class="material-icons left">chat</i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Chat</i>
+        </i>
 
       </button>
     </li>
@@ -205,6 +256,7 @@
       class="sidebar-btn btn waves-effect waves-light blue-grey darken-3 z-depth-0"
       id="sidebar-button"
 
+      [ngStyle]="sidebarButtonStyle"
       [tooltip]="'Bot'"
       [position]="'right'"
       [html]="true"
@@ -214,7 +266,11 @@
       routerLinkActive="active"
       [class.activated]="currentUrl == '/bot'">
 
-        <i class="btn-content-row row"><i class="material-icons left">adb</i><i class="btn-text left-align">Bot</i></i>
+        <i class="btn-content-row row">
+          <i class="material-icons left">adb</i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Bot</i>
+        </i>
 
       </button>
     </li>
