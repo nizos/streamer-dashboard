@@ -23,17 +23,9 @@ export class UsersComponent implements OnInit {
   // USER
   userId = '';
   userLogin = '';
-  public user = new User(
-    'Id information',
-    'Login information',
-    'Display name information',
-    'Type information',
-    'Broadcaster type information',
-    'Description information',
-    '../../assets/images/TwitchProfileImageTemplate.png',
-    '../../assets/images/TwitchOfflineImageTemplate300.png',
-    'View count information'
-  );
+  usernameInput = '';
+  userIdInput = '';
+  public users$: User[];
 
   // CONSTRUCTOR
   constructor(private usersService: UsersService) {
@@ -42,29 +34,78 @@ export class UsersComponent implements OnInit {
 
   // INITIALIZE
   ngOnInit() {
-
+    this.users$ = [ ];
+    this.users$.push(new User(
+      'Id information',
+      'Login information',
+      'Display name information',
+      'Type information',
+      'Broadcaster type information',
+      'Description information',
+      '../../assets/images/TwitchProfileImageTemplate.png',
+      '../../assets/images/TwitchOfflineImageTemplate300.png',
+      'View count information'
+    ));
+    this.users$.push(new User(
+      'Id information',
+      'Login information',
+      'Display name information',
+      'Type information',
+      'Broadcaster type information',
+      'Description information',
+      '../../assets/images/TwitchProfileImageTemplate.png',
+      '../../assets/images/TwitchOfflineImageTemplate300.png',
+      'View count information'
+    ));
+    this.users$.push(new User(
+      'Id information',
+      'Login information',
+      'Display name information',
+      'Type information',
+      'Broadcaster type information',
+      'Description information',
+      '../../assets/images/TwitchProfileImageTemplate.png',
+      '../../assets/images/TwitchOfflineImageTemplate300.png',
+      'View count information'
+    ));
+    this.users$.push(new User(
+      'Id information',
+      'Login information',
+      'Display name information',
+      'Type information',
+      'Broadcaster type information',
+      'Description information',
+      '../../assets/images/TwitchProfileImageTemplate.png',
+      '../../assets/images/TwitchOfflineImageTemplate300.png',
+      'View count information'
+    ));
   }
 
   // GET USER BY ID
-  getUserById(userId) {
-    this.usersService.getUserById(this.userId)
+  getUserById(userIdInput) {
+    this.usersService.getUserById(userIdInput)
     .subscribe(user => {
-      this.user = user;
+      this.users$.push(user);
     });
   }
 
   // GET USER BY NAME
-  getUserByLogin(userLogin) {
-    this.usersService.getUserByLogin(this.userLogin)
+  getUserByName(usernameInput) {
+    this.usersService.getUserByName(usernameInput)
     .subscribe(user => {
-    this.user = user;
+      const newUser = new User(
+        user.data[0].id,
+        user.data[0].login,
+        user.data[0].display_name,
+        user.data[0].type,
+        user.data[0].broadcaster_type,
+        user.data[0].description,
+        user.data[0].profile_image_url,
+        user.data[0].offline_image_url,
+        user.data[0].view_count
+      );
+      this.users$.push(newUser);
     });
-  }
-
-  // SET USER INPUT
-  onEnter(providedUserId) {
-    this.userId = providedUserId;
-    this.userLogin = providedUserId;
   }
 
   tabOnShow() {

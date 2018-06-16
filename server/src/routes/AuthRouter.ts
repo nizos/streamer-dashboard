@@ -90,7 +90,7 @@ class AuthRouter {
           console.log(`[DB] [ERROR] ${err}`);
         } else {
           console.log(`[DB] User successfully added to database. id: ${userID}.`);
-          io.emit('authenticated', newUser.id_token[0].id_token);
+          io.emit('authenticated', newUser.id_token[0].access_token);
         }
       });
     }

@@ -5,29 +5,69 @@
   <mz-card-content class="grey darken-2 white-text">
     <mz-tab [fixedTabWidth]="'true'" [onShow]="tabOnShow()">
 
+      <!-- GET USER BY NAME -->
       <mz-tab-item [active]="'true'" [label]="'Get user by name'" class="tab-content">
         
+        <!-- REQUEST SECTION -->
         <div class="section">
           <h5>Request</h5>
           <form novalidate>
             <mz-input-container class="row" id="user-name-input-container">
               <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
-              <input mz-input placeholder="User Name" length="20" type="search">
+
+              <input mz-input
+              class="form-control"
+              id="username-input-field"
+
+              #usernameInput
+
+              placeholder="User Name"
+              length="50"
+              type="search">
+
             </mz-input-container>
             <button mz-button type="button">Clear</button>
-            <button mz-button type="submit">Submit</button>
+            <button mz-button type="submit" (click)="getUserByName(usernameInput.value)">Submit</button>
           </form>
         </div>
 
+        <!-- RESPONSE SECTION -->
         <div class="section">
           <h5>Response</h5>
+
+          <div class="row">
+            <div *ngFor="let user of users$">
+              <div class="col s4">
+                <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
+                  <mz-card-title>{{ user.display_name }}</mz-card-title>
+                  <mz-card-content>
+                    <div class="row">
+                      <img class="col s4" src={{user.profile_image_url}}>
+                      <div class="col s8">
+                        <p>User id: {{ user.id }}</p>
+                        <p>User description: {{ user.description }}</p>
+                        <p>Broadcaster type: {{ user.broadcaster_type }}</p>
+                        <p>Channel view count: {{ user.view_count }}</p>
+                      </div>
+                    </div>
+                  </mz-card-content>
+                  <mz-card-action>
+                    <a href="#">This is a link</a>
+                    <a href="#">This is a link</a>
+                  </mz-card-action>
+                </mz-card>
+              </div>
+            </div>
+          </div>  
         </div>
 
       </mz-tab-item>
 
 
+      <!-- GET USER BY ID -->
       <mz-tab-item [label]="'Get user by ID'" class="tab-content">
 
+        <!-- REQUEST SECTION -->
         <div class="section">
           <h5>Request</h5>
           <form novalidate>
@@ -40,9 +80,35 @@
           </form>
         </div>
 
+        <!-- RESPONSE SECTION -->
         <div class="section">
-          <h5>Response</h5>
-        </div>
+            <h5>Response</h5>
+  
+            <div class="row">
+              <div *ngFor="let user of users$">
+                <div class="col s4">
+                  <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
+                    <mz-card-title>{{ user.display_name }}</mz-card-title>
+                    <mz-card-content>
+                      <div class="row">
+                        <img class="col s4" src={{user.profile_image_url}}>
+                        <div class="col s8">
+                          <p>User id: {{ user.id }}</p>
+                          <p>User description: {{ user.description }}</p>
+                          <p>Broadcaster type: {{ user.broadcaster_type }}</p>
+                          <p>Channel view count: {{ user.view_count }}</p>
+                        </div>
+                      </div>
+                    </mz-card-content>
+                    <mz-card-action>
+                      <a href="#">This is a link</a>
+                      <a href="#">This is a link</a>
+                    </mz-card-action>
+                  </mz-card>
+                </div>
+              </div>
+            </div>  
+          </div>
 
       </mz-tab-item>
 

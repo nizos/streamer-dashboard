@@ -10,8 +10,6 @@ export class User {
     public offline_image_url: string;
     public view_count: string;
 
-
-
     constructor(
         id: string,
         login: string,
