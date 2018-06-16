@@ -8,7 +8,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../auth/auth-service/auth.service';
-declare var $: any;
+declare var M: any;
 
 @Component({
   selector: 'app-navbar',
@@ -24,14 +24,21 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    // document.addEventListener('DOMContentLoaded', function() {
-    //   const elems = document.querySelectorAll('.dropdown-trigger');
-    //   const options = {
-    //     'coverTrigger': false,
-    //     'alignment': 'right'
-    //   };
-    //   const instances = M.Dropdown.init(elems, options);
-    // });
+
+  }
+
+  toggleSearchBar() {
+    const searchFields = Array.from(document.querySelectorAll('#search-field'));
+    searchFields.forEach(searchField => {
+
+      if (!searchField.classList.contains('expanded')) {
+        searchField.classList.add('expanded');
+        console.log('Search field expanded');
+      } else {
+        searchField.classList.remove('expanded');
+        console.log('Search field collapsed');
+      }
+    });
   }
 
   logout() {

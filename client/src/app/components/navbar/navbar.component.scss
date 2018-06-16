@@ -6,20 +6,17 @@
  */
 
  // NAV
-nav {
-  min-height: 80px;
-  max-height: 80px;
-}
 
-.hide-on-med-and-down {
-  max-height: 80px;
-}
 
 // BRAND LOGO
 .brand-logo {
   padding: 0px 0px 0px 20px;
   line-height: 80px;
   cursor: default;
+}
+
+.right {
+  max-height: 80px !important;
 }
 
 // NAV ICONS
@@ -70,6 +67,7 @@ nav {
 .navbar-buttons {
   padding: 0px !important;
   margin: 0px !important;
+  border-radius: 0px !important;
   min-height: 80px;
   max-height: 80px;
   min-width: 80px;

@@ -1,69 +1,154 @@
-<nav class="blue-grey darken-4">
+<mz-navbar>
+  <a class="brand-logo"><i class="material-icons">cloud</i>STREAMER DASHBOARD</a>
+  <mz-navbar-item-container class="navbar-items" [align]="'right'">
+
+    <!-- SEARCH FIELD -->
+    <mz-navbar-item>
+        <input mz-input id="search-field" [label]="'Search'" [validate]="true" [dataError]="'Search is invalid'" [dataSuccess]="'Search is valid'" placeholder="Search" length="150" type="text">
+    </mz-navbar-item>
+
+    <!-- SEARCH BUTTON -->
+    <mz-navbar-item>
+      <button mz-button class="navbar-buttons z-depth-0" id="btn-search-toggle" (click)="toggleSearchBar()">
+        <i class="material-icons">search</i>
+      </button>
+    </mz-navbar-item>
+
+    <!-- View Module Dropdown Trigger -->
+    <mz-navbar-item>
+      <mz-dropdown [id]="'dropdown-view-module'" [align]="'right'" [belowOrigin]="true" [constrainWidth]="true" [dropdownButtonId]="'btn-view-module'" [gutter]="true" [hover]="false" [inDuration]="300" [outDuration]="300" [stopPropagation]="true" >
+        <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
+        <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
+        <mz-dropdown-divider></mz-dropdown-divider>
+        <mz-dropdown-item><a href="#!">Three</a></mz-dropdown-item>
+      </mz-dropdown>
+      <button mz-button class="navbar-buttons z-depth-0" id="btn-view-module">
+        <i class="material-icons">view_module</i>
+      </button>
+    </mz-navbar-item>
+
+
+    <!-- User Profile Dropdown Trigger -->
+    <mz-navbar-item *ngIf="authService.signedIn()">
+      <mz-dropdown [id]="'dropdown-user-profile'" [align]="'right'" [belowOrigin]="true" [constrainWidth]="true" [dropdownButtonId]="'btn-user-profile'" [gutter]="true" [hover]="false" [inDuration]="300" [outDuration]="300" [stopPropagation]="true" >
+          <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
+          <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
+          <mz-dropdown-divider></mz-dropdown-divider>
+          <mz-dropdown-item><a href="#!">Three</a></mz-dropdown-item>
+        </mz-dropdown>
+      <button mz-button class="navbar-buttons z-depth-0" id="btn-user-profile">
+        <i class="material-icons">account_circle</i>
+      </button>
+    </mz-navbar-item>
+
+    <!-- SIGN IN BUTTON -->
+    <mz-navbar-item *ngIf="!authService.signedIn()">
+      <button mz-button class="navbar-buttons z-depth-0" id="btn-sign-in" routerLink="/signin" routerLinkActive="active" [class.activated]="currentUrl == '/signin'">
+        <i class="material-icons">account_circle</i>
+        </button>
+    </mz-navbar-item>
+
+    <!-- More Options Dropdown Trigger -->
+    <mz-navbar-item>
+      <mz-dropdown [id]="'dropdown-more-options'" [align]="'right'" [belowOrigin]="true" [constrainWidth]="true" [dropdownButtonId]="'btn-more-options'" [gutter]="true" [hover]="false" [inDuration]="300" [outDuration]="300" [stopPropagation]="true" >
+          <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
+          <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
+          <mz-dropdown-divider></mz-dropdown-divider>
+          <mz-dropdown-item><a href="#!">Three</a></mz-dropdown-item>
+        </mz-dropdown>
+      <button mz-button class="navbar-buttons z-depth-0" id="btn-more-options">
+        <i class="material-icons">more_vert</i>
+      </button>
+    </mz-navbar-item>
+
+  </mz-navbar-item-container>
+</mz-navbar>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <nav class="blue-grey darken-4">
   <div class="nav-wrapper">
     <a class="brand-logo"><i class="material-icons">cloud</i>STREAMER DASHBOARD</a>
     <ul class="hide-on-med-and-down right">
       <li id="nav-search-bar">
         <input class="nav-search" id="search-field" type="search" placeholder="Search" required>
-      </li>
-      <li> <!-- Nav Search Button Trigger -->
+      </li> -->
+
+      <!-- <li>
         <a class="navbar-buttons" id="toggle-search">
           <i class="btn navbar-btn waves-effect waves-light blue-grey darken-4 z-depth-0 tooltipped" data-position="bottom" data-tooltip="Search">
             <i class="material-icons">search</i>
           </i>
         </a>
-      </li>
-      <li> <!-- View Module Dropdown Trigger -->
+      </li> -->
+      
+      <!-- <li>
         <a class="navbar-buttons">
           <i materialize="dropdown-trigger" class="btn navbar-btn dropdown-trigger waves-effect waves-light blue-grey darken-4 z-depth-0 tooltipped" href='#' data-target='view-module-dropdown' data-position="bottom" data-tooltip="Views">
             <i class="material-icons">view_module</i>
           </i>
         </a>
-      </li>
-      <li *ngIf="authService.signedIn()"> <!-- User Profile Dropdown Trigger -->
+      </li> -->
+
+
+      <!-- <li *ngIf="authService.signedIn()">
         <a class="navbar-buttons">
           <i class="btn navbar-btn dropdown-trigger waves-effect waves-light blue-grey darken-4 z-depth-0 tooltipped" href='#' data-target='user-profile-dropdown' data-position="bottom" data-tooltip="Account">
             <i class="material-icons">account_circle</i>
           </i>
         </a>
-      </li>
-      <li *ngIf="!authService.signedIn()"> <!-- SIGN IN BUTTON -->
+      </li> -->
+
+
+      <!-- <li *ngIf="!authService.signedIn()">
         <a class="navbar-buttons">
           <i class="btn navbar-btn waves-effect waves-light blue-grey darken-4 z-depth-0 tooltipped" data-position="bottom" data-tooltip="Sign In" routerLink="/signin" routerLinkActive="active" [class.activated]="currentUrl == '/signin'">
             <i class="material-icons">account_circle</i>
           </i>
         </a>
-      </li>
-      <li> <!-- More Options Dropdown Trigger -->
+      </li> -->
+
+
+      <!-- <li>
         <a class="navbar-buttons">
           <i class="btn navbar-btn dropdown-trigger waves-effect waves-light blue-grey darken-4 z-depth-0 tooltipped" href='#' data-target='more-options-dropdown' data-position="bottom" data-tooltip="More">
             <i class="material-icons">more_vert</i>
           </i>
         </a>
-      </li>
-    </ul>
+      </li> -->
+
+    <!-- </ul>
   </div>
-</nav>
+</nav> -->
 
 <!-- View Module Dropdown Structure -->
-<ul materialize="dropdown-content" id='view-module-dropdown' class='dropdown-content'>
+<!-- <ul materialize="dropdown-content" id='view-module-dropdown' class='dropdown-content'>
   <li><a href="#!">View 1</a></li>
   <li><a href="#!">View 2</a></li>
   <li class="divider" tabindex="-1"></li>
   <li><a href="#!">Options</a></li>
-</ul>
+</ul> -->
 
 <!-- User Profile Dropdown Structure -->
-<ul id='user-profile-dropdown' class='dropdown-content'>
+<!-- <ul id='user-profile-dropdown' class='dropdown-content'>
   <li><a href="#!">Profile</a></li>
   <li><a href="#!">Settings</a></li>
   <li class="divider" tabindex="-1"></li>
   <li><a (click)="logout()" routerLinkActive="active" [class.activated]="currentUrl == '/signout'">Sign Out</a></li>
-</ul>
+</ul> -->
 
 <!-- More Options Dropdown Structure -->
-<ul id='more-options-dropdown' class='dropdown-content'>
+<!-- <ul id='more-options-dropdown' class='dropdown-content'>
   <li><a href="#!">Refresh</a></li>
   <li><a href="#!">Mobile</a></li>
   <li class="divider" tabindex="-1"></li>
   <li><a href="#!">Support</a></li>
-</ul>
+</ul> -->

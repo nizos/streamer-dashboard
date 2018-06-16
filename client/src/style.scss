@@ -10,16 +10,44 @@ $roboto-font-path: "~materialize-css/dist/fonts/roboto/";
 @import "~@mdi/font/css/materialdesignicons.min.css";
 
 // OVERRIDES
-.card-content {
-  padding: 0px !important;
-  
+
+/// NAVBAR
+nav {
+  min-height: 80px !important;
+  max-height: 80px !important;
+  background-color: #263238 !important;
+}
+
+mz-navbar {
+  min-height: 80px !important;
+  max-height: 80px !important;
+}
+
+.nav-wrapper {
+  min-height: 80px !important;
+  max-height: 80px !important;
+}
+
+.nav-wrapper .btn i {
+  line-height: 80px !important;
+}
+
+ul#nav-mobile.right {
+  max-height: 80px;
+}
+
+#search-field {
+  background-color: white;
+  color: #343A40;
+
 }
 
 
 
-.tab-content {
-  color: #343A40;
-  padding: 24px;
+/// CARDS
+.card-content {
+  padding: 0px !important;
+  
 }
 
 .card-title {
@@ -28,6 +56,15 @@ $roboto-font-path: "~materialize-css/dist/fonts/roboto/";
   color: #ffffff;
   background-color: #2196f3;
 }
+
+
+/// TABS
+.tab-content {
+  color: #343A40;
+  padding: 24px;
+}
+
+
 
 .tabs .indicator {
   position: absolute;
