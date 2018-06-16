@@ -1,21 +1,143 @@
+
+
 <mz-card [hoverable]="true">
   <mz-card-title>Users</mz-card-title>
   <mz-card-content class="grey darken-2 white-text">
     <mz-tab [fixedTabWidth]="'true'" [onShow]="tabOnShow()">
-      <mz-tab-item [label]="'Tab 1'" class="tab-content">Tab 1 content</mz-tab-item>
-      <mz-tab-item [active]="'true'" [label]="'Tab 2'" class="tab-content">Tab 2 content</mz-tab-item>
-      <mz-tab-item [label]="'Tab 3'" class="tab-content">Tab 3 content</mz-tab-item>
+
+      <mz-tab-item [active]="'true'" [label]="'Get user by name'" class="tab-content">
+        
+        <div class="section">
+          <h5>Request</h5>
+          <form novalidate>
+            <mz-input-container class="row" id="user-name-input-container">
+              <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
+              <input mz-input placeholder="User Name" length="20" type="search">
+            </mz-input-container>
+            <button mz-button type="button">Clear</button>
+            <button mz-button type="submit">Submit</button>
+          </form>
+        </div>
+
+        <div class="section">
+          <h5>Response</h5>
+        </div>
+
+      </mz-tab-item>
+
+
+      <mz-tab-item [label]="'Get user by ID'" class="tab-content">
+
+        <div class="section">
+          <h5>Request</h5>
+          <form novalidate>
+            <mz-input-container class="row" id="user-id-input-container">
+              <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
+              <input mz-input placeholder="User ID" length="20" type="search">
+            </mz-input-container>
+            <button mz-button type="button">Clear</button>
+            <button mz-button type="submit">Submit</button>
+          </form>
+        </div>
+
+        <div class="section">
+          <h5>Response</h5>
+        </div>
+
+      </mz-tab-item>
+
     </mz-tab>
   </mz-card-content>
-  <mz-card-action>
-    <a href="#">This is a link</a>
-    <a href="#">This is a link</a>
-  </mz-card-action>
 </mz-card>
 
 
 
-<div class=" mr-md-3 pt-3 px-3 pt-md-5 px-md-5 overflow-hidden">
+
+
+<!-- <mz-card [hoverable]="true">
+  <mz-card-title>Users</mz-card-title>
+  <mz-card-content class="grey darken-2 white-text">
+    <mz-tab [fixedTabWidth]="'true'"> -->
+
+
+      <!-- GET USER BY ID -->
+      <!-- <mz-tab-item class="tab-content" [label]="'Get user by name'">
+        <p>some text for getting user by id</p> -->
+
+      <!-- INPUT FIELD -->
+      <!-- <div class="section">
+        <h5>Request</h5>
+        <form novalidate> -->
+          <!-- <mz-input-container
+          class="row"
+          id="user-id-input-container"> -->
+
+            <!-- <div class="col-md-auto"> -->
+              <!-- <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
+
+              <input mz-input placeholder="User ID" length="20" type="search">   -->
+            <!-- </div>
+            <div class="col-md-auto"> -->
+              <!-- <button mz-button type="submit">Submit</button>
+              <button mz-button type="button">Clear</button> -->
+            <!-- </div> -->
+          <!-- </mz-input-container> -->
+        <!-- </form>
+
+      </div>
+      <div class="section">
+        <h5>Results</h5>
+        <div class="user-id-results"></div>
+      </div> -->
+      <!-- </mz-tab-item> -->
+
+      
+
+
+      <!-- GET USER BY NAME -->
+      <!-- <mz-tab-item class="tab-content" [label]="'Get user by name'">
+          <p>some text for getting user by name</p> -->
+
+        <!-- INPUT FIELD -->
+        <!-- <div class="section">
+          <h5>Request</h5>
+          <form novalidate> -->
+            <!-- <mz-input-container
+            class="row"
+            id="user-name-input-container"> -->
+
+              <!-- <div class="col-md-auto"> -->
+                <!-- <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
+
+                <input mz-input placeholder="User name" length="50" type="search">   -->
+              <!-- </div>
+              <div class="col-md-auto"> -->
+                <!-- <button mz-button type="submit">Submit</button>
+                <button mz-button type="button">Clear</button> -->
+              <!-- </div>
+            </mz-input-container> -->
+          <!-- </form>
+        </div>
+        <div class="section">
+          <h5>Results</h5>
+          <div class="user-name-results"></div>
+        </div> -->
+
+      <!-- </mz-tab-item>
+    </mz-tab>
+  </mz-card-content>
+</mz-card> -->
+
+
+
+
+
+
+
+
+
+
+<!-- <div class=" mr-md-3 pt-3 px-3 pt-md-5 px-md-5 overflow-hidden">
     <div class="bg-white box-shadow mx-auto" style="width: 100%; border-radius: 21px 21px 21px 21px; padding-bottom: 100px; margin-bottom: 50px;">
       <div class="bg-dark" style="border-radius: 21px 21px 0 0; height: 175px;">
         <div style="padding: 50px 50px 0px 50px; font-size: 44px; color: white;">Users</div>
@@ -24,13 +146,13 @@
       <div class="container">
         <br />
         <ngb-tabset justify="justified">
-          <ngb-tab mat-button title="Get user by user ID">
-            <ng-template ngbTabContent>
+          <ngb-tab mat-button title="Get user by user ID"> -->
+            <!-- <ng-template ngbTabContent> -->
               <!-- Card  -->
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
+              <!-- <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center"> -->
                   <!-- Input group -->
-                  <div class="input-group">
+                  <!-- <div class="input-group">
                     <input type="text" class="form-control" autocomplete="off" placeholder="USER ID" id="providedUserId" #providedUserId value="116069219"
                       (keyup.enter)="onEnter(providedUserId.value)" (keyup.enter)="getUserById(userId)">
                     <div class="input-group-append">
@@ -73,12 +195,12 @@
             </ng-template>
           </ngb-tab>
           <ngb-tab title="Get user by user login">
-            <ng-template ngbTabContent>
+            <ng-template ngbTabContent> -->
               <!-- Card  -->
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
+              <!-- <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center"> -->
                   <!-- Input group -->
-                  <div class="input-group">
+                  <!-- <div class="input-group">
                     <input type="text" class="form-control" autocomplete="off" placeholder="USER LOGIN" id="providedUserLogin" #providedUserLogin
                       value="nizos" (keyup.enter)="onEnter(providedUserLogin.value)" (keyup.enter)="getUserByLogin(userLogin)">
                     <div class="input-group-append">
@@ -123,4 +245,4 @@
         </ngb-tabset>
       </div>
     </div>
-  </div>
+  </div> -->
