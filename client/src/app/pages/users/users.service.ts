@@ -13,9 +13,6 @@ export class UsersService {
 
   // Get a User by Id
   getUserById(userId: string) {
-    // Get token from local storage
-    // Make request
-    // Return user
     const token = localStorage.getItem('token');
     const url = `https://api.twitch.tv/helix/users?id=${userId}`;
     const httpOptions = {
@@ -25,7 +22,6 @@ export class UsersService {
           'Authorization': 'Bearer ' + token
       })
     };
-
     return this.http.get<any>(url, httpOptions);
   }
 
@@ -40,7 +36,6 @@ export class UsersService {
           'Authorization': 'Bearer ' + token
       })
     };
-
     return this.http.get<any>(url, httpOptions);
   }
 }

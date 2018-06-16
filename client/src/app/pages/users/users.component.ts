@@ -21,11 +21,8 @@ export class UsersComponent implements OnInit {
   loadingEnded = false;
 
   // USER
-  userId = '';
-  userLogin = '';
-  usernameInput = '';
-  userIdInput = '';
-  public users$: User[];
+  public usersByName$: User[];
+  public usersById$: User[];
 
   // CONSTRUCTOR
   constructor(private usersService: UsersService) {
@@ -34,58 +31,26 @@ export class UsersComponent implements OnInit {
 
   // INITIALIZE
   ngOnInit() {
-    this.users$ = [ ];
-    this.users$.push(new User(
-      'Id information',
-      'Login information',
-      'Display name information',
-      'Type information',
-      'Broadcaster type information',
-      'Description information',
-      '../../assets/images/TwitchProfileImageTemplate.png',
-      '../../assets/images/TwitchOfflineImageTemplate300.png',
-      'View count information'
-    ));
-    this.users$.push(new User(
-      'Id information',
-      'Login information',
-      'Display name information',
-      'Type information',
-      'Broadcaster type information',
-      'Description information',
-      '../../assets/images/TwitchProfileImageTemplate.png',
-      '../../assets/images/TwitchOfflineImageTemplate300.png',
-      'View count information'
-    ));
-    this.users$.push(new User(
-      'Id information',
-      'Login information',
-      'Display name information',
-      'Type information',
-      'Broadcaster type information',
-      'Description information',
-      '../../assets/images/TwitchProfileImageTemplate.png',
-      '../../assets/images/TwitchOfflineImageTemplate300.png',
-      'View count information'
-    ));
-    this.users$.push(new User(
-      'Id information',
-      'Login information',
-      'Display name information',
-      'Type information',
-      'Broadcaster type information',
-      'Description information',
-      '../../assets/images/TwitchProfileImageTemplate.png',
-      '../../assets/images/TwitchOfflineImageTemplate300.png',
-      'View count information'
-    ));
+    this.usersByName$ = [ ];
+    this.usersById$ = [ ];
   }
 
   // GET USER BY ID
   getUserById(userIdInput) {
     this.usersService.getUserById(userIdInput)
     .subscribe(user => {
-      this.users$.push(user);
+      const newUser = new User(
+        user.data[0].id,
+        user.data[0].login,
+        user.data[0].display_name,
+        user.data[0].type,
+        user.data[0].broadcaster_type,
+        user.data[0].description,
+        user.data[0].profile_image_url,
+        user.data[0].offline_image_url,
+        user.data[0].view_count
+      );
+      this.usersById$.push(newUser);
     });
   }
 
@@ -104,8 +69,22 @@ export class UsersComponent implements OnInit {
         user.data[0].offline_image_url,
         user.data[0].view_count
       );
-      this.users$.push(newUser);
+      this.usersByName$.push(newUser);
     });
+  }
+
+  clearUserByName() {
+    this.usersByName$.forEach(user => {
+      this.usersByName$.pop();
+    });
+    this.usersByName$ = [ ];
+  }
+
+  clearUserById() {
+    this.usersById$.forEach(user => {
+      this.usersById$.pop();
+    });
+    this.usersById$ = [ ];
   }
 
   tabOnShow() {
