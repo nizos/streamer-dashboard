@@ -57,11 +57,7 @@ export class SidebarComponent implements OnInit {
 
   // INITIALIZE
   ngOnInit() {
-    this.tooltipDelay = 250;
-    this.sidebarNavStyle = {
-      'min-width': '64px',
-      'max-width': '64px',
-    };
+
   }
 
   // TOGGLE SIDEBAR
