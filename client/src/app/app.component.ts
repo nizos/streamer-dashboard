@@ -2,12 +2,12 @@
  * @Author: Nizars
  * @Date: 2018-06-02 18:57:13
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-15 13:24:15
+ * @Last Modified time: 2018-06-17 15:15:03
  */
 
 import { Component, OnInit } from '@angular/core';
-import { SocketService } from './socket/socket.service';
-import { Event } from './shared/models/event';
+import { SocketService } from './services/socket/socket.service';
+import { Event } from './models/event';
 import { Router } from '@angular/router';
 
 @Component({

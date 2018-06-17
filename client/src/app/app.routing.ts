@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-12 02:25:41
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-12 05:01:37
+ * @Last Modified time: 2018-06-17 15:14:26
  */
 
 import { NgModule } from '@angular/core';
@@ -28,7 +28,7 @@ import { SupportComponent } from './pages/support/support.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
-import { AuthGuard } from './auth/auth-guard/auth.guard';
+import { AuthGuard } from './services/auth-guard/auth.guard';
 
 const routes: Routes = [
   {

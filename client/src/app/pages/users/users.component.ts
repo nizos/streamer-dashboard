@@ -2,12 +2,12 @@
  * @Author: Nizars
  * @Date: 2018-05-26 13:06:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-15 14:44:46
+ * @Last Modified time: 2018-06-17 17:31:16
  */
 
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from './users.service';
-import { User } from './users.model';
+import { TwitchAPIService } from '../../services/twitchAPI/twitchAPI.service';
+import { User } from '../../models/users.model';
 
 @Component({
     selector: 'app-users',
@@ -25,7 +25,7 @@ export class UsersComponent implements OnInit {
   public usersById$: User[];
 
   // CONSTRUCTOR
-  constructor(private usersService: UsersService) {
+  constructor(private twitchAPIService: TwitchAPIService) {
 
   }
 
@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
 
   // GET USER BY ID
   getUserById(userIdInput) {
-    this.usersService.getUserById(userIdInput)
+    this.twitchAPIService.getUser(userIdInput, null)
     .subscribe(user => {
       const newUser = new User(
         user.data[0].id,
@@ -56,7 +56,7 @@ export class UsersComponent implements OnInit {
 
   // GET USER BY NAME
   getUserByName(usernameInput) {
-    this.usersService.getUserByName(usernameInput)
+    this.twitchAPIService.getUser(null, usernameInput)
     .subscribe(user => {
       const newUser = new User(
         user.data[0].id,

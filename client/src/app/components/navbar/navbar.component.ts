@@ -2,12 +2,12 @@
  * @Author: Nizars
  * @Date: 2018-06-12 01:45:41
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-15 11:31:23
+ * @Last Modified time: 2018-06-17 15:16:47
  */
 
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { AuthService } from '../../auth/auth-service/auth.service';
+import { AuthService } from '../../services/auth-service/auth.service';
 declare var M: any;
 
 @Component({

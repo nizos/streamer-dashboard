@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-15 14:55:00
+ * @Last Modified time: 2018-06-17 15:13:38
  */
 
 // Angular
@@ -24,13 +24,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 
 // Services
-import { UsersService } from './pages/users/users.service';
-import { SocketService } from './socket/socket.service';
+import { TwitchAPIService } from './services/twitchAPI/twitchAPI.service';
+import { SocketService } from './services/socket/socket.service';
 
 // Auth
-import { AuthGuard } from './auth/auth-guard/auth.guard';
-import { AuthService } from './auth/auth-service/auth.service';
-import { TokenInterceptorService } from './auth/token-interceptor/token-interceptor.service';
+import { AuthGuard } from './services/auth-guard/auth.guard';
+import { AuthService } from './services/auth-service/auth.service';
+import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
 
 // COMPONENTS
 import { ComponentsModule } from './components/components.module';
@@ -169,7 +169,7 @@ import { MzMediaModule } from 'ngx-materialize';
     AuthService,
     AuthGuard,
     SocketService,
-    UsersService,
+    TwitchAPIService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

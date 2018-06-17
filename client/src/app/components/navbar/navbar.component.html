@@ -1,65 +1,144 @@
-<mz-navbar>
-  <a class="brand-logo"><i class="material-icons">cloud</i>STREAMER DASHBOARD</a>
-  <mz-navbar-item-container class="navbar-items" [align]="'right'">
+<mz-navbar
+  id="top-navbar">
+
+  <a class="brand-logo">
+    <i class="material-icons">cloud</i>STREAMER DASHBOARD
+  </a>
+
+  <mz-navbar-item-container
+  class="navbar-items"
+  [align]="'right'">
 
     <!-- SEARCH FIELD -->
     <mz-navbar-item>
       <mz-input-container>
-        <input mz-input id="search-field" placeholder="Search" type="text">
+        <input mz-input
+        id="search-field"
+
+        placeholder="Search"
+        type="text">
+
       </mz-input-container>
     </mz-navbar-item>
 
     <!-- SEARCH BUTTON -->
     <mz-navbar-item>
-      <button mz-button class="navbar-buttons z-depth-0" id="btn-search-toggle" (click)="toggleSearchBar()">
+      <button mz-button
+      class="navbar-buttons z-depth-0"
+      id="btn-search-toggle"
+
+      (click)="toggleSearchBar()">
+
         <i class="material-icons">search</i>
+
       </button>
     </mz-navbar-item>
 
     <!-- View Module Dropdown Trigger -->
     <mz-navbar-item>
-      <mz-dropdown [id]="'dropdown-view-module'" [align]="'right'" [belowOrigin]="true" [constrainWidth]="true" [dropdownButtonId]="'btn-view-module'" [gutter]="true" [hover]="false" [inDuration]="300" [outDuration]="300" [stopPropagation]="true" >
+      <mz-dropdown
+
+      [id]="'dropdown-view-module'"
+      [align]="'right'"
+      [belowOrigin]="true"
+      [constrainWidth]="true"
+      [dropdownButtonId]="'btn-view-module'"
+      [gutter]="true"
+      [hover]="false"
+      [inDuration]="300"
+      [outDuration]="300"
+      [stopPropagation]="true">
+
         <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
         <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
         <mz-dropdown-divider></mz-dropdown-divider>
         <mz-dropdown-item><a href="#!">Three</a></mz-dropdown-item>
+
       </mz-dropdown>
-      <button mz-button class="navbar-buttons z-depth-0" id="btn-view-module">
+      <button mz-button
+      class="navbar-buttons z-depth-0"
+      id="btn-view-module">
+
         <i class="material-icons">view_module</i>
+
       </button>
     </mz-navbar-item>
 
-
     <!-- User Profile Dropdown Trigger -->
-    <mz-navbar-item *ngIf="authService.signedIn()">
-      <mz-dropdown [id]="'dropdown-user-profile'" [align]="'right'" [belowOrigin]="true" [constrainWidth]="true" [dropdownButtonId]="'btn-user-profile'" [gutter]="true" [hover]="false" [inDuration]="300" [outDuration]="300" [stopPropagation]="true" >
-          <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
-          <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
-          <mz-dropdown-divider></mz-dropdown-divider>
-          <mz-dropdown-item><a (click)="logout()">Signout</a></mz-dropdown-item>
-        </mz-dropdown>
-      <button mz-button class="navbar-buttons z-depth-0" id="btn-user-profile">
+    <mz-navbar-item
+    *ngIf="authService.signedIn()">
+
+      <mz-dropdown
+      [id]="'dropdown-user-profile'"
+      [align]="'right'"
+      [belowOrigin]="true"
+      [constrainWidth]="true"
+      [dropdownButtonId]="'btn-user-profile'"
+      [gutter]="true"
+      [hover]="false"
+      [inDuration]="300"
+      [outDuration]="300"
+      [stopPropagation]="true">
+
+        <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
+        <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
+        <mz-dropdown-divider></mz-dropdown-divider>
+        <mz-dropdown-item><a (click)="logout()">Signout</a></mz-dropdown-item>
+
+      </mz-dropdown>
+
+      <button mz-button
+      class="navbar-buttons z-depth-0"
+      id="btn-user-profile">
+
         <i class="material-icons">account_circle</i>
+
       </button>
     </mz-navbar-item>
 
     <!-- SIGN IN BUTTON -->
-    <mz-navbar-item *ngIf="!authService.signedIn()">
-      <button mz-button class="navbar-buttons z-depth-0" id="btn-sign-in" routerLink="/signin" routerLinkActive="active" [class.activated]="currentUrl == '/signin'">
+    <mz-navbar-item
+    *ngIf="!authService.signedIn()">
+
+      <button mz-button
+      class="navbar-buttons z-depth-0"
+      id="btn-sign-in"
+
+      routerLink="/signin"
+      routerLinkActive="active"
+      [class.activated]="currentUrl == '/signin'">
+
         <i class="material-icons">account_circle</i>
-        </button>
+
+      </button>
     </mz-navbar-item>
 
     <!-- More Options Dropdown Trigger -->
     <mz-navbar-item>
-      <mz-dropdown [id]="'dropdown-more-options'" [align]="'right'" [belowOrigin]="true" [constrainWidth]="true" [dropdownButtonId]="'btn-more-options'" [gutter]="true" [hover]="false" [inDuration]="300" [outDuration]="300" [stopPropagation]="true" >
-          <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
-          <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
-          <mz-dropdown-divider></mz-dropdown-divider>
-          <mz-dropdown-item><a href="#!">Three</a></mz-dropdown-item>
-        </mz-dropdown>
-      <button mz-button class="navbar-buttons z-depth-0" id="btn-more-options">
+      <mz-dropdown
+      [id]="'dropdown-more-options'"
+      [align]="'right'"
+      [belowOrigin]="true"
+      [constrainWidth]="true"
+      [dropdownButtonId]="'btn-more-options'"
+      [gutter]="true"
+      [hover]="false"
+      [inDuration]="300"
+      [outDuration]="300"
+      [stopPropagation]="true">
+
+        <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
+        <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
+        <mz-dropdown-divider></mz-dropdown-divider>
+        <mz-dropdown-item><a href="#!">Three</a></mz-dropdown-item>
+
+      </mz-dropdown>
+      <button mz-button
+      class="navbar-buttons z-depth-0"
+      id="btn-more-options">
+
         <i class="material-icons">more_vert</i>
+
       </button>
     </mz-navbar-item>
 

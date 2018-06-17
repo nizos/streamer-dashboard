@@ -46,9 +46,9 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "./src/style.scss",
               "./node_modules/materialize-css/dist/css/materialize.min.css",
-              "./node_modules/@mdi/font/css/materialdesignicons.min.css"
+              "./node_modules/@mdi/font/css/materialdesignicons.min.css",
+              "./src/style.scss"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",

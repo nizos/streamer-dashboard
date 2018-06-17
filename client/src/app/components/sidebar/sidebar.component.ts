@@ -2,12 +2,12 @@
  * @Author: Nizars
  * @Date: 2018-06-09 06:48:21
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-15 13:23:52
+ * @Last Modified time: 2018-06-17 15:16:57
  */
 
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { AuthService } from '../../auth/auth-service/auth.service';
+import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-sidebar',
