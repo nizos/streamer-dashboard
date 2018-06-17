@@ -90,6 +90,17 @@ ul#nav-mobile.right {
 }
 
 
+// Parallax
+.parallax-container .parallax {
+  z-index: 2 !important;
+}
+
+.parallax img {
+  width: 100% !important;
+  // max-width: 800px;
+  // max-height: 600px;
+}
+
 // STYLE
 
 body {

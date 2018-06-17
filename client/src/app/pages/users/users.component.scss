@@ -5,15 +5,14 @@
  * @Last Modified time: 2018-05-26 13:05:40
  */
 
- .thumbnail {
-    max-width: 300px;
-    border-radius: 5px;
+div .row {
+  margin: 0px !important;
 }
 
-.userInfo {
-    font-size: 18px;
-    color: rgb(75, 75, 75);
-    font-weight: lighter;
+div .row .img {
+  padding-left: 0px !important;
 }
 
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+.row .col {
+  padding: 0px 20px 0px 0px !important;
+}
