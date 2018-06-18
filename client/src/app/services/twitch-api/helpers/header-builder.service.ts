@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-18 16:24:14
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-18 17:14:00
+ * @Last Modified time: 2018-06-18 19:06:19
  */
 
 /* Imports */
@@ -10,7 +10,6 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable()
-/* Builds Http request headers for twitch api requests */
 export class HeaderBuilderService {
 
   /* Header Builder Service private members */

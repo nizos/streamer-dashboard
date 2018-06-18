@@ -86,9 +86,4 @@ export class SidebarComponent implements OnInit {
   disableTooltips() {
     this.tooltipDelay = 10000;
   }
-
-  // LOGG OUT
-  logout() {
-    this.authService.signOut();
-  }
 }

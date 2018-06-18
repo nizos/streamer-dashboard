@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-12 02:25:41
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-17 15:14:26
+ * @Last Modified time: 2018-06-18 23:14:48
  */
 
 import { NgModule } from '@angular/core';
@@ -29,6 +29,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './services/auth-guard/auth.guard';
+import { BitsComponent } from './pages/bits/bits.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,11 @@ const routes: Routes = [
   {
     path: 'chat',
     component: ChatComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'bits',
+    component: BitsComponent,
     canActivate: [AuthGuard]
   },
   {

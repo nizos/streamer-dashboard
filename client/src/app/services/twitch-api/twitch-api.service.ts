@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-17 15:08:57
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-18 18:55:45
+ * @Last Modified time: 2018-06-18 20:08:08
  */
 
 import { Injectable } from '@angular/core';
@@ -30,9 +30,18 @@ import { User } from '../../models/twitch/user.model';
 import { UserFollows } from '../../models/twitch/user-follows.model';
 import { Video } from '../../models/twitch/video.model';
 
+
 @Injectable()
 export class TwitchApiService {
 
+  /**
+   * @name constructor
+   * @description Creates an instance of a Twitch Api Service.
+   * @param http HttpClient
+   * @param reqController ReqControllerService
+   * @param queryBuilder QueryBuilderService
+   * @param headerBuilder HeaderBuilderService
+   */
   constructor(
     private http: HttpClient,
     private reqController: ReqControllerService,
@@ -41,23 +50,24 @@ export class TwitchApiService {
 
   /**
    * @name getBitsLeaderboard
-   * @description Gets a ranked list of Bits leaderboard information for an authorized broadcaster
-   * @param count number
-   * @param period string
-   * @param started_at string
-   * @param user_id string
+   * @description Gets a ranked list of Bits leaderboard information for an authorized broadcaster.
+   * @requires scope bits:read
+   * @param count number optional
+   * @param period string optional
+   * @param started_at string optional
+   * @param user_id string optional
    * @returns leaderboard Leaderboard
    */
   getBitsLeaderboard(count: number, period: string, started_at: string, user_id: string) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryBitsLeaderboard(count, period, started_at, user_id);
       const httpOptions = this.headerBuilder.createHeader();
       return this.http.get<BitsLeaderboard>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -69,15 +79,15 @@ export class TwitchApiService {
    * @returns createdClip CreatedClip
    */
   createClip(broadcaster_id: string, has_delay: boolean) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryCreateClip(broadcaster_id, has_delay);
       const httpOptions = this.headerBuilder.createHeader();
       return this.http.get<CreatedClip>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -95,15 +105,15 @@ export class TwitchApiService {
    * @param first number
    */
   getClips(broadcaster_id: string, game_id: string, id: string, after: string, before: string, first: number) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryGetClips(broadcaster_id, game_id, id, after, before, first);
       const httpOptions = this.headerBuilder.createHeader();
       return this.http.get<Clip>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -117,15 +127,15 @@ export class TwitchApiService {
    * @param type string
    */
   createEntitlementGrantsUploadURL(manifest_id: string, type: string) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryEntitlementGrants(manifest_id, type);
       const httpOptions = this.headerBuilder.createHeader();
       return this.http.post<EntitlementsGrant>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -137,15 +147,15 @@ export class TwitchApiService {
    * @param extension_id string
    */
   getExtensionAnalytics(extension_id: string) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryExtensionAnalytics(extension_id);
       const httpOptions = this.headerBuilder.createHeader();
       return this.http.get<ExtensionAnalytics>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -158,15 +168,15 @@ export class TwitchApiService {
    * @param name string
    */
   getGames(id: string, name: string) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryGames(id, name);
       const httpOptions = this.headerBuilder.createHeader();
       return this.http.get<Game>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -179,15 +189,15 @@ export class TwitchApiService {
    * @param game_id string
    */
   getGameAnalytics(after: string, first: number, game_id: string) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryGameAnalytics(after, first, game_id);
       const httpOptions = this.headerBuilder.createHeader();
       return this.http.get<GameAnalytics>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -202,15 +212,15 @@ export class TwitchApiService {
    * @param first number
    */
   getTopGames(after: string, before: string, first: number) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryTopGames(after, before, first);
       const httpOptions = this.headerBuilder.createHeader();
       return this.http.get<TopGames>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -232,8 +242,8 @@ export class TwitchApiService {
    */
   getStreams(after: string, before: string, community_id: string, first: number,
     game_id: string, language: string, user_id: string, user_login: string) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryStreams(after, before, community_id, first,
         game_id, language, user_id, user_login);
@@ -241,7 +251,7 @@ export class TwitchApiService {
       return this.http.get<Stream>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -263,8 +273,8 @@ export class TwitchApiService {
    */
   getStreamsMetadata(first: number, after: string, before: string, community_id: string,
     game_id: string, language: string, user_id: string, user_login: string) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryStreamsMetadata(first, after, before, community_id,
         game_id, language, user_id, user_login);
@@ -272,7 +282,7 @@ export class TwitchApiService {
       return this.http.get<StreamMetadata>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -289,8 +299,8 @@ export class TwitchApiService {
    * @param login string
    */
   getUser(id: string, login: string) {
-    const req = this.reqController.checkGetUser(id, login);
-    if (req.valid) {
+    const requestValidity = this.reqController.checkGetUser(id, login);
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryGetUser(id, login);
       const httpOptions = this.headerBuilder.createHeader();
@@ -298,7 +308,7 @@ export class TwitchApiService {
 
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -316,15 +326,15 @@ export class TwitchApiService {
    * @param to_id string
    */
   getUserFollows(after: string, first: number, from_id: string, to_id: string) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryUserFollows(after, first, from_id, to_id);
       const httpOptions = this.headerBuilder.createHeader();
       return this.http.get<UserFollows>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -334,15 +344,15 @@ export class TwitchApiService {
    * @param description string
    */
   updateUserDescription(description: string) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryUpdateUserDescription(description);
       const httpOptions = this.headerBuilder.createHeader();
       return this.http.put<User>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 
@@ -366,15 +376,15 @@ export class TwitchApiService {
    */
   getVideos(id: string, user_id: string, game_id: string, after: string, before: string,
     first: string, language: string, period: string, sort: string, type: string) {
-    const req = this.reqController.checkTemp();
-    if (req.valid) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
       const queryURL = this.queryBuilder.queryVideos(id, user_id, game_id, after, before, first, language, period, sort, type);
       const httpOptions = this.headerBuilder.createHeader();
       return this.http.get<Video>(queryURL, httpOptions);
     } else {
       // Throw error
-      return throwError(req);
+      return throwError(requestValidity.error);
     }
   }
 }

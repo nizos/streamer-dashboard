@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-12 01:27:17
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-15 14:55:18
+ * @Last Modified time: 2018-06-18 20:25:46
  */
 
 import { NgModule } from '@angular/core';

@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-18 16:36:11
+ * @Last Modified time: 2018-06-18 23:16:01
  */
 
 // Angular
@@ -39,6 +39,7 @@ import { TokenInterceptorService } from './services/token-interceptor/token-inte
 import { ComponentsModule } from './components/components.module';
 
 // PAGES
+import { BitsComponent } from './pages/bits/bits.component';
 import { UsersComponent } from './pages/users/users.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -115,6 +116,7 @@ import { MzMediaModule } from 'ngx-materialize';
     SigninComponent,
     UsersComponent,
     VideosComponent,
+    BitsComponent
   ],
   imports: [
 

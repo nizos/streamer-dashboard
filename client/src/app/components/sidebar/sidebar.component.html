@@ -17,7 +17,7 @@
       (click)="toggleSidebar()">
 
         <i class="btn-content-row row">
-          <i class="material-icons left">menu</i>
+          <i mz-icon-mdi class="material-icons left" [icon]="'menu'"></i>
           <i class="btn-text left-align"
           [ngStyle]="sidebarTextStyle">Toggle sidebar</i>
         </i>
@@ -42,7 +42,7 @@
       [class.activated]="currentUrl == '/home'">
 
         <i class="btn-content-row row">
-          <i class="material-icons left">home</i>
+          <i mz-icon-mdi class="material-icons left" [icon]="'home'"></i>
           <i class="btn-text left-align"
           [ngStyle]="sidebarTextStyle">Home</i>
         </i>
@@ -68,13 +68,14 @@
 
 
         <i class="btn-content-row row">
-          <i class="material-icons left">dashboard</i>
+          <i mz-icon-mdi class="material-icons left" [icon]="'view-dashboard'"></i>
           <i class="btn-text left-align"
           [ngStyle]="sidebarTextStyle">Dashboard</i>
         </i>
 
       </button>
     </li>
+
 
     <li class="sidebar-item expanded">
       <button mz-button mz-tooltip
@@ -93,9 +94,35 @@
       [class.activated]="currentUrl == '/channels'">
 
         <i class="btn-content-row row">
-          <i class="material-icons left">web</i>
+          <i mz-icon-mdi class="material-icons left" [icon]="'youtube-tv'"></i>
           <i class="btn-text left-align"
           [ngStyle]="sidebarTextStyle">Channels</i>
+        </i>
+
+      </button>
+    </li>
+
+
+    <li class="sidebar-item expanded">
+      <button mz-button mz-tooltip
+
+      class="sidebar-btn btn waves-effect waves-light blue-grey darken-3 z-depth-0"
+      id="sidebar-button"
+
+      [ngStyle]="sidebarButtonStyle"
+      [tooltip]="'Streams'"
+      [position]="'right'"
+      [html]="true"
+      [delay]="tooltipDelay"
+
+      routerLink="/streams"
+      routerLinkActive="active"
+      [class.activated]="currentUrl == '/streams'">
+
+        <i class="btn-content-row row">
+          <i mz-icon-mdi class="material-icons left" [icon]="'theater'"></i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Streams</i>
         </i>
 
       </button>
@@ -118,7 +145,7 @@
       [class.activated]="currentUrl == '/videos'">
 
         <i class="btn-content-row row">
-          <i class="material-icons left">subscriptions</i>
+          <i mz-icon-mdi class="material-icons left" [icon]="'movie'"></i>
           <i class="btn-text left-align"
           [ngStyle]="sidebarTextStyle">Videos</i>
         </i>
@@ -142,7 +169,7 @@
       [class.activated]="currentUrl == '/clips'">
 
         <i class="btn-content-row row">
-          <i class="material-icons left">movie</i>
+          <i mz-icon-mdi class="material-icons left" [icon]="'animation-play'"></i>
           <i class="btn-text left-align"
           [ngStyle]="sidebarTextStyle">Clips</i>
         </i>
@@ -150,30 +177,6 @@
       </button>
     </li>
 
-    <li class="sidebar-item expanded">
-      <button mz-button mz-tooltip
-
-      class="sidebar-btn btn waves-effect waves-light blue-grey darken-3 z-depth-0"
-      id="sidebar-button"
-
-      [ngStyle]="sidebarButtonStyle"
-      [tooltip]="'Streams'"
-      [position]="'right'"
-      [html]="true"
-      [delay]="tooltipDelay"
-
-      routerLink="/streams"
-      routerLinkActive="active"
-      [class.activated]="currentUrl == '/streams'">
-
-        <i class="btn-content-row row">
-          <i class="material-icons left">ondemand_video</i>
-          <i class="btn-text left-align"
-          [ngStyle]="sidebarTextStyle">Streams</i>
-        </i>
-
-      </button>
-    </li>
 
     <li class="sidebar-item expanded">
       <button mz-button mz-tooltip
@@ -192,13 +195,14 @@
       [class.activated]="currentUrl == '/users'">
 
         <i class="btn-content-row row">
-          <i class="material-icons left">group</i>
+          <i mz-icon-mdi class="material-icons left" [icon]="'account-group'"></i>
           <i class="btn-text left-align"
           [ngStyle]="sidebarTextStyle">Users</i>
         </i>
 
       </button>
     </li>
+
 
     <li class="sidebar-item expanded">
       <button mz-button mz-tooltip
@@ -217,13 +221,23 @@
       [class.activated]="currentUrl == '/games'">
 
         <i class="btn-content-row row">
-          <i class="material-icons left">games</i>
+          <i mz-icon-mdi class="material-icons left" [icon]="'google-controller'"></i>
           <i class="btn-text left-align"
           [ngStyle]="sidebarTextStyle">Games</i>
         </i>
 
       </button>
     </li>
+
+
+
+
+
+    
+
+    
+
+    
 
     <li class="sidebar-item expanded">
       <button mz-button mz-tooltip
@@ -242,13 +256,53 @@
       [class.activated]="currentUrl == '/chat'">
 
         <i class="btn-content-row row">
-          <i class="material-icons left">chat</i>
+          <i mz-icon-mdi class="material-icons left" [icon]="'comment-text-multiple'"></i>
           <i class="btn-text left-align"
           [ngStyle]="sidebarTextStyle">Chat</i>
         </i>
 
       </button>
     </li>
+
+
+
+
+
+
+
+
+
+
+
+
+    <li class="sidebar-item expanded">
+      <button mz-button mz-tooltip
+
+      class="sidebar-btn btn waves-effect waves-light blue-grey darken-3 z-depth-0"
+      id="sidebar-button"
+
+      [ngStyle]="sidebarButtonStyle"
+      [tooltip]="'Bits'"
+      [position]="'right'"
+      [html]="true"
+      [delay]="tooltipDelay"
+
+      routerLink="/bits"
+      routerLinkActive="active"
+      [class.activated]="currentUrl == '/bits'">
+
+        <i class="btn-content-row row">
+          <i mz-icon-mdi class="material-icons left" [icon]="'trophy'"></i>
+          <i class="btn-text left-align"
+          [ngStyle]="sidebarTextStyle">Bits</i>
+        </i>
+
+      </button>
+    </li>
+
+    
+
+    
 
     <li class="sidebar-item expanded">
       <button mz-button mz-tooltip
@@ -267,7 +321,7 @@
       [class.activated]="currentUrl == '/bot'">
 
         <i class="btn-content-row row">
-          <i class="material-icons left">adb</i>
+          <i mz-icon-mdi class="material-icons left" [icon]="'robot'"></i>
           <i class="btn-text left-align"
           [ngStyle]="sidebarTextStyle">Bot</i>
         </i>

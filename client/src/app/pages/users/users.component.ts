@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-26 13:06:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-18 15:31:34
+ * @Last Modified time: 2018-06-18 19:04:55
  */
 
 import { Component, OnInit } from '@angular/core';
@@ -37,9 +37,7 @@ export class UsersComponent implements OnInit {
   getUserByLogin(login) {
     this.twitchApi.getUser(null, login)
     .subscribe(user => {
-      const newUser = new User(user);
-      console.log(newUser);
-      this.users$.push(newUser);
+      this.users$.push(new User(user));
     });
   }
 
