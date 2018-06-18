@@ -7,7 +7,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from './services/socket/socket.service';
-import { Event } from './models/event';
+import { Event } from './models/socket/event';
 import { Router } from '@angular/router';
 
 @Component({

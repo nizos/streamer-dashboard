@@ -8,8 +8,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { User } from '../../models/user';
 import { notEqual } from 'assert';
+import { User } from '../../models/twitch/user.model';
 
 @Injectable()
 export class TwitchAPIService {
@@ -442,8 +442,8 @@ export class TwitchAPIService {
   }
 
   // USERS
-  /// GET USER BY ID
-  getUser(id: string, login: string) {
+  /// GET USER
+  getUser(id: string, login: string): Observable<User> {
 
     // Query builder
     let queryURL = 'https://api.twitch.tv/helix/users?';
@@ -469,7 +469,7 @@ export class TwitchAPIService {
     };
 
     // RETURN RESPONSE
-    return this.http.get<any>(url, httpOptions);
+    return this.http.get<User>(url, httpOptions);
   }
 
   /// GET USER FOLLOWS

@@ -7,7 +7,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { TwitchAPIService } from '../../services/twitchAPI/twitchAPI.service';
-import { User } from '../../models/users.model';
+import { User } from '../../models/twitch/user.model';
 
 @Component({
     selector: 'app-users',
@@ -39,17 +39,7 @@ export class UsersComponent implements OnInit {
   getUserById(userIdInput) {
     this.twitchAPIService.getUser(userIdInput, null)
     .subscribe(user => {
-      const newUser = new User(
-        user.data[0].id,
-        user.data[0].login,
-        user.data[0].display_name,
-        user.data[0].type,
-        user.data[0].broadcaster_type,
-        user.data[0].description,
-        user.data[0].profile_image_url,
-        user.data[0].offline_image_url,
-        user.data[0].view_count
-      );
+      const newUser = new User(user);
       this.usersById$.push(newUser);
     });
   }
@@ -58,17 +48,7 @@ export class UsersComponent implements OnInit {
   getUserByName(usernameInput) {
     this.twitchAPIService.getUser(null, usernameInput)
     .subscribe(user => {
-      const newUser = new User(
-        user.data[0].id,
-        user.data[0].login,
-        user.data[0].display_name,
-        user.data[0].type,
-        user.data[0].broadcaster_type,
-        user.data[0].description,
-        user.data[0].profile_image_url,
-        user.data[0].offline_image_url,
-        user.data[0].view_count
-      );
+      const newUser = new User(user);
       this.usersByName$.push(newUser);
     });
   }

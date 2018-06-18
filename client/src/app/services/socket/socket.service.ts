@@ -2,14 +2,13 @@
  * @Author: Nizars
  * @Date: 2018-06-05 02:13:35
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-17 15:14:06
+ * @Last Modified time: 2018-06-18 12:48:19
  */
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
-import { Event } from '../../models/event';
-import { User } from '../../models/user';
+import { Event } from '../../models/socket/event';
 import * as socketIo from 'socket.io-client';
 
 const SERVER_URL = 'http://localhost:3000';
