@@ -2,11 +2,11 @@
  * @Author: Nizars
  * @Date: 2018-05-26 13:06:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-17 17:31:16
+ * @Last Modified time: 2018-06-18 15:31:34
  */
 
 import { Component, OnInit } from '@angular/core';
-import { TwitchAPIService } from '../../services/twitchAPI/twitchAPI.service';
+import { TwitchApiService } from '../../services/twitch-api/twitch-api.service';
 import { User } from '../../models/twitch/user.model';
 
 @Component({
@@ -21,50 +21,41 @@ export class UsersComponent implements OnInit {
   loadingEnded = false;
 
   // USER
-  public usersByName$: User[];
-  public usersById$: User[];
+  public users$: User[];
 
   // CONSTRUCTOR
-  constructor(private twitchAPIService: TwitchAPIService) {
+  constructor(private twitchApi: TwitchApiService) {
 
   }
 
   // INITIALIZE
   ngOnInit() {
-    this.usersByName$ = [ ];
-    this.usersById$ = [ ];
+    this.users$ = [ ];
+  }
+
+  // GET USER BY LOGIN
+  getUserByLogin(login) {
+    this.twitchApi.getUser(null, login)
+    .subscribe(user => {
+      const newUser = new User(user);
+      console.log(newUser);
+      this.users$.push(newUser);
+    });
   }
 
   // GET USER BY ID
-  getUserById(userIdInput) {
-    this.twitchAPIService.getUser(userIdInput, null)
+  getUserByID(id) {
+    this.twitchApi.getUser(id, null)
     .subscribe(user => {
-      const newUser = new User(user);
-      this.usersById$.push(newUser);
+      this.users$.push(new User(user));
     });
   }
 
-  // GET USER BY NAME
-  getUserByName(usernameInput) {
-    this.twitchAPIService.getUser(null, usernameInput)
-    .subscribe(user => {
-      const newUser = new User(user);
-      this.usersByName$.push(newUser);
+  clearUsers() {
+    this.users$.forEach(user => {
+      this.users$.pop();
     });
-  }
-
-  clearUserByName() {
-    this.usersByName$.forEach(user => {
-      this.usersByName$.pop();
-    });
-    this.usersByName$ = [ ];
-  }
-
-  clearUserById() {
-    this.usersById$.forEach(user => {
-      this.usersById$.pop();
-    });
-    this.usersById$ = [ ];
+    this.users$ = [ ];
   }
 
   tabOnShow() {

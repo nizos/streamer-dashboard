@@ -17,7 +17,7 @@
               class="form-control"
               id="username-input-field"
 
-              #usernameInput
+              #login
 
               placeholder="User Name"
               length="50"
@@ -27,13 +27,14 @@
 
             <button mz-button
             type="button"
-            (click)="clearUserByName()"
+            (click)="clearUsers"
             (click)="usernameInput.value=''">Clear
             </button>
 
             <button mz-button
             type="submit"
-            (click)="getUserByName(usernameInput.value)">Submit
+            (click)="getUserByLogin(login.value)"
+            (click)="login.value=''">Submit
             </button>
 
           </form>
@@ -43,7 +44,7 @@
         <div class="section">
           <h5>Response</h5>
           <div class="row">
-            <div *ngFor="let user of usersByName$">
+            <div *ngFor="let user of users$">
               <div class="col s4">
                 <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
                   <mz-card-title>{{ user.display_name }}</mz-card-title>
@@ -84,7 +85,7 @@
               class="form-control"
               id="user-id-input-field"
 
-              #userIdInput
+              #id
 
               placeholder="User ID"
               length="20"
@@ -94,13 +95,14 @@
 
             <button mz-button
             type="button"
-            (click)="clearUserById()"
-            (click)="userIdInput.value=''">Clear
+            (click)="clearUsers()"
+            (click)="id.value=''">Clear
             </button>
 
             <button mz-button
             type="submit"
-            (click)="getUserById(userIdInput.value)">Submit
+            (click)="getUserById(id.value)"
+            (click)="id.value=''">Submit
             </button>
 
           </form>
@@ -110,7 +112,7 @@
         <div class="section">
           <h5>Response</h5>
           <div class="row">
-            <div *ngFor="let user of usersById$">
+            <div *ngFor="let user of users$">
               <div class="col s4">
                 <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
                   <mz-card-title>{{ user.display_name }}</mz-card-title>

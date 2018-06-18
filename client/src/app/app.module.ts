@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-17 15:13:38
+ * @Last Modified time: 2018-06-18 16:36:11
  */
 
 // Angular
@@ -24,8 +24,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 
 // Services
-import { TwitchAPIService } from './services/twitchAPI/twitchAPI.service';
+import { TwitchApiService } from './services/twitch-api/twitch-api.service';
 import { SocketService } from './services/socket/socket.service';
+import { ReqControllerService } from './services/twitch-api/helpers/req-controller.service';
+import { QueryBuilderService } from './services/twitch-api/helpers/query-builder.service';
+import { HeaderBuilderService } from './services/twitch-api/helpers/header-builder.service';
 
 // Auth
 import { AuthGuard } from './services/auth-guard/auth.guard';
@@ -169,7 +172,10 @@ import { MzMediaModule } from 'ngx-materialize';
     AuthService,
     AuthGuard,
     SocketService,
-    TwitchAPIService,
+    ReqControllerService,
+    QueryBuilderService,
+    HeaderBuilderService,
+    TwitchApiService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

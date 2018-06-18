@@ -2,11 +2,11 @@
  * @Author: Nizars
  * @Date: 2018-06-18 11:23:43
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-18 11:28:55
+ * @Last Modified time: 2018-06-18 18:02:34
  */
 
 // model for Bits Leaderboard
-class BaseLeaderboard {
+class BaseBitsLeaderboard {
   public ended_at: string;
   public rank: string;
   public score: number;
@@ -24,7 +24,7 @@ class BaseLeaderboard {
   }
 }
 
-export class Leaderboard implements BaseLeaderboard {
+export class BitsLeaderboard implements BaseBitsLeaderboard {
   public ended_at: string;
   public rank: string;
   public score: number;
