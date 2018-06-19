@@ -100,7 +100,7 @@ class AuthRouter {
   // Set up routes
   public routes() {
     this.router.get('/', passport.authenticate('twitch', {
-      scope: 'analytics:read:games bits:read clips:edit user:edit user:read:email openid'}));
+      scope: 'analytics:read:games analytics:read:extensions bits:read clips:edit user:edit user:read:email user:read:broadcast user:edit:broadcast openid'}));
     this.router.get('/callback', passport.authenticate('twitch', {successRedirect: 'http://localhost:4200/home', failureRedirect: 'http://localhost:4200/auth-error'}));
   }
 }

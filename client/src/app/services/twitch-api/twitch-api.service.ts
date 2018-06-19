@@ -58,26 +58,17 @@ export class TwitchApiService {
    * @param user_id string optional
    * @returns leaderboard Leaderboard
    */
-  getBitsLeaderboard(count: number, period: string, started_at: string, user_id: string) {
-    // const requestValidity = this.reqController.checkTemp();
-    // if (requestValidity.valid) {
+  getBitsLeaderboard(reqData) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
       // Create request
-      // const queryURL = this.queryBuilder.queryBitsLeaderboard(count, period, started_at, user_id);
-      // const httpOptions = this.headerBuilder.createHeader();
-
-      const queryURL = 'https://api.twitch.tv/helix/bits/leaderboard?count=10&period=year&user_id=116069219';
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Client-ID': '64yjyuw2d5wjq45su6usd4s8micmnj',
-          'Accept': 'application/vnd.twitchtv.v5+json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        })
-      };
+      const queryURL = this.queryBuilder.queryBitsLeaderboard(reqData);
+      const httpOptions = this.headerBuilder.createHeader();
       return this.http.get<any>(queryURL, httpOptions);
-    // } else {
+    } else {
       // Throw error
-    //   return throwError(requestValidity.error);
-    // }
+      return throwError(requestValidity.error);
+    }
   }
 
   /**

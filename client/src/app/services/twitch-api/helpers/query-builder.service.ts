@@ -30,24 +30,25 @@ export class QueryBuilderService {
   constructor() { }
 
 
-  queryBitsLeaderboard(count, period, started_at, user_id) {
+  queryBitsLeaderboard(reqData) {
     let queryURL = this.BITS_LEADERBOARD;
 
     // Count
-    if (count !== null) {
-      if (count >= 1 && count <= 100) {
-        queryURL += `count=${count}`;
-      } else {
-        queryURL += `count=10`;
-      }
+    if (reqData.count !== null) {
+      // if (1 <= parseInt(reqData.count <= 100) {
+        console.log('Count is valid: ', reqData.count);
+        queryURL += `count=${reqData.count}`;
+      // } else {
+        // queryURL += `count=10`;
+      // }
     } else {
       queryURL += `count=10`;
     }
 
     // Period
-    if (period !== null) {
-      if (period === 'day' || 'weeek' || 'month' || 'year' || 'all') {
-        queryURL += `&period=${period}`;
+    if (reqData.period !== null && undefined && '') {
+      if (reqData.period === 'day' || 'weeek' || 'month' || 'year' || 'all') {
+        queryURL += `&period=${reqData.period}`;
       } else {
         queryURL += `&period=all`;
       }
@@ -56,13 +57,13 @@ export class QueryBuilderService {
     }
 
     // Started at
-    if (started_at !== null) {
-      queryURL += `&started_at=${started_at}`;
+    if (reqData.started_at !== null && undefined && '') {
+      queryURL += `&started_at=${reqData.started_at}`;
     }
 
     // User ID
-    if (user_id !== null) {
-      queryURL += `&user_id=${user_id}`;
+    if (reqData.user_id !== null && undefined && '') {
+      queryURL += `&user_id=${reqData.user_id}`;
     }
 
     return queryURL;
