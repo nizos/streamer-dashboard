@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-18 16:24:14
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-18 19:06:19
+ * @Last Modified time: 2018-06-19 13:11:47
  */
 
 /* Imports */
@@ -26,13 +26,17 @@ export class HeaderBuilderService {
    * @returns HttpHeaders
    */
   createHeader() {
-    return {
+    const header = {
       headers: new HttpHeaders({
         'Client-ID': this.CLIENT_ID,
         'Accept': this.ACCEPT,
         'Authorization': this.AUTHORIZATION + this.getAccessToken()
       })
     };
+    const httpHeaders = header.headers;
+    console.log('Authorization: ');
+    console.log(httpHeaders.get('Authorization'));
+    return header;
   }
 
 
@@ -42,6 +46,9 @@ export class HeaderBuilderService {
    * @returns access_token: string
    */
   getAccessToken() {
-    return localStorage.getItem('token');
+    const access_token = localStorage.getItem('token');
+    console.log('access_token: ');
+    console.log(access_token);
+    return access_token;
   }
 }

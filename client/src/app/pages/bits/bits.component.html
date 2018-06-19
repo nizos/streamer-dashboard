@@ -1,38 +1,46 @@
 <mz-card [hoverable]="true">
   <mz-card-title>Bits</mz-card-title>
-  <mz-card-content class="grey darken-2 white-text">
+  <mz-card-content class="grey darken-2">
 
     <!-- REQUEST SECTION -->
     <div class="section">
       <h5>Request</h5>
       <form novalidate>
-        <mz-input-container class="row" id="user-name-input-container">
+        <mz-input-container class="row" id="bits-leaderboard-form-container">
 
 
 
           <!-- RESULTS COUNT -->
-          <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
+          <i mz-icon-mdi mz-input-prefix
+          id="input-prefix-icon"
+          [icon]="'format-list-numbers'"></i>
+
           <input mz-input
           class="form-control"
-          id="username-input-field"
+          id="count-input-field"
+          [label]="'Number of results'"
+          [(ngModel)]="resultsToReturn"
+          name="count"
 
-          #login
-
-          placeholder="User ID"
-          length="20"
-          type="search">
+          placeholder="Number of results to return"
+          length="3"
+          type="number">
 
 
           <!-- DATE PICKER -->
-          <mz-datepicker-container class="col s12">
+          <mz-datepicker-container>
               <i mz-icon-mdi mz-input-prefix
-                [icon]="'calendar'">
-              </i>
+              id="input-prefix-icon"
+              [icon]="'calendar'"></i>
+
               <input mz-datepicker
-                [label]="'Date of birth'"
-                [options]="options"
+                [label]="'Starting date'"
+                [options]="datepickerOptions"
+                [(ngModel)]="startedAtDate"
+                name="date"
                 id="datepicker"
-                placeholder="Select your birth date"
+
+                placeholder="Date to start from"
                 type="text">
             </mz-datepicker-container>
 
@@ -40,60 +48,60 @@
 
 
           <!-- TIME PICKER -->
-          <mz-timepicker-container class="col s12">
+          <mz-timepicker-container>
               <i mz-icon-mdi mz-input-prefix
-                [icon]="'clock'">
-              </i>
+              id="input-prefix-icon"
+              [icon]="'clock'"></i>
+
               <input mz-timepicker
-                [label]="'Lunch time'"
-                [options]="options"
+                [label]="'Starting time'"
+                [options]="timepickerOptions"
+                [(ngModel)]="startedAtTime"
+                name="time"
                 id="timepicker"
-                placeholder="Select lunch time"
+
+                placeholder="Time to start from"
                 type="text">
             </mz-timepicker-container>
 
 
 
-          <!-- PERIOD DROPDOWN -->
-          <mz-dropdown
-            [id]="'dropdown-demo'"
-            [align]="'left'"
-            [belowOrigin]="false"
-            [constrainWidth]="true"
-            [dropdownButtonId]="'btn-dropdown-demo'"
-            [gutter]="true"
-            [hover]="true"
-            [inDuration]="300"
-            [outDuration]="300"
-            [stopPropagation]="true"
-          >
-            <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
-            <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
-            <mz-dropdown-divider></mz-dropdown-divider>
-            <mz-dropdown-item><a href="#!">Three</a></mz-dropdown-item>
-          </mz-dropdown>
+          <!-- PERIOD SELECT -->
+          <mz-select-container>
+              <i mz-icon-mdi mz-input-prefix
+              id="input-prefix-icon"
+              [icon]="'calendar-multiple'"></i>
 
-          <a mz-button id="btn-dropdown-demo" href="#">Dropdown</a>
+              <select mz-select
+                id="options-select"
+                [label]="'Period'"
+                [placeholder]="'All'"
+                [(ngModel)]="resultsPeriod"
+                name="period">
+
+                  <option class="left circle">day</option>
+                  <option class="left circle">week</option>
+                  <option class="left circle">month</option>
+                  <option class="left circle">year</option>
+                  <option class="left circle">all</option>
+              </select>
+            </mz-select-container>
           
 
           <!-- USER ID INPUT -->
-          <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
+          <i mz-icon-mdi mz-input-prefix
+          id="input-prefix-icon"
+          [icon]="'account-search'"></i>
+
           <input mz-input
           class="form-control"
-          id="username-input-field"
-
-          #login
+          id="user-id-input-field"
+          [(ngModel)]="userId"
+          name="user"
 
           placeholder="User ID"
           length="20"
           type="search">
-
-
-
-
-
-
-
 
         </mz-input-container>
 
@@ -105,8 +113,7 @@
 
         <button mz-button
         type="submit"
-        (click)="getUserByLogin(login.value)"
-        (click)="login.value=''">Submit
+        (click)="getBitsLeaderboard()">Submit
         </button>
 
       </form>
@@ -116,7 +123,7 @@
     <div class="section">
       <h5>Response</h5>
       <div class="row">
-        <div *ngFor="let user of users$">
+        <div *ngFor="let user of bitsLeaderboard$">
           <div class="col s4">
             <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
               <mz-card-title>{{ user.display_name }}</mz-card-title>
@@ -124,10 +131,13 @@
                 <div class="row">
                   <img class="col s4" src={{user.profile_image_url}}>
                   <div class="col s8">
-                    <p>User id: {{ user.id }}</p>
-                    <p>User description: {{ user.description }}</p>
-                    <p>Broadcaster type: {{ user.broadcaster_type }}</p>
-                    <p>Channel view count: {{ user.view_count }}</p>
+                    
+                    <p>Rank: {{ user.rank }}</p>
+                    <p>Score: {{ user.score }}</p>
+                    <p>Total: {{ user.total }}</p>
+                    <p>User: {{ user.user_id }}</p>
+                    <p>Started at: {{ user.started_at }}</p>
+                    <p>Ended at: {{ user.ended_at }}</p>
                   </div>
                 </div>
               </mz-card-content>

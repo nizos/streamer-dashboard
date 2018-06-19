@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-07 01:09:10
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-09 06:01:13
+ * @Last Modified time: 2018-06-19 13:36:38
  */
 
 import * as express from 'express';
@@ -99,7 +99,8 @@ class AuthRouter {
 
   // Set up routes
   public routes() {
-    this.router.get('/', passport.authenticate('twitch', {scope: 'analytics:read:games bits:read clips:edit user:edit user:read:email openid'}));
+    this.router.get('/', passport.authenticate('twitch', {
+      scope: 'analytics:read:games bits:read clips:edit user:edit user:read:email openid'}));
     this.router.get('/callback', passport.authenticate('twitch', {successRedirect: 'http://localhost:4200/home', failureRedirect: 'http://localhost:4200/auth-error'}));
   }
 }
