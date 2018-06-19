@@ -42,7 +42,7 @@ export class UsersComponent implements OnInit {
   }
 
   // GET USER BY ID
-  getUserByID(id) {
+  getUserById(id) {
     this.twitchApi.getUser(id, null)
     .subscribe(user => {
       this.users$.push(new User(user));

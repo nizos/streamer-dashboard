@@ -1,14 +1,149 @@
 <mz-card [hoverable]="true">
   <mz-card-title>Bits</mz-card-title>
   <mz-card-content class="grey darken-2 white-text">
-    <mz-tab [fixedTabWidth]="'true'" [onShow]="tabOnShow()">
-      <mz-tab-item [label]="'Tab 1'" class="tab-content">Tab 1 content</mz-tab-item>
-      <mz-tab-item [active]="'true'" [label]="'Tab 2'" class="tab-content">Tab 2 content</mz-tab-item>
-      <mz-tab-item [label]="'Tab 3'" class="tab-content">Tab 3 content</mz-tab-item>
-    </mz-tab>
+
+    <!-- REQUEST SECTION -->
+    <div class="section">
+      <h5>Request</h5>
+      <form novalidate>
+        <mz-input-container class="row" id="user-name-input-container">
+
+
+
+          <!-- RESULTS COUNT -->
+          <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
+          <input mz-input
+          class="form-control"
+          id="username-input-field"
+
+          #login
+
+          placeholder="User ID"
+          length="20"
+          type="search">
+
+
+          <!-- DATE PICKER -->
+          <mz-datepicker-container class="col s12">
+              <i mz-icon-mdi mz-input-prefix
+                [icon]="'calendar'">
+              </i>
+              <input mz-datepicker
+                [label]="'Date of birth'"
+                [options]="options"
+                id="datepicker"
+                placeholder="Select your birth date"
+                type="text">
+            </mz-datepicker-container>
+
+
+
+
+          <!-- TIME PICKER -->
+          <mz-timepicker-container class="col s12">
+              <i mz-icon-mdi mz-input-prefix
+                [icon]="'clock'">
+              </i>
+              <input mz-timepicker
+                [label]="'Lunch time'"
+                [options]="options"
+                id="timepicker"
+                placeholder="Select lunch time"
+                type="text">
+            </mz-timepicker-container>
+
+
+
+          <!-- PERIOD DROPDOWN -->
+          <mz-dropdown
+            [id]="'dropdown-demo'"
+            [align]="'left'"
+            [belowOrigin]="false"
+            [constrainWidth]="true"
+            [dropdownButtonId]="'btn-dropdown-demo'"
+            [gutter]="true"
+            [hover]="true"
+            [inDuration]="300"
+            [outDuration]="300"
+            [stopPropagation]="true"
+          >
+            <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
+            <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
+            <mz-dropdown-divider></mz-dropdown-divider>
+            <mz-dropdown-item><a href="#!">Three</a></mz-dropdown-item>
+          </mz-dropdown>
+
+          <a mz-button id="btn-dropdown-demo" href="#">Dropdown</a>
+          
+
+          <!-- USER ID INPUT -->
+          <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
+          <input mz-input
+          class="form-control"
+          id="username-input-field"
+
+          #login
+
+          placeholder="User ID"
+          length="20"
+          type="search">
+
+
+
+
+
+
+
+
+        </mz-input-container>
+
+        <button mz-button
+        type="button"
+        (click)="clearUsers"
+        (click)="usernameInput.value=''">Clear
+        </button>
+
+        <button mz-button
+        type="submit"
+        (click)="getUserByLogin(login.value)"
+        (click)="login.value=''">Submit
+        </button>
+
+      </form>
+    </div>
+
+    <!-- RESPONSE SECTION -->
+    <div class="section">
+      <h5>Response</h5>
+      <div class="row">
+        <div *ngFor="let user of users$">
+          <div class="col s4">
+            <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
+              <mz-card-title>{{ user.display_name }}</mz-card-title>
+              <mz-card-content>
+                <div class="row">
+                  <img class="col s4" src={{user.profile_image_url}}>
+                  <div class="col s8">
+                    <p>User id: {{ user.id }}</p>
+                    <p>User description: {{ user.description }}</p>
+                    <p>Broadcaster type: {{ user.broadcaster_type }}</p>
+                    <p>Channel view count: {{ user.view_count }}</p>
+                  </div>
+                </div>
+              </mz-card-content>
+              <mz-card-action>
+                <a href="#">This is a link</a>
+                <a href="#">This is a link</a>
+              </mz-card-action>
+            </mz-card>
+          </div>
+        </div>
+      </div>  
+    </div>
+
   </mz-card-content>
-  <mz-card-action>
-    <a href="#">This is a link</a>
-    <a href="#">This is a link</a>
-  </mz-card-action>
 </mz-card>
+
+
+    
+    
