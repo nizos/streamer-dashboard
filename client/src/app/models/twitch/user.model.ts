@@ -6,41 +6,31 @@
  */
 
 interface IUser {
-  user_id: string;
-  login: string;
-  display_name: string;
-  type: string;
-  broadcaster_type: string;
-  description: string;
-  profile_image_url: string;
-  offline_image_url: string;
-  view_count: string;
+  user_id?: string;
+  login?: string;
+  display_name?: string;
+  type?: string;
+  broadcaster_type?: string;
+  description?: string;
+  profile_image_url?: string;
+  offline_image_url?: string;
+  view_count?: string;
+
+  fromData(user: User): User;
+  getUserId(): string;
+  getLogin(): string;
+  getDisplayName(): string;
+  getType(): string;
+  getBroadcasterType(): string;
+  getDescription(): string;
+  getProfileImageUrl(): string;
+  getOfflineImageUrl(): string;
+  getViewCount(): string;
 }
 
 export class User implements IUser {
-  public user_id: string;
-  public login: string;
-  public display_name: string;
-  public type: string;
-  public broadcaster_type: string;
-  public description: string;
-  public profile_image_url: string;
-  public offline_image_url: string;
-  public view_count: string;
 
-  constructor(user?: any, user_id?: string, login?: string, display_name?: string, type?: string, broadcaster_type?: string, description?: string, profile_image_url?: string, offline_image_url?: string, view_count?: string) {
-
-    if (user !== null) {
-      this.user_id = user.user_id;
-      this.login = user.login;
-      this.display_name = user.display_name;
-      this.type = user.type;
-      this.broadcaster_type = user.broadcaster_type;
-      this.description = user.description;
-      this.profile_image_url = user.profile_image_url;
-      this.offline_image_url = user.offline_image_url;
-      this.view_count = user.view_count;
-    } else if (user_id !== null) {
+  constructor(public user_id?: string, public login?: string, public display_name?: string, public type?: string, public broadcaster_type?: string, public description?: string, public profile_image_url?: string, public offline_image_url?: string, public view_count?: string) {
       this.user_id = user_id;
       this.login = login;
       this.display_name = display_name;
@@ -50,17 +40,19 @@ export class User implements IUser {
       this.profile_image_url = profile_image_url;
       this.offline_image_url = offline_image_url;
       this.view_count = view_count;
-    } else {
-      this.user_id = 'user id';
-      this.login = 'login';
-      this.display_name = 'display name';
-      this.type = 'type';
-      this.broadcaster_type = 'broadcaster type';
-      this.description = 'description';
-      this.profile_image_url = 'profile image url';
-      this.offline_image_url = 'offline image url';
-      this.view_count = 'view count';
-    }
+  }
+
+  fromData(user: User) {
+    this.user_id = user.user_id;
+    this.login = user.login;
+    this.display_name = user.display_name;
+    this.type = user.type;
+    this.broadcaster_type = user.broadcaster_type;
+    this.description = user.description;
+    this.profile_image_url = user.profile_image_url;
+    this.offline_image_url = user.offline_image_url;
+    this.view_count = user.view_count;
+    return this;
   }
 
   public getUserId(): string {

@@ -54,7 +54,7 @@ interface IDateRange {
   getEndedAt(): string;
 }
 
-class DateRange implements IDateRange {
+export class DateRange implements IDateRange {
   constructor(public started_at?: string, public ended_at?: string) {
     this.started_at = started_at || 'started at';
     this.ended_at = ended_at || 'ended at';
@@ -78,9 +78,9 @@ class DateRange implements IDateRange {
 
 // model for Bits Leaderboard
 interface IBitsLeaderboard {
-  entries: Entry[];
-  date_range: DateRange;
-  total: number;
+  entries?: Entry[];
+  date_range?: DateRange;
+  total?: number;
 
   getDateRange(): DateRange;
 
@@ -103,16 +103,34 @@ interface IBitsLeaderboard {
 }
 
 export class BitsLeaderboard implements IBitsLeaderboard {
-  public entries: Entry[] = [];
-  public date_range: DateRange;
-  public total: number;
+  public entries?: Entry[] = [];
+  public date_range?: DateRange;
+  public total?: number;
 
-  constructor(leaderboard: BitsLeaderboard) {
+  constructor(entries?: Entry[], date_range?: DateRange, total?: number) {
+    this.total = total;
+    this.date_range = date_range;
     this.entries = [];
-    this.total = leaderboard.total;
-    this.date_range = leaderboard.date_range;
-    this.entries = leaderboard.entries;
+    for (let i = 0; i < this.total; i++) {
+      this.entries.push(new Entry().fromData(entries[i]));
+    }
   }
+
+  fromData(bitsLeaderboard: BitsLeaderboard) {
+    this.total = bitsLeaderboard.total;
+    this.date_range = bitsLeaderboard.date_range;
+    this.entries = [];
+    for (let i = 0; i < this.total; i++) {
+      this.entries.push(new Entry().fromData(bitsLeaderboard.entries[i]));
+    }
+    return this;
+  }
+  // constructor(leaderboard: BitsLeaderboard) {
+  //   this.entries = [];
+  //   this.total = leaderboard.total;
+  //   this.date_range = leaderboard.date_range;
+  //   this.entries = leaderboard.entries;
+  // }
 
   public getDateRange() {
     return this.date_range;

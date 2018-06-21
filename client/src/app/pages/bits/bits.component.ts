@@ -7,7 +7,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { TwitchApiService } from '../../services/twitch-api/twitch-api.service';
-import { BitsLeaderboard, Entry } from '../../models/twitch/bits-leaderboard.model';
+import { BitsLeaderboard, Entry, DateRange } from '../../models/twitch/bits-leaderboard.model';
 import { User } from '../../models/twitch/user.model';
 
 @Component({
@@ -67,60 +67,53 @@ export class BitsComponent implements OnInit {
     };
     this.twitchApi.getBitsLeaderboard(reqData)
     .subscribe(leaderboard => {
-      console.log('​BitsComponent -> getBitsLeaderboard -> leaderboard', leaderboard);
-      this.leaderboard = new BitsLeaderboard(leaderboard);
-      console.log('​BitsComponent -> getBitsLeaderboard -> leaderboard', leaderboard);
-      this.leaderboardEntries = [ ];
-      const total = this.leaderboard.getTotal();
-      console.log('​BitsComponent -> getBitsLeaderboard -> total', total);
-      for (let i = 0; i < total; i++) {
-        // const user_id = leaderboard.entries[i].user_id;
-        // const rank = leaderboard.entries[i].rank;
-        // const score = leaderboard.entries[i].score;
-        // const newEntry = new Entry().fromData(leaderboard.getEntry(i));
-        // console.log('​BitsComponent -> getBitsLeaderboard -> newEntry', newEntry);
-        // this.leaderboardEntries.push(newEntry);
-        this.leaderboardEntries = [ ];
-        this.leaderboardEntries = leaderboard.getEntries();
-        console.log('​BitsComponent -> getBitsLeaderboard -> leaderboardEntries', this.leaderboardEntries);
+      this.leaderboardEntries = [];
+      for (let i = 0; i < leaderboard.total; i++) {
+        this.leaderboardEntries.push(new Entry(leaderboard.data[i].user_id, leaderboard.data[i].rank, leaderboard.data[i].score));
       }
-      console.log('​BitsComponent -> getBitsLeaderboard -> this.leaderboardEntries', this.leaderboardEntries);
+      this.leaderboard = new BitsLeaderboard(
+        this.leaderboardEntries,
+        new DateRange(
+          leaderboard.date_range.started_at,
+          leaderboard.date_range.ended_at
+        ),
+        leaderboard.total
+      );
       this.getLeaderboardUsers();
     });
   }
 
   // GET BIT LEADERBOARD USERS
   getLeaderboardUsers() {
-    const total = this.leaderboard.getTotal();
-    console.log('​BitsComponent -> getLeaderboardUsers -> total', total);
-    for (let i = 0; i < total; i++) {
-      console.log('​BitsComponent -> getLeaderboardUsers -> i', i);
-      const user_id = this.leaderboardEntries[i].user_id;
-      console.log('​BitsComponent -> getLeaderboardUsers -> user_id', user_id);
-      this.twitchApi.getUserById(user_id)
+    for (let i = 0; i < this.leaderboard.getTotal(); i++) {
+      this.twitchApi.getUserById(this.leaderboardEntries[i].user_id)
       .subscribe(user => {
-        console.log('​BitsComponent -> getLeaderboardUsers -> user', user);
-        const newUser = new User(user);
-        console.log('​BitsComponent -> getLeaderboardUsers -> newUser', newUser);
-        this.leaderboardUsers.push(newUser);
+        const newUser = new User(user.data[0]);
+        this.leaderboardUsers.push(new User(
+          newUser.user_id,
+          newUser.login,
+          newUser.display_name,
+          newUser.type,
+          newUser.broadcaster_type,
+          newUser.description,
+          newUser.profile_image_url,
+          newUser.offline_image_url,
+          newUser.view_count
+        ));
       });
     }
-    console.log('​BitsComponent -> getBitsLeaderboardUsers -> this.bitsLeaderboardUsers$', this.leaderboardUsers);
   }
 
   getUserDisplayName(user_id: string) {
-    const foundUser = this.leaderboardUsers.find(k => k.user_id === user_id);
-    return foundUser.display_name;
+    return this.leaderboardUsers.find(k => k.user_id === user_id).display_name;
   }
 
   getUserProfileImageUrl(user_id: string) {
-    const foundUser = this.leaderboardUsers.find(k => k.user_id === user_id);
-    return foundUser.profile_image_url;
+    return this.leaderboardUsers.find(k => k.user_id === user_id).profile_image_url;
   }
 
   getUserDescription(user_id: string) {
-    const foundUser = this.leaderboardUsers.find(k => k.user_id === user_id);
-    return foundUser.description;
+    return this.leaderboardUsers.find(k => k.user_id === user_id).description;
   }
 
   // Format date

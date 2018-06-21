@@ -125,13 +125,14 @@
         <div *ngFor="let entry of leaderboardEntries; let i = index">
           <div class="col s4">
             <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
-              <mz-card-title> {{ entry.rank }}. {{ getUserDisplayName(entry.user_id) }}</mz-card-title>
+              <mz-card-title> {{ entry.rank }}. {{ entry.user_id }}</mz-card-title>
               <mz-card-content>
                 <div class="row">
-                  <img class="col s4" src={{getUserProfileImageUrl(entry.user_id)}}>
+                  <!-- <img class="col s4" src={{getUserProfileImageUrl(entry.user_id)}}> -->
                   <div class="col s8">
-                    <p>User: {{ getUserDisplayName(entry.user_id) }}</p>
-                    <p>Desc: {{ getUserDescription(entry.user_id) }}</p>
+                    <p>User ID: {{ entry.user_id }}</p>
+                    <p>Score: {{ entry.score }}</p>
+                    <p>Rank: {{ entry.rank }}</p>
                   </div>
                 </div>
               </mz-card-content>
