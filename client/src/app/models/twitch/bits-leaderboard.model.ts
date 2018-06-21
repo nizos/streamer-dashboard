@@ -2,42 +2,152 @@
  * @Author: Nizars
  * @Date: 2018-06-18 11:23:43
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-18 18:02:34
+ * @Last Modified time: 2018-06-20 23:40:05
  */
 
-// model for Bits Leaderboard
-class BaseBitsLeaderboard {
-  public ended_at: string;
-  public rank: string;
-  public score: number;
-  public started_at: string;
-  public total: number;
-  public user_id: string;
+// Model for Leaderboard participant
+interface IEntry {
+  user_id?: string;
+  rank?: number;
+  score?: number;
 
-  constructor(ended_at: string, rank: string, score: number, started_at: string, total: number, user_id: string) {
-    this.ended_at = ended_at;
-    this.rank = rank;
-    this.score = score;
-    this.started_at = started_at;
-    this.total = total;
-    this.user_id = user_id;
+  fromData(entry: Entry): Entry;
+  getUserId(): string;
+  getRank(): number;
+  getScore(): number;
+}
+
+export class Entry implements IEntry {
+  constructor(public user_id?: string, public rank?: number, public score?: number) {
+      this.user_id = user_id || 'user id';
+      this.rank = rank || 0;
+      this.score = score || 0;
+  }
+
+  public fromData(entry: Entry) {
+    this.user_id = entry.user_id;
+    this.rank = entry.rank;
+    this.score = entry.score;
+    return this;
+  }
+
+  public getUserId() {
+    return this.user_id;
+  }
+
+  public getRank() {
+    return this.rank;
+  }
+
+  public getScore() {
+    return this.score;
   }
 }
 
-export class BitsLeaderboard implements BaseBitsLeaderboard {
-  public ended_at: string;
-  public rank: string;
-  public score: number;
-  public started_at: string;
-  public total: number;
-  public user_id: string;
+// Model for Leaderboard participant
+interface IDateRange {
+  started_at?: string;
+  ended_at?: string;
 
-  constructor(leaderboard: any) {
-    this.ended_at = leaderboard.data[0].ended_at;
-    this.rank = leaderboard.data[0].rank;
-    this.score = leaderboard.data[0].score;
-    this.started_at = leaderboard.data[0].started_at;
-    this.total = leaderboard.data[0].total;
-    this.user_id = leaderboard.data[0].user_id;
+  fromData(dateRange: DateRange): DateRange;
+  getStartedAt(): string;
+  getEndedAt(): string;
+}
+
+class DateRange implements IDateRange {
+  constructor(public started_at?: string, public ended_at?: string) {
+    this.started_at = started_at || 'started at';
+    this.ended_at = ended_at || 'ended at';
   }
+
+  public fromData(dataRange: DateRange) {
+    this.started_at = dataRange.started_at;
+    this.ended_at = dataRange.ended_at;
+    return this;
+  }
+
+  public getStartedAt() {
+    return this.started_at;
+  }
+
+  public getEndedAt() {
+    return this.ended_at;
+  }
+}
+
+
+// model for Bits Leaderboard
+interface IBitsLeaderboard {
+  entries: Entry[];
+  date_range: DateRange;
+  total: number;
+
+  getDateRange(): DateRange;
+
+  getStartedAt(): string;
+
+  getEndedAt(): string;
+
+  getTotal(): number;
+
+  getEntry(index: number): Entry;
+
+  getEntryUserId(index: number): string;
+
+  getEntryRank(index: number): number;
+
+  getEntryScore(index: number): number;
+
+  getEntries(): Entry[];
+
+}
+
+export class BitsLeaderboard implements IBitsLeaderboard {
+  public entries: Entry[] = [];
+  public date_range: DateRange;
+  public total: number;
+
+  constructor(leaderboard: BitsLeaderboard) {
+    this.entries = [];
+    this.total = leaderboard.total;
+    this.date_range = leaderboard.date_range;
+    this.entries = leaderboard.entries;
+  }
+
+  public getDateRange() {
+    return this.date_range;
+  }
+
+  public getStartedAt() {
+    return this.date_range.started_at;
+  }
+
+  public getEndedAt() {
+    return this.date_range.ended_at;
+  }
+
+  public getTotal() {
+    return this.total;
+  }
+
+  public getEntry(index: number) {
+    return this.entries[index];
+  }
+
+  public getEntryUserId(index: number) {
+    return this.entries[index].user_id;
+  }
+
+  public getEntryRank(index: number) {
+    return this.entries[index].rank;
+  }
+
+  public getEntryScore(index: number) {
+    return this.entries[index].score;
+  }
+
+  public getEntries() {
+    return this.entries;
+  }
+
 }

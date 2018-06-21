@@ -86,7 +86,7 @@
                   <option class="left circle">all</option>
               </select>
             </mz-select-container>
-          
+
 
           <!-- USER ID INPUT -->
           <i mz-icon-mdi mz-input-prefix
@@ -107,7 +107,6 @@
 
         <button mz-button
         type="button"
-        (click)="clearUsers"
         (click)="usernameInput.value=''">Clear
         </button>
 
@@ -123,21 +122,16 @@
     <div class="section">
       <h5>Response</h5>
       <div class="row">
-        <div *ngFor="let user of bitsLeaderboard$">
+        <div *ngFor="let entry of leaderboardEntries; let i = index">
           <div class="col s4">
             <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
-              <mz-card-title>{{ user.display_name }}</mz-card-title>
+              <mz-card-title> {{ entry.rank }}. {{ getUserDisplayName(entry.user_id) }}</mz-card-title>
               <mz-card-content>
                 <div class="row">
-                  <img class="col s4" src={{user.profile_image_url}}>
+                  <img class="col s4" src={{getUserProfileImageUrl(entry.user_id)}}>
                   <div class="col s8">
-                    
-                    <p>Rank: {{ user.rank }}</p>
-                    <p>Score: {{ user.score }}</p>
-                    <p>Total: {{ user.total }}</p>
-                    <p>User: {{ user.user_id }}</p>
-                    <p>Started at: {{ user.started_at }}</p>
-                    <p>Ended at: {{ user.ended_at }}</p>
+                    <p>User: {{ getUserDisplayName(entry.user_id) }}</p>
+                    <p>Desc: {{ getUserDescription(entry.user_id) }}</p>
                   </div>
                 </div>
               </mz-card-content>
@@ -148,12 +142,10 @@
             </mz-card>
           </div>
         </div>
-      </div>  
+      </div>
     </div>
 
   </mz-card-content>
 </mz-card>
 
 
-    
-    

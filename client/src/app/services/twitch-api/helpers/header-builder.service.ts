@@ -34,8 +34,6 @@ export class HeaderBuilderService {
       })
     };
     const httpHeaders = header.headers;
-    console.log('Authorization: ');
-    console.log(httpHeaders.get('Authorization'));
     return header;
   }
 
@@ -47,8 +45,6 @@ export class HeaderBuilderService {
    */
   getAccessToken() {
     const access_token = localStorage.getItem('token');
-    console.log('access_token: ');
-    console.log(access_token);
     return access_token;
   }
 }

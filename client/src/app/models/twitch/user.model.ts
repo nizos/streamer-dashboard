@@ -2,38 +2,23 @@
  * @Author: Nizars
  * @Date: 2018-06-18 11:23:34
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-18 11:23:34
+ * @Last Modified time: 2018-06-20 22:22:24
  */
 
-
-// model for User
-class BaseUser {
-  public id: string;
-  public login: string;
-  public display_name: string;
-  public type: string;
-  public broadcaster_type: string;
-  public description: string;
-  public profile_image_url: string;
-  public offline_image_url: string;
-  public view_count: string;
-
-  constructor(id: string, login: string, display_name: string, type: string, broadcaster_type: string,
-    description: string, profile_image_url: string, offline_image_url: string, view_count: string) {
-    this.id = id;
-    this.login = login;
-    this.display_name = display_name;
-    this.type = type;
-    this.broadcaster_type = broadcaster_type;
-    this.description = description;
-    this.profile_image_url = profile_image_url;
-    this.offline_image_url = offline_image_url;
-    this.view_count = view_count;
-  }
+interface IUser {
+  user_id: string;
+  login: string;
+  display_name: string;
+  type: string;
+  broadcaster_type: string;
+  description: string;
+  profile_image_url: string;
+  offline_image_url: string;
+  view_count: string;
 }
 
-export class User implements BaseUser {
-  public id: string;
+export class User implements IUser {
+  public user_id: string;
   public login: string;
   public display_name: string;
   public type: string;
@@ -43,15 +28,74 @@ export class User implements BaseUser {
   public offline_image_url: string;
   public view_count: string;
 
-  constructor(user: any) {
-    this.id = user.data[0].id;
-    this.login = user.data[0].login;
-    this.display_name = user.data[0].display_name;
-    this.type = user.data[0].type;
-    this.broadcaster_type = user.data[0].broadcaster_type;
-    this.description = user.data[0].description;
-    this.profile_image_url = user.data[0].profile_image_url;
-    this.offline_image_url = user.data[0].offline_image_url;
-    this.view_count = user.data[0].view_count;
+  constructor(user?: any, user_id?: string, login?: string, display_name?: string, type?: string, broadcaster_type?: string, description?: string, profile_image_url?: string, offline_image_url?: string, view_count?: string) {
+
+    if (user !== null) {
+      this.user_id = user.user_id;
+      this.login = user.login;
+      this.display_name = user.display_name;
+      this.type = user.type;
+      this.broadcaster_type = user.broadcaster_type;
+      this.description = user.description;
+      this.profile_image_url = user.profile_image_url;
+      this.offline_image_url = user.offline_image_url;
+      this.view_count = user.view_count;
+    } else if (user_id !== null) {
+      this.user_id = user_id;
+      this.login = login;
+      this.display_name = display_name;
+      this.type = type;
+      this.broadcaster_type = broadcaster_type;
+      this.description = description;
+      this.profile_image_url = profile_image_url;
+      this.offline_image_url = offline_image_url;
+      this.view_count = view_count;
+    } else {
+      this.user_id = 'user id';
+      this.login = 'login';
+      this.display_name = 'display name';
+      this.type = 'type';
+      this.broadcaster_type = 'broadcaster type';
+      this.description = 'description';
+      this.profile_image_url = 'profile image url';
+      this.offline_image_url = 'offline image url';
+      this.view_count = 'view count';
+    }
+  }
+
+  public getUserId(): string {
+    return this.user_id;
+  }
+
+  public getLogin(): string {
+    return this.login;
+  }
+
+  public getDisplayName(): string {
+    return this.display_name;
+  }
+
+  public getType(): string {
+    return this.type;
+  }
+
+  public getBroadcasterType(): string {
+    return this.broadcaster_type;
+  }
+
+  public getDescription(): string {
+    return this.description;
+  }
+
+  public getProfileImageUrl(): string {
+    return this.profile_image_url;
+  }
+
+  public getOfflineImageUrl(): string {
+    return this.offline_image_url;
+  }
+
+  public getViewCount(): string {
+    return this.view_count;
   }
 }

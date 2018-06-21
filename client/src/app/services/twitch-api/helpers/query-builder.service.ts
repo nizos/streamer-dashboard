@@ -298,17 +298,12 @@ export class QueryBuilderService {
     return queryURL;
   }
 
-  queryGetUser(id, login) {
-    let queryURL = this.USERS;
+  queryGetUserByLogin(login: string) {
+    return this.USERS + `login=${login}`;
+  }
 
-    // User ID
-    if (id !== null) {
-      queryURL += `id=${id}`;
-    // User Login
-    } else {
-      queryURL += `login=${login}`;
-    }
-    return queryURL;
+  queryGetUserById(id: string) {
+    return this.USERS + `id=${id}`;
   }
 
   queryUserFollows(after: string, first: number, from_id: string, to_id: string) {

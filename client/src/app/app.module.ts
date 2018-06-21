@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-18 23:16:01
+ * @Last Modified time: 2018-06-20 23:46:48
  */
 
 // Angular
@@ -56,6 +56,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LandingComponent } from './pages/landing/landing.component';
+
 
 // MATERIALIZE
 /// FORM CONTROL

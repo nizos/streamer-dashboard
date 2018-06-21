@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-07 01:09:10
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-19 13:36:38
+ * @Last Modified time: 2018-06-20 20:32:06
  */
 
 import * as express from 'express';
@@ -72,25 +72,20 @@ class AuthRouter {
 
     // Register user
     async function registerUser(newUser: any) {
-      const userID = newUser.id;
+      const query = {id: newUser.id};
+      const options = {
+        upsert: true,
+      };
 
       // find if user exists
-      User.findOneAndRemove({id: userID}, async function(err: any, result: any) {
+      User.findOneAndUpdate(query, newUser, options, async (err: any, res: any) => {
         if (err) {
-            console.log(`[DB] [ERROR] Couldn't remove found user with matching id: ${userID}.`);
-            console.log(`[DB] [ERROR] ${err}`);
-        }
-        if (result) {
-            console.log(`[DB] User with matching id removed. id: ${userID}.`);
-        }
-      });
-      User.create(newUser, async (err: any, newUser: any) => {
-        if (err) {
-          console.log(`[DB] [ERROR] Couldn't add new user to database. id: ${userID}.`);
+          console.log(`[DB] [ERROR] Couldn't add new user to database. id: ${newUser.id}.`);
           console.log(`[DB] [ERROR] ${err}`);
-        } else {
-          console.log(`[DB] User successfully added to database. id: ${userID}.`);
-          io.emit('authenticated', newUser.id_token[0].access_token);
+        }
+        if (res) {
+          console.log(`[DB] User successfully added to database. id: ${newUser.id}.`);
+          io.emit('authenticated', newUser.id_token.access_token);
         }
       });
     }

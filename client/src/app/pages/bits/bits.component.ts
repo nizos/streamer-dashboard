@@ -2,12 +2,13 @@
  * @Author: Nizars
  * @Date: 2018-06-18 20:19:26
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-19 12:56:59
+ * @Last Modified time: 2018-06-20 23:57:10
  */
 
 import { Component, OnInit } from '@angular/core';
 import { TwitchApiService } from '../../services/twitch-api/twitch-api.service';
-import { BitsLeaderboard } from '../../models/twitch/bits-leaderboard.model';
+import { BitsLeaderboard, Entry } from '../../models/twitch/bits-leaderboard.model';
+import { User } from '../../models/twitch/user.model';
 
 @Component({
   selector: 'app-bits',
@@ -21,31 +22,39 @@ export class BitsComponent implements OnInit {
   public resultsToReturn: string = null;
   public resultsPeriod: string = null;
   public userId: string = null;
+  public leaderboard: BitsLeaderboard;
+  public leaderboardEntries: Entry[] = [];
+  public leaderboardUsers: User[] = [];
 
   public datepickerOptions: Pickadate.DateOptions = {
     format: 'dddd, dd mmm, yyyy',
     formatSubmit: 'yyyy-mm-dd',
   };
+
   public timepickerOptions: Pickadate.TimeOptions = {
-    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
-    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
-    twelvehour: true, // Use AM/PM or 24-hour format
-    donetext: 'OK', // text for done-button
-    cleartext: 'Clear', // text for clear-button
-    canceltext: 'Cancel', // Text for cancel-button
-    autoclose: true, // automatic close timepicker
-    ampmclickable: true, // make AM PM clickable
-    aftershow: () => alert('AfterShow has been invoked.'), // function for after opening timepicker
+    default: 'now',
+    fromnow: 0,
+    twelvehour: true,
+    donetext: 'OK',
+    cleartext: 'Clear',
+    canceltext: 'Cancel',
+    autoclose: true,
+    ampmclickable: true,
   };
 
-  public bitsLeaderboards$: any[];
 
-  // CONSTRUCTOR
+  /**
+   * @name constructor
+   * @desc Creates an instance of BitsComponent.
+   * @constructor
+   * @param {TwitchApiService} twitchApi
+   * @memberof BitsComponent
+   */
   constructor(private twitchApi: TwitchApiService) { }
 
-  // INITIALIZE
   ngOnInit() {
-    this.bitsLeaderboards$ = [ ];
+    this.leaderboardEntries = [ ];
+    this.leaderboardUsers = [ ];
   }
 
   // GET BIT LEADERBOARD
@@ -56,109 +65,141 @@ export class BitsComponent implements OnInit {
       started: this.dateTimeInRFC339(this.formatDate(), this.formatTime()),
       user_id: this.userId
     };
-
     this.twitchApi.getBitsLeaderboard(reqData)
-    .subscribe(bitsLeaderboard => {
-      console.log('Bits leaderboard: ');
-      console.log(bitsLeaderboard);
-      this.bitsLeaderboards$.push(new BitsLeaderboard(bitsLeaderboard));
+    .subscribe(leaderboard => {
+      console.log('​BitsComponent -> getBitsLeaderboard -> leaderboard', leaderboard);
+      this.leaderboard = new BitsLeaderboard(leaderboard);
+      console.log('​BitsComponent -> getBitsLeaderboard -> leaderboard', leaderboard);
+      this.leaderboardEntries = [ ];
+      const total = this.leaderboard.getTotal();
+      console.log('​BitsComponent -> getBitsLeaderboard -> total', total);
+      for (let i = 0; i < total; i++) {
+        // const user_id = leaderboard.entries[i].user_id;
+        // const rank = leaderboard.entries[i].rank;
+        // const score = leaderboard.entries[i].score;
+        // const newEntry = new Entry().fromData(leaderboard.getEntry(i));
+        // console.log('​BitsComponent -> getBitsLeaderboard -> newEntry', newEntry);
+        // this.leaderboardEntries.push(newEntry);
+        this.leaderboardEntries = [ ];
+        this.leaderboardEntries = leaderboard.getEntries();
+        console.log('​BitsComponent -> getBitsLeaderboard -> leaderboardEntries', this.leaderboardEntries);
+      }
+      console.log('​BitsComponent -> getBitsLeaderboard -> this.leaderboardEntries', this.leaderboardEntries);
+      this.getLeaderboardUsers();
     });
   }
 
+  // GET BIT LEADERBOARD USERS
+  getLeaderboardUsers() {
+    const total = this.leaderboard.getTotal();
+    console.log('​BitsComponent -> getLeaderboardUsers -> total', total);
+    for (let i = 0; i < total; i++) {
+      console.log('​BitsComponent -> getLeaderboardUsers -> i', i);
+      const user_id = this.leaderboardEntries[i].user_id;
+      console.log('​BitsComponent -> getLeaderboardUsers -> user_id', user_id);
+      this.twitchApi.getUserById(user_id)
+      .subscribe(user => {
+        console.log('​BitsComponent -> getLeaderboardUsers -> user', user);
+        const newUser = new User(user);
+        console.log('​BitsComponent -> getLeaderboardUsers -> newUser', newUser);
+        this.leaderboardUsers.push(newUser);
+      });
+    }
+    console.log('​BitsComponent -> getBitsLeaderboardUsers -> this.bitsLeaderboardUsers$', this.leaderboardUsers);
+  }
+
+  getUserDisplayName(user_id: string) {
+    const foundUser = this.leaderboardUsers.find(k => k.user_id === user_id);
+    return foundUser.display_name;
+  }
+
+  getUserProfileImageUrl(user_id: string) {
+    const foundUser = this.leaderboardUsers.find(k => k.user_id === user_id);
+    return foundUser.profile_image_url;
+  }
+
+  getUserDescription(user_id: string) {
+    const foundUser = this.leaderboardUsers.find(k => k.user_id === user_id);
+    return foundUser.description;
+  }
 
   // Format date
   formatDate() {
-    const date = this.startedAtDate;
-    if (date !== null && undefined && '') {
-      const dateParts = date.split('-', 3);
-      const formatedDate = {
+    if (this.startedAtDate !== null && undefined && '') {
+
+      const dateParts = this.startedAtDate.split('-', 3);
+      return {
         year: dateParts[0],
         month: dateParts[1],
         day: dateParts[2]
       };
-      return formatedDate;
+
     } else {
+
       return null;
     }
   }
 
   // Format time
   formatTime() {
-    const time = this.startedAtTime;
-    if (time !== null && undefined && '') {
+    if (this.startedAtTime !== null && undefined && '') {
       let hours: number;
       let minutes: number;
-      const timeParts = time.split(':', 2);
+      const timeParts = this.startedAtTime.split(':', 2);
 
-      // HOURS
-      if (time.search('PM')) {
+      if (this.startedAtTime.search('PM')) {
         hours = +timeParts[0] + 12;
       } else {
         hours = +timeParts[0];
       }
-      // MINUTES
       minutes = +timeParts[1].substring(0, 2);
-      const formatedTime = {
+
+      return {
         hours: hours,
         minutes: minutes,
         seconds: '00'
       };
-      return formatedTime;
+
     } else {
+
       return null;
     }
   }
 
-  // Date Time in RFC 3339
+
+  /**
+   * @name dateTimeInRFC339
+   * @description Converts date and time to RFC 3339 format
+   * @param date any
+   * @param time any
+   */
   dateTimeInRFC339(date, time) {
-
     if ((date !== null && undefined && '') && (time !== null && undefined && '')) {
-      // 2009-09-28T19:03:12Z
+
       let formatedDateTime = '';
-
-      // Year
       formatedDateTime += date.year;
-
-      // Date Speparator
       formatedDateTime += '-';
-
-      // Month
       formatedDateTime += date.month;
-
-      // Date Speparator
       formatedDateTime += '-';
-
-      // Day
       formatedDateTime += date.day;
-
-      // Time seperator
       formatedDateTime += 'T';
-
-      // Hours
       formatedDateTime += time.hours;
-
-      // Colon
       formatedDateTime += ':';
-
-      // Minutes
       formatedDateTime += time.minutes;
-
-      // Colon
       formatedDateTime += ':';
-
-      // Seconds
       formatedDateTime += time.seconds;
-
-      // Seconds Symbol
       formatedDateTime += 'Z';
 
+      // 2009-09-28T19:03:12Z
       console.log('Formated date time: ');
       console.log(formatedDateTime);
-
       return formatedDateTime;
+
     } else {
+
       return null;
     }
   }
+
 }
 

@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-17 15:08:57
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-19 13:38:22
+ * @Last Modified time: 2018-06-20 22:18:27
  */
 
 import { Injectable } from '@angular/core';
@@ -290,21 +290,38 @@ export class TwitchApiService {
 
 
   /**
-   * @name getUser
-   * @description Gets information about one or more specified Twitch users.
-   * Users are identified by optional user IDs and/or login name.
-   * If neither a user ID nor a login name is specified, the user is looked up by Bearer token.
+   * @name getUserByLogin
+   * @description Gets information about a specified Twitch users.
    * The response has a JSON payload with a data field containing an array of user-information elements.
-   * @param id string
    * @param login string
    */
-  getUser(id: string, login: string) {
-    const requestValidity = this.reqController.checkGetUser(id, login);
+  getUserByLogin(login: string) {
+    const requestValidity = this.reqController.checkTemp();
     if (requestValidity.valid) {
       // Create request
-      const queryURL = this.queryBuilder.queryGetUser(id, login);
+      const queryURL = this.queryBuilder.queryGetUserByLogin(login);
       const httpOptions = this.headerBuilder.createHeader();
-      return this.http.get<User>(queryURL, httpOptions);
+      return this.http.get<any>(queryURL, httpOptions);
+
+    } else {
+      // Throw error
+      return throwError(requestValidity.error);
+    }
+  }
+
+  /**
+   * @name getUserById
+   * @description Gets information about a specified Twitch users.
+   * The response has a JSON payload with a data field containing an array of user-information elements.
+   * @param id string
+   */
+  getUserById(id: string) {
+    const requestValidity = this.reqController.checkTemp();
+    if (requestValidity.valid) {
+      // Create request
+      const queryURL = this.queryBuilder.queryGetUserById(id);
+      const httpOptions = this.headerBuilder.createHeader();
+      return this.http.get<any>(queryURL, httpOptions);
 
     } else {
       // Throw error
