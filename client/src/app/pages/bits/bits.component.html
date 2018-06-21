@@ -123,9 +123,44 @@
       <h5>Response</h5>
       <div class="row">
         <div *ngFor="let entry of leaderboardEntries; let i = index">
-          <div class="col s4">
-            <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
-              <mz-card-title> {{ entry.rank }}. {{ getUserDisplayName(entry.user_id) }}</mz-card-title>
+          <div class="col s3">
+
+              <div
+                class="card entryCard hoverable">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src={{getUserProfileImageUrl(entry.user_id)}}>
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator white-text">
+                      <span class="new badge rankBadge" data-badge-caption="">{{entry.rank}}</span>
+                      {{getUserDisplayName(entry.user_id)}}
+                      <i class="material-icons right">more_vert</i></span>
+                      <div class=entryCardContent>
+                        <p>Rank: {{ entry.rank }}</p>
+                        <p>Score: {{ entry.score }}</p>
+                      </div>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title white-text">{{getUserDisplayName(entry.user_id)}}<i class="material-icons right">close</i></span>
+                    <div class=entryCardContent>
+                      <p>Rank: {{ entry.rank }}</p>
+                      <p>Score: {{ entry.score }}</p>
+
+                      <p>Display name: {{ getUserDisplayName(entry.user_id) }}</p>
+                      <p>User type: {{ getUserType(entry.user_id) }}</p>
+                      <p>Broadcaster type: {{ getUserBroadcasterType(entry.user_id) }}</p>
+                      <p>Description: {{ getUserDescription(entry.user_id) }}</p>
+                      <p>View count: {{ getUserViewCount(entry.user_id) }}</p>
+                    </div>
+                  </div>
+                </div>
+
+
+            <!-- <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
+              <mz-card-title>
+                  <span class="new badge rankBadge" data-badge-caption="">{{entry.rank}}</span>
+                {{getUserDisplayName(entry.user_id)}}
+              </mz-card-title>
               <mz-card-content>
                 <div class="row">
                   <img class="col s4" src={{getUserProfileImageUrl(entry.user_id)}}>
@@ -144,7 +179,13 @@
               <mz-card-action>
                 <a href="{{getUserChannelUrl(entry.user_id)}}">Channel</a>
               </mz-card-action>
-            </mz-card>
+            </mz-card> -->
+
+
+
+
+
+
           </div>
         </div>
       </div>
