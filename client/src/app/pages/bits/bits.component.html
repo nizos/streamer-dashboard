@@ -125,20 +125,24 @@
         <div *ngFor="let entry of leaderboardEntries; let i = index">
           <div class="col s4">
             <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
-              <mz-card-title> {{ entry.rank }}. {{ entry.user_id }}</mz-card-title>
+              <mz-card-title> {{ entry.rank }}. {{ getUserDisplayName(entry.user_id) }}</mz-card-title>
               <mz-card-content>
                 <div class="row">
-                  <!-- <img class="col s4" src={{getUserProfileImageUrl(entry.user_id)}}> -->
+                  <img class="col s4" src={{getUserProfileImageUrl(entry.user_id)}}>
                   <div class="col s8">
-                    <p>User ID: {{ entry.user_id }}</p>
-                    <p>Score: {{ entry.score }}</p>
                     <p>Rank: {{ entry.rank }}</p>
+                    <p>Score: {{ entry.score }}</p>
+
+                    <p>Display name: {{ getUserDisplayName(entry.user_id) }}</p>
+                    <p>User type: {{ getUserType(entry.user_id) }}</p>
+                    <p>Broadcaster type: {{ getUserBroadcasterType(entry.user_id) }}</p>
+                    <p>Description: {{ getUserDescription(entry.user_id) }}</p>
+                    <p>View count: {{ getUserViewCount(entry.user_id) }}</p>
                   </div>
                 </div>
               </mz-card-content>
               <mz-card-action>
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
+                <a href="{{getUserChannelUrl(entry.user_id)}}">Channel</a>
               </mz-card-action>
             </mz-card>
           </div>

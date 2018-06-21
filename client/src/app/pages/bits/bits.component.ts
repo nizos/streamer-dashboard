@@ -24,7 +24,7 @@ export class BitsComponent implements OnInit {
   public userId: string = null;
   public leaderboard: BitsLeaderboard;
   public leaderboardEntries: Entry[] = [];
-  public leaderboardUsers: User[] = [];
+  public leaderboardUsers = new Map();
 
   public datepickerOptions: Pickadate.DateOptions = {
     format: 'dddd, dd mmm, yyyy',
@@ -54,7 +54,6 @@ export class BitsComponent implements OnInit {
 
   ngOnInit() {
     this.leaderboardEntries = [ ];
-    this.leaderboardUsers = [ ];
   }
 
   // GET BIT LEADERBOARD
@@ -88,32 +87,92 @@ export class BitsComponent implements OnInit {
     for (let i = 0; i < this.leaderboard.getTotal(); i++) {
       this.twitchApi.getUserById(this.leaderboardEntries[i].user_id)
       .subscribe(user => {
-        const newUser = new User(user.data[0]);
-        this.leaderboardUsers.push(new User(
-          newUser.user_id,
-          newUser.login,
-          newUser.display_name,
-          newUser.type,
-          newUser.broadcaster_type,
-          newUser.description,
-          newUser.profile_image_url,
-          newUser.offline_image_url,
-          newUser.view_count
-        ));
+        const newUser = new User(
+          user.data[0].id,
+          user.data[0].login,
+          user.data[0].display_name,
+          user.data[0].type,
+          user.data[0].broadcaster_type,
+          user.data[0].description,
+          user.data[0].profile_image_url,
+          user.data[0].offline_image_url,
+          user.data[0].view_count
+        );
+        this.leaderboardUsers.set(newUser.user_id, newUser);
       });
     }
   }
 
-  getUserDisplayName(user_id: string) {
-    return this.leaderboardUsers.find(k => k.user_id === user_id).display_name;
+  getUserLogin(user_id: string) {
+    if (this.leaderboardUsers.has(user_id)) {
+      return this.leaderboardUsers.get(user_id).login;
+    } else {
+      return '';
+    }
   }
 
-  getUserProfileImageUrl(user_id: string) {
-    return this.leaderboardUsers.find(k => k.user_id === user_id).profile_image_url;
+  getUserDisplayName(user_id: string) {
+    if (this.leaderboardUsers.has(user_id)) {
+      return this.leaderboardUsers.get(user_id).display_name;
+    } else {
+      return '';
+    }
+  }
+
+  getUserType(user_id: string) {
+    if (this.leaderboardUsers.has(user_id)) {
+      return this.leaderboardUsers.get(user_id).type;
+    } else {
+      return '';
+    }
+  }
+
+  getUserBroadcasterType(user_id: string) {
+    if (this.leaderboardUsers.has(user_id)) {
+      return this.leaderboardUsers.get(user_id).broadcaster_type;
+    } else {
+      return '';
+    }
   }
 
   getUserDescription(user_id: string) {
-    return this.leaderboardUsers.find(k => k.user_id === user_id).description;
+    if (this.leaderboardUsers.has(user_id)) {
+      return this.leaderboardUsers.get(user_id).description;
+    } else {
+      return '';
+    }
+  }
+
+  getUserChannelUrl(user_id: string) {
+    if (this.leaderboardUsers.has(user_id)) {
+      return 'https://www.twitch.tv/' + this.leaderboardUsers.get(user_id).login;
+    } else {
+      return '';
+    }
+  }
+
+  getUserProfileImageUrl(user_id: string) {
+    if (this.leaderboardUsers.has(user_id)) {
+      return this.leaderboardUsers.get(user_id).profile_image_url;
+    } else {
+      return '';
+    }
+  }
+
+  getUserOfflineImageUrl(user_id: string) {
+    if (this.leaderboardUsers.has(user_id)) {
+      return this.leaderboardUsers.get(user_id).offline_image_url;
+    } else {
+      return '';
+    }
+  }
+
+  getUserViewCount(user_id: string) {
+    if (this.leaderboardUsers.has(user_id)) {
+      return this.leaderboardUsers.get(user_id).view_count;
+    } else {
+      return '';
+    }
   }
 
   // Format date
