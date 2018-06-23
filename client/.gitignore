@@ -50,6 +50,8 @@ Thumbs.db
 
 # dotenv environment variables file
 .env
+environment.dev.ts
+environment.prod.ts
 
 # Runtime data
 pids

@@ -7,7 +7,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { TwitchApiService } from '../../services/twitch-api/twitch-api.service';
-import { User } from '../../models/twitch/user.model';
+import { User } from '../../models/twitch/twitch-api/user.model';
 
 @Component({
     selector: 'app-users',

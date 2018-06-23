@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-18 11:23:43
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-20 23:40:05
+ * @Last Modified time: 2018-06-22 17:35:10
  */
 
 // Model for Leaderboard participant

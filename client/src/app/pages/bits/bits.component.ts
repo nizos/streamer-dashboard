@@ -7,8 +7,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { TwitchApiService } from '../../services/twitch-api/twitch-api.service';
-import { BitsLeaderboard, Entry, DateRange } from '../../models/twitch/bits-leaderboard.model';
-import { User } from '../../models/twitch/user.model';
+import { BitsLeaderboard, Entry, DateRange } from '../../models/twitch/twitch-api/bits-leaderboard.model';
+import { User } from '../../models/twitch/twitch-api/user.model';
 
 @Component({
   selector: 'app-bits',

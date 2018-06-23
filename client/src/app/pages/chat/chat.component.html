@@ -1,14 +1,22 @@
-<mz-card [hoverable]="true">
-  <mz-card-title>Chat</mz-card-title>
-  <mz-card-content class="grey darken-2 white-text">
-    <mz-tab [fixedTabWidth]="'true'" [onShow]="tabOnShow()">
-      <mz-tab-item [label]="'Tab 1'" class="tab-content">Tab 1 content</mz-tab-item>
-      <mz-tab-item [active]="'true'" [label]="'Tab 2'" class="tab-content">Tab 2 content</mz-tab-item>
-      <mz-tab-item [label]="'Tab 3'" class="tab-content">Tab 3 content</mz-tab-item>
-    </mz-tab>
-  </mz-card-content>
-  <mz-card-action>
-    <a href="#">This is a link</a>
-    <a href="#">This is a link</a>
-  </mz-card-action>
-</mz-card>
+<div class="card hoverable">
+
+  <div class="card-title blue white-text">Card Title</div>
+  <div class="card-content">
+
+    <div class="section previewSection">
+      <h5>Chat Preview</h5>
+      <div class="row">
+        <div class="col">
+          <div class="card-panel z-depth-0 light-green accent-4 chat-preview">
+            {{chatMessage}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section settingsSection">
+      <h5>Chat Settings</h5>
+    </div>
+
+  </div>
+</div>

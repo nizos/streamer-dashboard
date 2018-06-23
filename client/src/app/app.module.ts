@@ -25,6 +25,7 @@ import { AppRoutingModule } from './app.routing';
 
 // Services
 import { TwitchApiService } from './services/twitch-api/twitch-api.service';
+import { TwitchChatService } from './services/twitch-chat/twitch-chat.service';
 import { SocketService } from './services/socket/socket.service';
 import { ReqControllerService } from './services/twitch-api/helpers/req-controller.service';
 import { QueryBuilderService } from './services/twitch-api/helpers/query-builder.service';
@@ -178,6 +179,7 @@ import { MzMediaModule } from 'ngx-materialize';
     ReqControllerService,
     QueryBuilderService,
     HeaderBuilderService,
+    TwitchChatService,
     TwitchApiService,
     {
       provide: HTTP_INTERCEPTORS,

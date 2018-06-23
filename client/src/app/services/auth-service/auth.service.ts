@@ -8,12 +8,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MzToastService } from 'ngx-materialize';
+
+
 
 @Injectable()
 export class AuthService {
 
   private authUrl = 'http://localhost:3000/auth/twitch';
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private toastService: MzToastService) { }
 
   signIn(user) {
     return this.http.get<any>(this.authUrl, user);
@@ -26,6 +29,7 @@ export class AuthService {
   signOut() {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
+    this.toastService.show('You have been successfully signed out!', 4000, 'blue');
   }
 
   getToken() {

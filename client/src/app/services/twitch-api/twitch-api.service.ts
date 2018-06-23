@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-17 15:08:57
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-20 22:18:27
+ * @Last Modified time: 2018-06-22 15:02:04
  */
 
 import { Injectable } from '@angular/core';
@@ -16,19 +16,19 @@ import { QueryBuilderService } from './helpers/query-builder.service';
 import { HeaderBuilderService } from './helpers/header-builder.service';
 
 // Models
-import { BitsLeaderboard } from '../../models/twitch/bits-leaderboard.model';
-import { Clip } from '../../models/twitch/clip.model';
-import { CreatedClip } from '../../models/twitch/created-clip.model';
-import { EntitlementsGrant } from '../../models/twitch/entitlements-grant.model';
-import { ExtensionAnalytics } from '../../models/twitch/extensions-analytics.model';
-import { Game } from '../../models/twitch/game.model';
-import { GameAnalytics } from '../../models/twitch/game-analytics.model';
-import { TopGames } from '../../models/twitch/top-games.model';
-import { Stream } from '../../models/twitch/stream.model';
-import { StreamMetadata } from '../../models/twitch/stream-metadat.model';
-import { User } from '../../models/twitch/user.model';
-import { UserFollows } from '../../models/twitch/user-follows.model';
-import { Video } from '../../models/twitch/video.model';
+import { BitsLeaderboard } from '../../models/twitch/twitch-api/bits-leaderboard.model';
+import { Clip } from '../../models/twitch/twitch-api/clip.model';
+import { CreatedClip } from '../../models/twitch/twitch-api/created-clip.model';
+import { EntitlementsGrant } from '../../models/twitch/twitch-api/entitlements-grant.model';
+import { ExtensionAnalytics } from '../../models/twitch/twitch-api/extensions-analytics.model';
+import { Game } from '../../models/twitch/twitch-api/game.model';
+import { GameAnalytics } from '../../models/twitch/twitch-api/game-analytics.model';
+import { TopGames } from '../../models/twitch/twitch-api/top-games.model';
+import { Stream } from '../../models/twitch/twitch-api/stream.model';
+import { StreamMetadata } from '../../models/twitch/twitch-api/stream-metadat.model';
+import { User } from '../../models/twitch/twitch-api/user.model';
+import { UserFollows } from '../../models/twitch/twitch-api/user-follows.model';
+import { Video } from '../../models/twitch/twitch-api/video.model';
 
 
 @Injectable()
