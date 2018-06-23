@@ -1,0 +1,30 @@
+@badges=broadcaster/1,subscriber/0,premium/1;color=#00FF80;display-name=NIZOS;emotes=;id=ab0fdf26-2989-47c8-b3f0-86c9c163a834;mod=0;room-id=116069219;subscriber=1;tmi-sent-ts=1529758202345;turbo=0;user-id=116069219;user-type=:nizos!nizos@nizos.tmi.twitch.tv PRIVMSG #nizos :hi
+
+
+
+@badges=broadcaster/1,
+subscriber/0,
+premium/1;
+
+
+color=#00FF80;
+
+display-name=NIZOS;
+
+emotes=;
+
+id=ab0fdf26-2989-47c8-b3f0-86c9c163a834;
+
+mod=0;
+
+room-id=116069219;
+
+subscriber=1;
+
+tmi-sent-ts=1529758202345;
+
+turbo=0;
+
+user-id=116069219;
+
+user-type= :nizos!nizos@nizos.tmi.twitch.tv PRIVMSG #nizos :hi

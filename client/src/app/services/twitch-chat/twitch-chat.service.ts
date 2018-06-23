@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-22 15:02:01
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-23 14:44:23
+ * @Last Modified time: 2018-06-23 14:49:51
  */
 
 
@@ -53,7 +53,7 @@ export class TwitchChatService {
   }
 
   public onMessage(evt: any) {
-    // console.log('TwitchChatService -> onMessage -> evt.data: ', evt.data);
+    console.log('TwitchChatService -> onMessage -> evt.data: ', evt.data);
 
     const chatString = evt.data.trim();
 
@@ -78,80 +78,80 @@ export class TwitchChatService {
 
 
       // Bages
-      const badgesString = regBadgesString.exec(chatString).toString();
+      const badgesString = regBadgesString.exec(chatString)[1].toString();
       // console.log('badgesString: ' + badgesString);
 
       // Color
-      const userColorString = regUserColorString.exec(chatString).toString();
+      const userColorString = regUserColorString.exec(chatString)[1].toString();
       // userColorString = userColorString[1];
       // console.log('userColorString: ' + userColorString);
 
 
       // DisplayName
-      const displayName = regDisplayNameString.exec(chatString).toString();
+      const displayName = regDisplayNameString.exec(chatString)[1].toString();
       // displayName = displayName[1];
       // console.log('displayName: ' + displayName);
 
 
 
       // Emotes
-      const emotesString = regEmotesString.exec(chatString).toString();
+      const emotesString = regEmotesString.exec(chatString)[1].toString();
       // console.log('emotesString: ' + emotesString);
 
       // Message ID
-      const messageIdString = regMessageIdString.exec(chatString).toString();
+      const messageIdString = regMessageIdString.exec(chatString)[1].toString();
       // console.log('messageIdString: ' + messageIdString);
 
       // Mod
-      const modString = regModString.exec(chatString).toString();
+      const modString = regModString.exec(chatString)[1].toString();
       // modString = modString[1];
       // console.log('modString: ' + modString);
 
 
       // Room ID
-      const roomIdString = regRoomIdString.exec(chatString).toString();
+      const roomIdString = regRoomIdString.exec(chatString)[1].toString();
       // roomIdString = roomIdString[1];
       // console.log('roomIdString: ' + roomIdString);
 
 
       // Subscriber
-      const subscriberString = regSubscriberString.exec(chatString).toString();
+      const subscriberString = regSubscriberString.exec(chatString)[1].toString();
       // subscriberString = subscriberString[1];
       // console.log('subscriberString: ' + subscriberString);
 
 
       // Time stamp
-      const timeStampString = regTimestampString.exec(chatString).toString();
+      const timeStampString = regTimestampString.exec(chatString)[1].toString();
       // subscriberString = subscriberString[1];
       // console.log('timeStampString: ' + timeStampString);
 
 
       // Turbo
-      const turboString = regTurboString.exec(chatString).toString();
+      const turboString = regTurboString.exec(chatString)[1].toString();
       // turboString = turboString[1];
       // console.log('turboString: ' + turboString);
 
 
       // User ID
-      const userIdString = regUserIdString.exec(chatString).toString();
+      const userIdString = regUserIdString.exec(chatString)[1].toString();
       // userIdString = userIdString[1];
       // console.log('userIdString: ' + userIdString);
 
 
       // Type
-      const userTypeString = regUsertypeString.exec(chatString).toString();
+      const userTypeString = regUsertypeString.exec(chatString)[1].toString();
       // userTypeString = userTypeString[1];
       // console.log('userTypeString: ' + userTypeString);
 
 
 
       // Twitch Name
-      const twitchNameString = regTwNameString.exec(chatString).toString();
+      const twitchNameString = regTwNameString.exec(chatString)[1].toString();
       // twNameString = twNameString[1];
       // console.log('twitchNameString: ' + twitchNameString);
 
       // Message
-      const messageString = regMessageString.exec(chatString).toString();
+      const messageString = regMessageString.exec(chatString)[1].toString();
       // messageString = messageString[1];
       // console.log('messageString: ' + messageString);
 
