@@ -8,7 +8,24 @@
       <div class="row">
         <div class="col">
           <div class="card-panel z-depth-0 light-green accent-4 chat-preview">
-            {{chatMessage}}
+            <div *ngFor="let message of chatMessages">
+              <div class="section">
+                <div>Badges: {{message.badges}}</div>
+                <div>Color: {{message.color}}</div>
+                <div>Display name: {{message.display_name}}</div>
+                <div>Emotes: {{message.emotes}}</div>
+                <div>Message ID: {{message.message_id}}</div>
+                <div>Mod: {{message.mod}}</div>
+                <div>Room ID: {{message.room_id}}</div>
+                <div>Subscriber: {{message.subscriber}}</div>
+                <div>Timestamp: {{message.time_stamp}}</div>
+                <div>Turbo: {{message.turbo}}</div>
+                <div>User ID: {{message.user_id}}</div>
+                <div>Type: {{message.type}}</div>
+                <div>Twitch name: {{message.twitch_name}}</div>
+                <div>Message: {{message.message}}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

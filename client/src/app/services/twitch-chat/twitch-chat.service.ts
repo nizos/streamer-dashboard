@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-22 15:02:01
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-22 21:52:16
+ * @Last Modified time: 2018-06-23 14:44:23
  */
 
 
@@ -12,16 +12,16 @@ import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
 import { environment } from '../../../environments/environment.dev';
 import { BehaviorSubject } from 'rxjs';
+import { ChatService } from '../../models/twitch/twitch-chat/chat-service/chat-service.model';
 
 
 @Injectable()
 export class TwitchChatService {
 
-  public newMessage = '';
-  private message = new BehaviorSubject<string>(this.newMessage);
+  private newMessage: ChatService = new ChatService();
+  private message = new BehaviorSubject<ChatService>(this.newMessage);
   cast = this.message.asObservable();
 
-  private chatMessages: string[] = [];
   private websocket: WebSocket;
   private username = environment.TWITCH_CHAT_CONFIG.username;
   private oauth = environment.TWITCH_CHAT_CONFIG.oauth;
@@ -41,7 +41,7 @@ export class TwitchChatService {
   }
 
   public onOpen(evt: any) {
-    console.log('TwitchChatService -> onOpen -> evt: ', evt);
+    // console.log('TwitchChatService -> onOpen -> evt: ', evt);
     this.doSend('PASS ' + this.oauth);
     this.doSend('NICK ' + this.username);
     this.doSend('JOIN #' + this.channel);
@@ -49,11 +49,11 @@ export class TwitchChatService {
   }
 
   public onClose(evt: any) {
-    console.log('TwitchChatService -> onClose -> evt: ', evt);
+    // console.log('TwitchChatService -> onClose -> evt: ', evt);
   }
 
   public onMessage(evt: any) {
-    console.log('TwitchChatService -> onMessage -> evt.data: ', evt.data);
+    // console.log('TwitchChatService -> onMessage -> evt.data: ', evt.data);
 
     const chatString = evt.data.trim();
 
@@ -76,95 +76,92 @@ export class TwitchChatService {
     // Fill Message Data
     if (chatString.match(regDisplayNameString) && chatString.match(regMessageString)) {
 
-      // DisplayName
-      let displayName = regDisplayNameString.exec(chatString).toString();
-      displayName = displayName[1];
-      // If No DisplayName Get Twitch Name
-      if (displayName.length <= 0) {
-          const twitchName = regTwNameString.exec(chatString).toString();
-          // twitchName = twitchName[1];
-          // displayName = twitchName;
-      }
-      // console.log('displayName: ' + displayName);
 
-      // User Color
+      // Bages
+      const badgesString = regBadgesString.exec(chatString).toString();
+      // console.log('badgesString: ' + badgesString);
+
+      // Color
       const userColorString = regUserColorString.exec(chatString).toString();
       // userColorString = userColorString[1];
       // console.log('userColorString: ' + userColorString);
 
-      // Chat Message
-      const messageString = regMessageString.exec(chatString).toString();
-      // messageString = messageString[1];
-      // console.log('messageString: ' + messageString);
 
-      // Is User A Mod
+      // DisplayName
+      const displayName = regDisplayNameString.exec(chatString).toString();
+      // displayName = displayName[1];
+      // console.log('displayName: ' + displayName);
+
+
+
+      // Emotes
+      const emotesString = regEmotesString.exec(chatString).toString();
+      // console.log('emotesString: ' + emotesString);
+
+      // Message ID
+      const messageIdString = regMessageIdString.exec(chatString).toString();
+      // console.log('messageIdString: ' + messageIdString);
+
+      // Mod
       const modString = regModString.exec(chatString).toString();
       // modString = modString[1];
       // console.log('modString: ' + modString);
+
 
       // Room ID
       const roomIdString = regRoomIdString.exec(chatString).toString();
       // roomIdString = roomIdString[1];
       // console.log('roomIdString: ' + roomIdString);
 
-      // Is User A Subscriber
+
+      // Subscriber
       const subscriberString = regSubscriberString.exec(chatString).toString();
       // subscriberString = subscriberString[1];
       // console.log('subscriberString: ' + subscriberString);
 
-      // Is User Using Turbo
-      let turboString = regTurboString.exec(chatString).toString();
-      turboString = turboString[1];
+
+      // Time stamp
+      const timeStampString = regTimestampString.exec(chatString).toString();
+      // subscriberString = subscriberString[1];
+      // console.log('timeStampString: ' + timeStampString);
+
+
+      // Turbo
+      const turboString = regTurboString.exec(chatString).toString();
+      // turboString = turboString[1];
       // console.log('turboString: ' + turboString);
+
 
       // User ID
       const userIdString = regUserIdString.exec(chatString).toString();
       // userIdString = userIdString[1];
       // console.log('userIdString: ' + userIdString);
 
-      // User Type
-      // mod, global_mod, admin, staff
+
+      // Type
       const userTypeString = regUsertypeString.exec(chatString).toString();
       // userTypeString = userTypeString[1];
       // console.log('userTypeString: ' + userTypeString);
 
+
+
       // Twitch Name
-      const twNameString = regTwNameString.exec(chatString).toString();
+      const twitchNameString = regTwNameString.exec(chatString).toString();
       // twNameString = twNameString[1];
-      // console.log('twNameString: ' + twNameString);
+      // console.log('twitchNameString: ' + twitchNameString);
 
+      // Message
+      const messageString = regMessageString.exec(chatString).toString();
+      // messageString = messageString[1];
+      // console.log('messageString: ' + messageString);
 
-      // Timestamp
-      const timestamp = regTimestampString.exec(chatString);
-      // timestamp = this.htmlEncode(timestamp[1]);
-      const myDate = new Date(+timestamp * 1);
-      const myDateGMT = myDate.toUTCString() + '<br>' + myDate.toLocaleString();
-      const hours = myDate.getHours();
-      let minutes;
-
-      if (myDate.getMinutes() < 10) {
-        minutes = '0' + myDate.getMinutes();
-      } else {
-        minutes = myDate.getMinutes();
-      }
-
-
-      const seconds = myDate.getSeconds();
-      const timestampHHMM = hours + ':' + minutes;
-      const timestampHHMMSS = hours + ':' + minutes + ':' + seconds;
-      // console.log("timestampHHMM: " + timestampHHMM);
-      // console.log("timestampHHMMSS: " + timestampHHMMSS);
-
-
-      // message = this.htmlEncode(message);
 
       // SEND DATA
-      this.message.next(
-        `<span class="timestamp">${timestampHHMM} </span>`
-      + `<span class="name" style="color:${userColorString}">${displayName}</span>`
-      + `<span class="colon">: </span>`
-      + `<span class="message">${messageString}</span>`);
+      const chatService = new ChatService(badgesString, userColorString, displayName, emotesString, messageIdString, modString, roomIdString, subscriberString, timeStampString, turboString, userIdString, userTypeString, twitchNameString, messageString);
+      this.message.next(chatService);
 
+
+      // KEEP ALIVE
       if (evt.data.trim() === 'PING :tmi.twitch.tv') {
           this.doSend('PONG :tmi.twitch.tv');
       }
@@ -182,16 +179,6 @@ export class TwitchChatService {
   // public htmlEncode(arg0: any): any {
   //   throw new Error('Method not implemented.');
   // }
-
-  public writeToScreen(message: string) {
-    console.log('TwitchCHatService -> writeToScreen -> message: ', message);
-  }
-
-  public getMessages(): Observable<string> {
-    return new Observable((observer) => {
-      observer.next(this.newMessage);
-    });
-  }
 
   // public newMessage(message) {
   //   console.log('TwitchCHatService -> newMessage -> message: ', message);

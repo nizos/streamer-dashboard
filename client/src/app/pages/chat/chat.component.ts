@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-13 15:08:19
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-22 17:31:58
+ * @Last Modified time: 2018-06-23 14:40:45
  */
 
 import { Component, OnInit } from '@angular/core';
@@ -10,6 +10,7 @@ import { ChatMessage } from '../../models/twitch/twitch-chat/chat-message.model'
 import { ChatUser } from '../../models/twitch/twitch-chat/chat-user.model';
 import { MessageContent } from '../../models/twitch/twitch-chat/message-content.model';
 import { TwitchChatService } from '../../services/twitch-chat/twitch-chat.service';
+import { ChatService } from '../../models/twitch/twitch-chat/chat-service/chat-service.model';
 
 
 @Component({
@@ -19,12 +20,8 @@ import { TwitchChatService } from '../../services/twitch-chat/twitch-chat.servic
 })
 export class ChatComponent implements OnInit {
 
-  public chatPreview;
-  public chatUser: ChatUser;
-  public chatMessage: string;
-  public chatMessages: string[] = [];
-  public messageContent: MessageContent;
-  public ioConnection: any;
+  public chatMessage: ChatService;
+  public chatMessages: ChatService[] = [];
 
 
   // CONSTRUCTOR
@@ -32,8 +29,28 @@ export class ChatComponent implements OnInit {
 
   // INITIALIZE
   ngOnInit() {
-    this.chatPreview = '';
-    this.chatService.cast.subscribe(message => this.chatMessage = message);
+    this.chatMessage = new ChatService();
+    this.chatMessages.push(this.chatMessage);
+    this.chatService.cast.subscribe(message => {
+      console.log('​ChatComponent -> ngOnInit -> message', message);
+      const newMessage = new ChatService(
+        message.badges,
+        message.color,
+        message.display_name,
+        message.emotes,
+        message.message_id,
+        message.mod,
+        message.room_id,
+        message.subscriber,
+        message.time_stamp,
+        message.turbo,
+        message.user_id,
+        message.type,
+        message.twitch_name,
+        message.message
+      );
+      this.chatMessages.push(newMessage);
+    });
   }
 
 
