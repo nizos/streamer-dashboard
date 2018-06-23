@@ -6,12 +6,9 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { ChatMessage } from '../../models/twitch/twitch-chat/chat-message.model';
-import { ChatUser } from '../../models/twitch/twitch-chat/chat-user.model';
-import { MessageContent } from '../../models/twitch/twitch-chat/message-content.model';
 import { TwitchChatService } from '../../services/twitch-chat/twitch-chat.service';
 import { ChatService } from '../../models/twitch/twitch-chat/chat-service/chat-service.model';
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-chat',
@@ -21,7 +18,13 @@ import { ChatService } from '../../models/twitch/twitch-chat/chat-service/chat-s
 export class ChatComponent implements OnInit {
 
   public chatMessage: ChatService;
-  public chatMessages: ChatService[] = [];
+  public chatMessagesContainer: ChatService[] = [];
+  public timeFormat = 'dddd, MMMM Do YYYY, h:mm:ss a';
+
+  public preTimeStamp: string;
+  public postTimeStamp: string;
+  public timeStampSeparator: string;
+  public displayNameSeparator: string;
 
 
   // CONSTRUCTOR
@@ -30,9 +33,20 @@ export class ChatComponent implements OnInit {
   // INITIALIZE
   ngOnInit() {
     this.chatMessage = new ChatService();
-    this.chatMessages.push(this.chatMessage);
+    this.chatMessagesContainer = [];
+    this.changeTimeFormat('kk:mm');
+    this.preTimeStamp = '[';
+    this.postTimeStamp = ']';
+    this.timeStampSeparator = '-';
+    this.displayNameSeparator = ':';
+
+
     this.chatService.cast.subscribe(message => {
       console.log('​ChatComponent -> ngOnInit -> message', message);
+      // let now = moment().format('LLLL');
+      const formatedTime = moment(+message.time_stamp).format(this.timeFormat);
+
+
       const newMessage = new ChatService(
         message.badges,
         message.color,
@@ -42,15 +56,19 @@ export class ChatComponent implements OnInit {
         message.mod,
         message.room_id,
         message.subscriber,
-        message.time_stamp,
+        formatedTime,
         message.turbo,
         message.user_id,
         message.type,
         message.twitch_name,
         message.message
       );
-      this.chatMessages.push(newMessage);
+      this.chatMessagesContainer.push(newMessage);
     });
+  }
+
+  changeTimeFormat(newTimeFormat: string) {
+    this.timeFormat = newTimeFormat;
   }
 
 
