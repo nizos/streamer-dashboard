@@ -1,142 +1,163 @@
-<mz-card [hoverable]="true">
-  <mz-card-title>Users</mz-card-title>
-  <mz-card-content class="grey darken-2 white-text">
-    <mz-tab [fixedTabWidth]="'true'" [onShow]="tabOnShow()">
+<div class="row">
+  <div class="col s12 m12 users-card-container">
+    <div class="card users-card white">
+      <div class="card-content users-card-content white black-text">
+        <span class="card-title users-card-title blue-grey white-text">Users</span>
 
-      <!-- GET USER BY NAME -->
-      <mz-tab-item [active]="'true'" [label]="'Get user by name'" class="tab-content">
-
-        <!-- REQUEST SECTION -->
-        <div class="section">
-          <h5>Request</h5>
-          <form novalidate>
-            <mz-input-container class="row" id="user-name-input-container">
-              <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
-
-              <input mz-input
-              class="form-control"
-              id="username-input-field"
-
-              #login
-
-              placeholder="User Name"
-              length="50"
-              type="search">
-
-            </mz-input-container>
-
-            <button mz-button
-            type="button"
-            (click)="clearUsers()"
-            (click)="login.value=''">Clear
-            </button>
-
-            <button mz-button
-            type="submit"
-            (click)="getUserByLogin(login.value)"
-            (click)="login.value=''">Submit
-            </button>
-
-          </form>
+        <div class="row">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s3"><a href="#test1">Test 1</a></li>
+              <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
+              <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
+              <li class="tab col s3"><a href="#test4">Test 4</a></li>
+            </ul>
+          </div>
+          <div id="test1" class="col s12">Test 1</div>
+          <div id="test2" class="col s12">Test 2</div>
+          <div id="test3" class="col s12">Test 3</div>
+          <div id="test4" class="col s12">Test 4</div>
         </div>
 
-        <!-- RESPONSE SECTION -->
-        <div class="section">
-          <h5>Response</h5>
-          <div class="row">
-            <div *ngFor="let user of users$">
-              <div class="col s4">
-                <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
-                  <mz-card-title>{{ user.display_name }}</mz-card-title>
-                  <mz-card-content>
-                    <div class="row">
-                      <img class="col s4" src={{user.profile_image_url}}>
-                      <div class="col s8">
-                        <p>User id: {{ user.user_id }}</p>
-                        <p>User description: {{ user.description }}</p>
-                        <p>Broadcaster type: {{ user.broadcaster_type }}</p>
-                        <p>Channel view count: {{ user.view_count }}</p>
-                      </div>
-                    </div>
-                  </mz-card-content>
-                  <mz-card-action>
-                    <a href="#">This is a link</a>
-                    <a href="#">This is a link</a>
-                  </mz-card-action>
-                </mz-card>
+
+        <mz-tab [fixedTabWidth]="'true'" [onShow]="tabOnShow()">
+
+          <!-- GET USER BY NAME -->
+          <mz-tab-item [active]="'true'" [label]="'Get user by name'" class="tab-content">
+
+            <!-- REQUEST SECTION -->
+            <div class="section users-section">
+              <h5>Request</h5>
+              <form novalidate>
+                <mz-input-container class="row" id="user-name-input-container">
+                  <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
+
+                  <input mz-input
+                  class="form-control"
+                  id="username-input-field"
+
+                  #login
+
+                  placeholder="User Name"
+                  length="50"
+                  type="search">
+
+                </mz-input-container>
+
+                <button mz-button
+                type="button"
+                (click)="clearUsers()"
+                (click)="login.value=''">Clear
+                </button>
+
+                <button mz-button
+                type="submit"
+                (click)="getUserByLogin(login.value)"
+                (click)="login.value=''">Submit
+                </button>
+
+              </form>
+            </div>
+
+            <!-- RESPONSE SECTION -->
+            <div class="section users-section">
+              <h5>Response</h5>
+              <div class="row">
+                <div *ngFor="let user of users$">
+                  <div class="col s4">
+                    <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
+                      <mz-card-title>{{ user.display_name }}</mz-card-title>
+                      <mz-card-content>
+                        <div class="row">
+                          <img class="col s4" src={{user.profile_image_url}}>
+                          <div class="col s8">
+                            <p>User id: {{ user.user_id }}</p>
+                            <p>User description: {{ user.description }}</p>
+                            <p>Broadcaster type: {{ user.broadcaster_type }}</p>
+                            <p>Channel view count: {{ user.view_count }}</p>
+                          </div>
+                        </div>
+                      </mz-card-content>
+                      <mz-card-action>
+                        <a href="#">This is a link</a>
+                        <a href="#">This is a link</a>
+                      </mz-card-action>
+                    </mz-card>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </mz-tab-item>
+          </mz-tab-item>
 
 
-      <!-- GET USER BY ID -->
-      <mz-tab-item [label]="'Get user by ID'" class="tab-content">
+          <!-- GET USER BY ID -->
+          <mz-tab-item [label]="'Get user by ID'" class="tab-content">
 
-        <!-- REQUEST SECTION -->
-        <div class="section">
-          <h5>Request</h5>
-          <form novalidate>
-            <mz-input-container class="row" id="user-id-input-container">
-              <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
+            <!-- REQUEST SECTION -->
+            <div class="section  users-section">
+              <h5>Request</h5>
+              <form novalidate>
+                <mz-input-container class="row" id="user-id-input-container">
+                  <i mz-icon-mdi mz-input-prefix [icon]="'account-search'"></i>
 
-              <input mz-input
-              class="form-control"
-              id="user-id-input-field"
+                  <input mz-input
+                  class="form-control"
+                  id="user-id-input-field"
 
-              #id
+                  #id
 
-              placeholder="User ID"
-              length="20"
-              type="search">
+                  placeholder="User ID"
+                  length="20"
+                  type="search">
 
-            </mz-input-container>
+                </mz-input-container>
 
-            <button mz-button
-            type="button"
-            (click)="clearUsers()"
-            (click)="id.value=''">Clear
-            </button>
+                <button mz-button
+                type="button"
+                (click)="clearUsers()"
+                (click)="id.value=''">Clear
+                </button>
 
-            <button mz-button
-            type="submit"
-            (click)="getUserById(id.value)"
-            (click)="id.value=''">Submit
-            </button>
+                <button mz-button
+                type="submit"
+                (click)="getUserById(id.value)"
+                (click)="id.value=''">Submit
+                </button>
 
-          </form>
-        </div>
+              </form>
+            </div>
 
-        <!-- RESPONSE SECTION -->
-        <div class="section">
-          <h5>Response</h5>
-          <div class="row">
-            <div *ngFor="let user of users$">
-              <div class="col s4">
-                <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
-                  <mz-card-title>{{ user.display_name }}</mz-card-title>
-                  <mz-card-content>
-                    <div class="row">
-                      <img class="col s4" src={{user.profile_image_url}}>
-                      <div class="col s8">
-                        <p>User id: {{ user.user_id }}</p>
-                        <p>User description: {{ user.description }}</p>
-                        <p>Broadcaster type: {{ user.broadcaster_type }}</p>
-                        <p>Channel view count: {{ user.view_count }}</p>
-                      </div>
-                    </div>
-                  </mz-card-content>
-                  <mz-card-action>
-                    <a href="#">This is a link</a>
-                    <a href="#">This is a link</a>
-                  </mz-card-action>
-                </mz-card>
+            <!-- RESPONSE SECTION -->
+            <div class="section users-section">
+              <h5>Response</h5>
+              <div class="row">
+                <div *ngFor="let user of users$">
+                  <div class="col s4">
+                    <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
+                      <mz-card-title>{{ user.display_name }}</mz-card-title>
+                      <mz-card-content>
+                        <div class="row">
+                          <img class="col s4" src={{user.profile_image_url}}>
+                          <div class="col s8">
+                            <p>User id: {{ user.user_id }}</p>
+                            <p>User description: {{ user.description }}</p>
+                            <p>Broadcaster type: {{ user.broadcaster_type }}</p>
+                            <p>Channel view count: {{ user.view_count }}</p>
+                          </div>
+                        </div>
+                      </mz-card-content>
+                      <mz-card-action>
+                        <a href="#">This is a link</a>
+                        <a href="#">This is a link</a>
+                      </mz-card-action>
+                    </mz-card>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </mz-tab-item>
-    </mz-tab>
-  </mz-card-content>
-</mz-card>
+          </mz-tab-item>
+        </mz-tab>
+      </div>
+    </div>
+  </div>
+</div>

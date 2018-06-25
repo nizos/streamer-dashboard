@@ -9,6 +9,7 @@ import * as express from 'express';
 import * as passport from 'passport';
 import * as OAuth2Strategy from 'passport-oauth2';
 import * as request from 'request';
+import { Request, Response, Router } from 'express';
 import User from '../schemas/User';
 import { io } from '../index';
 
@@ -92,6 +93,32 @@ class AuthRouter {
     this.routes();
   }
 
+  // Auth Success
+  public success(req: Request, res: Response): void {
+  console.log('​AuthRouter -> success');
+    res.status(200).send(`!<!DOCTYPE html>
+    <html>
+    <body>
+    <script>
+       window.opener.postMessage('AUTHCOMPLETE', '*');
+    </script>
+    </body>
+    </html>`);
+  }
+
+  // Auth Error
+  public error(req: Request, res: Response): void {
+  console.log('​AuthRouter -> error');
+    res.status(500).send(`!<!DOCTYPE html>
+    <html>
+    <body>
+    <script>
+    window.opener.postMessage('AUTHERROR', '*');
+    </script>
+    </body>
+    </html>`);
+  }
+
   // Set up routes
   public routes() {
 
@@ -100,9 +127,12 @@ class AuthRouter {
     }));
 
     this.router.get('/callback', passport.authenticate('twitch', {
-      successRedirect: 'http://localhost:4200/auth-success',
-      failureRedirect: 'http://localhost:4200/auth-error'
+      successRedirect: '/auth/twitch/success',
+      failureRedirect: '/auth/twitch/error'
     }));
+
+    this.router.get('/success', this.success);
+    this.router.get('/error', this.error);
   }
 }
 

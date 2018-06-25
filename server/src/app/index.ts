@@ -17,6 +17,7 @@ import * as logger from 'morgan';
 import * as helmet from 'helmet';
 import * as cors from 'cors';
 import * as http from 'http';
+import * as path from 'path';
 import UsersRouter from './routes/UsersRouter';
 import AuthRouter from './routes/AuthRouter';
 
@@ -44,7 +45,6 @@ const router: express.Router = express.Router();
 app.use('/', router);
 app.use('/api/v1/users', UsersRouter);
 app.use('/auth/twitch', AuthRouter);
-
 
 // Database
 const database = mongoose;

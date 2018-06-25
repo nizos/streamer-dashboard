@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-02 18:57:13
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-25 18:14:10
+ * @Last Modified time: 2018-06-25 18:48:41
  */
 
 import { Component, OnInit } from '@angular/core';
@@ -23,6 +23,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit () {
+    $(document).ready(function() {
+      $('.tabs').tabs();
+    });
   }
 
   private initIoConnection(): void {

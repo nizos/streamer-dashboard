@@ -1,18 +1,23 @@
 /*
  * @Author: Nizars
  * @Date: 2018-05-26 13:05:40
- * @Last Modified by:   Nizars
- * @Last Modified time: 2018-05-26 13:05:40
+ * @Last Modified by: Nizars
+ * @Last Modified time: 2018-06-25 18:35:39
  */
 
-div .row {
-  margin: 0px !important;
+
+.users-card-content {
+  padding: 0px 0px 0px 0px !important;
 }
 
-div .row .img {
-  padding-left: 0px !important;
+.users-card-title {
+  padding: 24px 24px 24px 24px !important;
 }
 
-.row .col {
-  padding: 0px 20px 0px 0px !important;
+.users-section {
+  padding: 24px 24px 24px 24px !important;
+}
+
+.users-card-container {
+  padding: 0px 0px 0px 0px !important;
 }

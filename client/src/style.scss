@@ -2,19 +2,9 @@
  * @Author: Nizars
  * @Date: 2018-06-15 10:33:07
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-18 14:38:35
+ * @Last Modified time: 2018-06-25 18:24:31
  */
 
-// $roboto-font-path: "~materialize-css/dist/fonts/roboto/";
-// @import "~materialize-css/dist/css/materialize.min.css";
-// @import "~@mdi/font/css/materialdesignicons.min.css";
-
-// OVERRIDES
-
-// Input field
-// mz-input {
-//   color: #ffffff !important;
-// }
 
 /// NAVBAR
 nav {
@@ -48,66 +38,48 @@ ul#nav-mobile.right {
 }
 
 
-
-/// CARDS
-// .card-content {
-//   padding: 0px !important;
-
-// }
-
-// .card-title {
+// /// TABS
+// .tab-content {
+//   color: #343A40;
 //   padding: 24px;
-//   margin: 0px !important;
-//   color: #ffffff;
-//   background-color: #2196f3;
+// }
+
+// .tabs .indicator {
+//   position: absolute;
+//   bottom: 0;
+//   height: 2px;
+//   background-color: #13a0ff !important;
+//   will-change: left, right;
+// }
+
+// .tabs .tab a{
+//   background-color: #e3f2fd !important;
+//   color: #2196f3 !important;
+// }
+//  /*when hover*/
+//  .tabs .tab a:hover{
+//   background-color: #e3f2fd !important;
+//   color: #2196f3 !important;
+// }
+// /*when active*/
+// .tabs .tab a.active{
+//   background-color: #e3f2fd !important;
+//   color: #2196f3 !important;
 // }
 
 
-/// TABS
-.tab-content {
-  color: #343A40;
-  padding: 24px;
-}
+// // Parallax
+// .parallax-container .parallax {
+//   z-index: 2 !important;
+// }
 
-
-
-.tabs .indicator {
-  position: absolute;
-  bottom: 0;
-  height: 2px;
-  background-color: #13a0ff !important;
-  will-change: left, right;
-}
-
-.tabs .tab a{
-  background-color: #e3f2fd !important;
-  color: #2196f3 !important;
-}
- /*when hover*/
- .tabs .tab a:hover{
-  background-color: #e3f2fd !important;
-  color: #2196f3 !important;
-}
-/*when active*/
-.tabs .tab a.active{
-  background-color: #e3f2fd !important;
-  color: #2196f3 !important;
-}
-
-
-// Parallax
-.parallax-container .parallax {
-  z-index: 2 !important;
-}
-
-.parallax img {
-  width: 100% !important;
-  // max-width: 800px;
-  // max-height: 600px;
-}
+// .parallax img {
+//   width: 100% !important;
+//   // max-width: 800px;
+//   // max-height: 600px;
+// }
 
 // STYLE
-
 body {
   display: flex;
   min-height: 100vh;
@@ -115,10 +87,6 @@ body {
   margin: 0;
   background-color: rgb(243, 243, 243);
 }
-
-// main {
-//   flex: 1 0 auto;
-// }
 
 #loading-area {
   width:99px;

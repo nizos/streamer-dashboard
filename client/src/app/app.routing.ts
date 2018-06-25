@@ -30,9 +30,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './services/auth-guard/auth.guard';
 import { BitsComponent } from './pages/bits/bits.component';
 
-// Auth
-import { AuthSuccessComponent } from './services/auth-service/success/auth-success.component';
-import { AuthFailureComponent } from './services/auth-service/failure/auth-failure.component';
 
 const routes: Routes = [
   {
@@ -103,14 +100,6 @@ const routes: Routes = [
     path: 'settings',
     component: SettingsComponent,
     canActivate: [AuthGuard]
-  },
-  {
-    path: 'auth-success',
-    component: AuthSuccessComponent
-  },
-  {
-    path: 'auth-failure',
-    component: AuthFailureComponent
   },
   {
     path: 'support',
