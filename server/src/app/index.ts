@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-06 22:53:09
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-08 20:08:01
+ * @Last Modified time: 2018-06-25 00:43:29
  */
 
 
@@ -32,7 +32,7 @@ app.use(compression());
 app.use(helmet());
 app.use(cors());
 app.use((req: any, res: any, next: any) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials');
   res.header('Access-Control-Allow-Credentials', 'true');

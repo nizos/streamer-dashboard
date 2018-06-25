@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-05-27 07:19:05
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-20 23:46:48
+ * @Last Modified time: 2018-06-25 18:11:42
  */
 
 // Angular
@@ -30,10 +30,13 @@ import { SocketService } from './services/socket/socket.service';
 import { ReqControllerService } from './services/twitch-api/helpers/req-controller.service';
 import { QueryBuilderService } from './services/twitch-api/helpers/query-builder.service';
 import { HeaderBuilderService } from './services/twitch-api/helpers/header-builder.service';
+import { AlertService } from './services/alert/alert.service';
 
 // Auth
 import { AuthGuard } from './services/auth-guard/auth.guard';
 import { AuthService } from './services/auth-service/auth.service';
+import { AuthSuccessComponent } from './services/auth-service/success/auth-success.component';
+import { AuthFailureComponent } from './services/auth-service/failure/auth-failure.component';
 import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
 
 // COMPONENTS
@@ -118,7 +121,11 @@ import { MzMediaModule } from 'ngx-materialize';
     SigninComponent,
     UsersComponent,
     VideosComponent,
-    BitsComponent
+    BitsComponent,
+
+    // Auth
+    AuthSuccessComponent,
+    AuthFailureComponent
   ],
   imports: [
 
@@ -173,6 +180,7 @@ import { MzMediaModule } from 'ngx-materialize';
     MzMediaModule
   ],
   providers: [
+    AlertService,
     AuthService,
     AuthGuard,
     SocketService,

@@ -2,7 +2,7 @@
  * @Author: Nizars
  * @Date: 2018-06-12 02:25:41
  * @Last Modified by: Nizars
- * @Last Modified time: 2018-06-18 23:14:48
+ * @Last Modified time: 2018-06-25 18:16:25
  */
 
 import { NgModule } from '@angular/core';
@@ -13,7 +13,6 @@ import { Routes, RouterModule } from '@angular/router';
 // Components
 import { SigninComponent } from './pages/signin/signin.component';
 import { UsersComponent } from './pages/users/users.component';
-import { AppComponent } from './app.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ChannelsComponent } from './pages/channels/channels.component';
 import { StreamsComponent } from './pages/streams/streams.component';
@@ -30,6 +29,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './services/auth-guard/auth.guard';
 import { BitsComponent } from './pages/bits/bits.component';
+
+// Auth
+import { AuthSuccessComponent } from './services/auth-service/success/auth-success.component';
+import { AuthFailureComponent } from './services/auth-service/failure/auth-failure.component';
 
 const routes: Routes = [
   {
@@ -100,6 +103,14 @@ const routes: Routes = [
     path: 'settings',
     component: SettingsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'auth-success',
+    component: AuthSuccessComponent
+  },
+  {
+    path: 'auth-failure',
+    component: AuthFailureComponent
   },
   {
     path: 'support',
