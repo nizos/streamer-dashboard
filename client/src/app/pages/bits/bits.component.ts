@@ -193,7 +193,7 @@ export class BitsComponent implements OnInit {
           view_count
         );
 
-        this.leaderboardUsers.set(newUser.user_id, newUser);
+        this.leaderboardUsers.set(newUser.id, newUser);
 
       });
     }

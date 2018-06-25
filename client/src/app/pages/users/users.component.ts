@@ -38,7 +38,7 @@ export class UsersComponent implements OnInit {
     this.twitchApi.getUserByLogin(login)
     .subscribe(user => {
       console.log('​UsersComponent -> getUserByLogin -> user', user.data[0]);
-      this.users$.push(new User(user.data[0]));
+      this.users$.push(new User().fromData(user.data[0]));
       console.log('​UsersComponent -> getUserByLogin -> this.users$', this.users$);
     });
   }

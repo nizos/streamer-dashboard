@@ -121,8 +121,8 @@
                   <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator" src={{getUserProfileImageUrl(entry.user_id)}}>
                   </div>
-                  <div class="card-content">
-                    <span class="card-title activator white-text">
+                  <div class="card-content bits-user-card-content">
+                    <span class="card-title bits-user-card-title activator blue white-text">
                       <span class="new badge rankBadge" data-badge-caption="">{{entry.rank}}</span>
                       {{getUserDisplayName(entry.user_id)}}
                       <i class="material-icons right">more_vert</i>
@@ -133,8 +133,10 @@
                     </div>
                   </div>
 
-                  <div class="card-reveal">
-                    <span class="card-title white-text">{{getUserDisplayName(entry.user_id)}}
+                  <div class="card-reveal bits-card-reveal">
+                    <span class="card-title bits-user-card-title blue white-text">
+                      <span class="new badge rankBadge" data-badge-caption="">{{entry.rank}}</span>
+                      {{getUserDisplayName(entry.user_id)}}
                       <i class="material-icons right">close</i>
                     </span>
                     <div class=entryCardContent>
