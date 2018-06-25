@@ -1,132 +1,123 @@
-<mz-card [hoverable]="true">
-  <mz-card-title>Bits</mz-card-title>
-  <mz-card-content class="grey darken-2">
+<div class="row">
+  <div class="col s12 m12 bits-card-container">
+    <div class="card bits-card white">
+      <div class="card-content bits-card-content white black-text">
+        <span class="card-title bits-card-title blue-grey white-text">Bits</span>
 
-    <!-- REQUEST SECTION -->
-    <div class="section">
-      <h5>Request</h5>
-      <form novalidate>
-        <mz-input-container class="row" id="bits-leaderboard-form-container">
+        <!-- REQUEST SECTION -->
+        <div class="section bits-section">
+          <h5>Request</h5>
+          <form novalidate>
+            <mz-input-container class="row" id="bits-leaderboard-form-container">
 
-
-
-          <!-- RESULTS COUNT -->
-          <i mz-icon-mdi mz-input-prefix
-          id="input-prefix-icon"
-          [icon]="'format-list-numbers'"></i>
-
-          <input mz-input
-          class="form-control"
-          id="count-input-field"
-          [label]="'Number of results'"
-          [(ngModel)]="resultsToReturn"
-          name="count"
-
-          placeholder="Number of results to return"
-          length="3"
-          type="number">
-
-
-          <!-- DATE PICKER -->
-          <mz-datepicker-container>
+              <!-- RESULTS COUNT -->
               <i mz-icon-mdi mz-input-prefix
               id="input-prefix-icon"
-              [icon]="'calendar'"></i>
+              [icon]="'format-list-numbers'"></i>
 
-              <input mz-datepicker
-                [label]="'Starting date'"
-                [options]="datepickerOptions"
-                [(ngModel)]="startedAtDate"
-                name="date"
-                id="datepicker"
+              <input mz-input
+              class="form-control"
+              id="count-input-field"
+              [label]="'Number of results'"
+              [(ngModel)]="resultsToReturn"
+              name="count"
 
-                placeholder="Date to start from"
-                type="text">
-            </mz-datepicker-container>
+              placeholder="Number of results to return"
+              length="3"
+              type="number">
 
+              <!-- DATE PICKER -->
+              <mz-datepicker-container>
+                <i mz-icon-mdi mz-input-prefix
+                id="input-prefix-icon"
+                [icon]="'calendar'"></i>
 
+                <input mz-datepicker
+                  [label]="'Starting date'"
+                  [options]="datepickerOptions"
+                  [(ngModel)]="startedAtDate"
+                  name="date"
+                  id="datepicker"
 
+                  placeholder="Date to start from"
+                  type="text">
+              </mz-datepicker-container>
 
-          <!-- TIME PICKER -->
-          <mz-timepicker-container>
-              <i mz-icon-mdi mz-input-prefix
-              id="input-prefix-icon"
-              [icon]="'clock'"></i>
+              <!-- TIME PICKER -->
+              <mz-timepicker-container>
+                <i mz-icon-mdi mz-input-prefix
+                id="input-prefix-icon"
+                [icon]="'clock'"></i>
 
-              <input mz-timepicker
-                [label]="'Starting time'"
-                [options]="timepickerOptions"
-                [(ngModel)]="startedAtTime"
-                name="time"
-                id="timepicker"
+                <input mz-timepicker
+                  [label]="'Starting time'"
+                  [options]="timepickerOptions"
+                  [(ngModel)]="startedAtTime"
+                  name="time"
+                  id="timepicker"
 
-                placeholder="Time to start from"
-                type="text">
-            </mz-timepicker-container>
+                  placeholder="Time to start from"
+                  type="text">
+              </mz-timepicker-container>
 
+              <!-- PERIOD SELECT -->
+              <mz-select-container>
+                <i mz-icon-mdi mz-input-prefix
+                id="input-prefix-icon"
+                [icon]="'calendar-multiple'"></i>
 
-
-          <!-- PERIOD SELECT -->
-          <mz-select-container>
-              <i mz-icon-mdi mz-input-prefix
-              id="input-prefix-icon"
-              [icon]="'calendar-multiple'"></i>
-
-              <select mz-select
-                id="options-select"
-                [label]="'Period'"
-                [placeholder]="'All'"
-                [(ngModel)]="resultsPeriod"
-                name="period">
+                <select mz-select
+                  id="options-select"
+                  [label]="'Period'"
+                  [placeholder]="'All'"
+                  [(ngModel)]="resultsPeriod"
+                  name="period">
 
                   <option class="left circle">day</option>
                   <option class="left circle">week</option>
                   <option class="left circle">month</option>
                   <option class="left circle">year</option>
                   <option class="left circle">all</option>
-              </select>
-            </mz-select-container>
+                </select>
+              </mz-select-container>
 
+              <!-- USER ID INPUT -->
+              <i mz-icon-mdi mz-input-prefix
+              id="input-prefix-icon"
+              [icon]="'account-search'"></i>
 
-          <!-- USER ID INPUT -->
-          <i mz-icon-mdi mz-input-prefix
-          id="input-prefix-icon"
-          [icon]="'account-search'"></i>
+              <input mz-input
+              class="form-control"
+              id="user-id-input-field"
+              [(ngModel)]="userId"
+              name="user"
 
-          <input mz-input
-          class="form-control"
-          id="user-id-input-field"
-          [(ngModel)]="userId"
-          name="user"
+              placeholder="User ID"
+              length="20"
+              type="search">
 
-          placeholder="User ID"
-          length="20"
-          type="search">
+            </mz-input-container>
 
-        </mz-input-container>
+            <button mz-button
+            type="button"
+            (click)="usernameInput.value=''">Clear
+            </button>
 
-        <button mz-button
-        type="button"
-        (click)="usernameInput.value=''">Clear
-        </button>
+            <button mz-button
+            type="submit"
+            (click)="getBitsLeaderboard()">Submit
+            </button>
 
-        <button mz-button
-        type="submit"
-        (click)="getBitsLeaderboard()">Submit
-        </button>
+          </form>
+        </div>
 
-      </form>
-    </div>
-
-    <!-- RESPONSE SECTION -->
-    <div class="section">
-      <h5>Response</h5>
-      <div class="row">
-        <div *ngFor="let entry of leaderboardEntries; let i = index">
-          <div class="col s3">
-
-              <div
-                class="card entryCard hoverable">
+        <!-- RESPONSE SECTION -->
+        <div class="section bits-section">
+          <h5>Response</h5>
+          <div class="row">
+            <div *ngFor="let entry of leaderboardEntries; let i = index">
+              <div class="col s3">
+                <div class="card entryCard hoverable">
                   <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator" src={{getUserProfileImageUrl(entry.user_id)}}>
                   </div>
@@ -134,14 +125,18 @@
                     <span class="card-title activator white-text">
                       <span class="new badge rankBadge" data-badge-caption="">{{entry.rank}}</span>
                       {{getUserDisplayName(entry.user_id)}}
-                      <i class="material-icons right">more_vert</i></span>
-                      <div class=entryCardContent>
-                        <p>Rank: {{ entry.rank }}</p>
-                        <p>Score: {{ entry.score }}</p>
-                      </div>
+                      <i class="material-icons right">more_vert</i>
+                    </span>
+                    <div class=entryCardContent>
+                      <p>Rank: {{ entry.rank }}</p>
+                      <p>Score: {{ entry.score }}</p>
+                    </div>
                   </div>
+
                   <div class="card-reveal">
-                    <span class="card-title white-text">{{getUserDisplayName(entry.user_id)}}<i class="material-icons right">close</i></span>
+                    <span class="card-title white-text">{{getUserDisplayName(entry.user_id)}}
+                      <i class="material-icons right">close</i>
+                    </span>
                     <div class=entryCardContent>
                       <p>Rank: {{ entry.rank }}</p>
                       <p>Score: {{ entry.score }}</p>
@@ -154,44 +149,11 @@
                     </div>
                   </div>
                 </div>
-
-
-            <!-- <mz-card class="blue-grey darken-1 white-text" [hoverable]="true">
-              <mz-card-title>
-                  <span class="new badge rankBadge" data-badge-caption="">{{entry.rank}}</span>
-                {{getUserDisplayName(entry.user_id)}}
-              </mz-card-title>
-              <mz-card-content>
-                <div class="row">
-                  <img class="col s4" src={{getUserProfileImageUrl(entry.user_id)}}>
-                  <div class="col s8">
-                    <p>Rank: {{ entry.rank }}</p>
-                    <p>Score: {{ entry.score }}</p>
-
-                    <p>Display name: {{ getUserDisplayName(entry.user_id) }}</p>
-                    <p>User type: {{ getUserType(entry.user_id) }}</p>
-                    <p>Broadcaster type: {{ getUserBroadcasterType(entry.user_id) }}</p>
-                    <p>Description: {{ getUserDescription(entry.user_id) }}</p>
-                    <p>View count: {{ getUserViewCount(entry.user_id) }}</p>
-                  </div>
-                </div>
-              </mz-card-content>
-              <mz-card-action>
-                <a href="{{getUserChannelUrl(entry.user_id)}}">Channel</a>
-              </mz-card-action>
-            </mz-card> -->
-
-
-
-
-
-
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-  </mz-card-content>
-</mz-card>
-
-
+  </div>
+</div>

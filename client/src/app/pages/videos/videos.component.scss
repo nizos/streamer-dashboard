@@ -5,15 +5,18 @@
  * @Last Modified time: 2018-06-02 20:29:21
  */
 
-.thumbnail {
-    max-width: 300px;
-    border-radius: 5px;
+.videos-card-content {
+  padding: 0px 0px 0px 0px !important;
 }
 
-.userInfo {
-    font-size: 18px;
-    color: rgb(75, 75, 75);
-    font-weight: lighter;
+.videos-card-title {
+  padding: 24px 24px 24px 24px !important;
 }
 
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+.videos-section {
+  padding: 24px 24px 24px 24px !important;
+}
+
+.videos-card-container {
+  padding: 0px 0px 0px 0px !important;
+}

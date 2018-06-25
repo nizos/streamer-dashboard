@@ -412,7 +412,9 @@ export class BitsComponent implements OnInit {
     }
   }
 
+  tabOnShow() {
 
+  }
 
 }
 

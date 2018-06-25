@@ -1,14 +1,43 @@
-<mz-card [hoverable]="true">
-  <mz-card-title>Clips</mz-card-title>
-  <mz-card-content class="grey darken-2 white-text">
-    <mz-tab [fixedTabWidth]="'true'" [onShow]="tabOnShow()">
-      <mz-tab-item [label]="'Tab 1'" class="tab-content">Tab 1 content</mz-tab-item>
-      <mz-tab-item [active]="'true'" [label]="'Tab 2'" class="tab-content">Tab 2 content</mz-tab-item>
-      <mz-tab-item [label]="'Tab 3'" class="tab-content">Tab 3 content</mz-tab-item>
-    </mz-tab>
-  </mz-card-content>
-  <mz-card-action>
-    <a href="#">This is a link</a>
-    <a href="#">This is a link</a>
-  </mz-card-action>
-</mz-card>
+<div class="row">
+  <div class="col s12 m12 clips-card-container">
+    <div class="card clips-card white">
+      <div class="card-content clips-card-content white black-text">
+        <span class="card-title clips-card-title blue-grey white-text">Clips</span>
+        <mz-tab [fixedTabWidth]="'true'" [onShow]="tabOnShow()">
+
+          <!-- Tab 1  -->
+          <mz-tab-item
+            [label]="'Tab 1'"
+            [active]="'true'"
+            class="tab-content">
+            <div class="section clips-section">
+              <!-- Tab 1 Content  -->
+              Tab 1 content
+            </div>
+          </mz-tab-item>
+
+          <!-- Tab 2  -->
+          <mz-tab-item
+            [label]="'Tab 2'"
+            class="tab-content">
+            <div class="section clips-section">
+              <!-- Tab 1 Content  -->
+              Tab 2 content
+            </div>
+          </mz-tab-item>
+
+          <!-- Tab 3  -->
+          <mz-tab-item
+            [label]="'Tab 3'"
+            class="tab-content">
+            <div class="section clips-section">
+              <!-- Tab 1 Content  -->
+              Tab 3 content
+            </div>
+          </mz-tab-item>
+
+        </mz-tab>
+      </div>
+    </div>
+  </div>
+</div>

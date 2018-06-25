@@ -1,28 +1,28 @@
-<div class="card">
-  <div class="card-content blue-grey darken-3">
-    <h3 class="white-text">Sign in</h3>
-  </div>
-  <div class="card-content blue-grey lighten-5">
-    <div id="card-body">
-      <div class="progress" *ngIf="loading()">
-        <div class="indeterminate"></div>
-      </div>
-      <div class="row">
-        <div class="col l4">
-          <a class="waves-effect waves-light btn twitch-btn" (click)="signIn()">
-            <div class="valign-wrapper">
-              <img class="twitch-icon left" src="../../../assets/images/Twitch/GlitchIcon_White_32px.png">Connect with Twitch
-            </div>
-          </a>
+<div class="row">
+  <div class="col s12 m12 signin-card-container">
+    <div class="card signin-card white">
+      <div class="card-content signin-card-content white black-text">
+        <span class="card-title signin-card-title blue-grey white-text">Sign In</span>
+        <div class="progress" *ngIf="loading()">
+          <div class="indeterminate"></div>
         </div>
-        <div class="col l8">
-          <div id="sign-in-page-pic">
-            <div class="row">
-              <div class="col s12 m7">
-                <div class="card">
-                  <div class="card-image">
-                    <img src="../../../assets/images/signin/DashboardImage.png">
-                      <div class="card-title">Streamer Dashboard</div>
+        <div class="row">
+          <div class="col l4">
+            <a class="waves-effect waves-light btn twitch-btn" (click)="signIn()">
+              <div class="valign-wrapper">
+                <img class="twitch-icon left" src="../../../assets/images/Twitch/GlitchIcon_White_32px.png">Connect with Twitch
+              </div>
+            </a>
+          </div>
+          <div class="col l8">
+            <div id="sign-in-page-pic">
+              <div class="row">
+                <div class="col s12 m7">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="../../../assets/images/signin/DashboardImage.png">
+                        <div class="card-title">Streamer Dashboard</div>
+                    </div>
                   </div>
                 </div>
               </div>

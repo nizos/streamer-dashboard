@@ -50,15 +50,23 @@
   color: #37474F !important;
 }
 
-// Section
-.section {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 100px;
-  padding-right: 100px;
-}
-
 // Icons
 #input-prefix-icon {
   color: #37474F !important;
+}
+
+.bits-card-content {
+  padding: 0px 0px 0px 0px !important;
+}
+
+.bits-card-title {
+  padding: 24px 24px 24px 24px !important;
+}
+
+.bits-section {
+  padding: 24px 24px 24px 24px !important;
+}
+
+.bits-card-container {
+  padding: 0px 0px 0px 0px !important;
 }
